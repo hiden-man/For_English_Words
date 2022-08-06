@@ -61,8 +61,8 @@ radioButton3_Size-9.75";
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
             MainWindowLocation();
+            DefaultMySettings();
             CreateDirectoryAndFiles();
             RecountTheNumberOfWords();
             Repetition();
@@ -80,6 +80,31 @@ radioButton3_Size-9.75";
         private void MainWindowLocation()
         {
             Location = new Point((screenSize.Width / 2) - (Size.Width / 2), 0);
+        }
+        //---------------------------------------------------------------------------------------------------------
+        // Метод дефолтних налаштувань
+        private void DefaultMySettings()
+        {
+            Size = new Size(550, 81);
+            radioButton1.Location = new Point(textBox1.Location.X + textBox1.Size.Width + pictureBox1.Size.Width + 10, 3);
+            radioButton2.Location = new Point(radioButton1.Location.X, radioButton1.Location.Y + radioButton1.Size.Height + 5);
+            radioButton3.Location = new Point(radioButton1.Location.X, radioButton2.Location.Y + radioButton2.Size.Height + 5);
+            button6.Location = new Point(textBox1.Location.X, textBox1.Location.Y + textBox1.Size.Height + 5);
+            button5.Location = new Point(button6.Location.X + button6.Size.Width + 20, button6.Location.Y);
+            button4.Location = new Point(button5.Location.X + button5.Size.Width + 10, button5.Location.Y);
+        }
+        //---------------------------------------------------------------------------------------------------------
+        // Метод вираховування розмурів контролерів
+        private void CalculateSizeControls()
+        {
+            // 550 * 10% / 100 + 550
+            Size = new Size(550*10/100+550, 130*10/100+130);
+            textBox1.Font = new Font("Microsoft Sans Serif", 30F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            textBox1.Size = new Size(textBox1.Size.Width + 30, textBox1.Size.Height);
+            pictureBox1.Size = new Size(pictureBox1.Size.Width + 5, pictureBox1.Size.Height + 5);
+            radioButton1.Font = new Font("Microsoft Sans Serif", 20F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            radioButton2.Font = new Font("Microsoft Sans Serif", 20F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            radioButton3.Font = new Font("Microsoft Sans Serif", 20F, FontStyle.Regular, GraphicsUnit.Point, 204);
         }
         //---------------------------------------------------------------------------------------------------------
         // Метод створення директорії та неохідних файлів
@@ -158,7 +183,6 @@ radioButton3_Size-9.75";
                 sw.Write($"{IDWords}");
             SetIDWord();
         }
-
         //---------------------------------------------------------------------------------------------------------
         // Метод встановлення кількості англійських слів у файлі
         private void SetIDWord()
@@ -562,6 +586,18 @@ radioButton3_Size-9.75";
             radioButton3.Checked = false;
             pictureBox1.Visible = false;
             Repetition();
+        }
+        //---------------------------------------------------------------------------------------------------------
+        // Кнопка зміни розміру вікна
+        private void button1_Click(object sender, EventArgs e)
+        {
+            CalculateSizeControls();
+            radioButton1.Location = new Point(textBox1.Location.X + textBox1.Size.Width + pictureBox1.Size.Width + 10, 3);
+            radioButton2.Location = new Point(radioButton1.Location.X, radioButton1.Location.Y + radioButton1.Size.Height + 5);
+            radioButton3.Location = new Point(radioButton1.Location.X, radioButton2.Location.Y + radioButton2.Size.Height + 5);
+            button6.Location = new Point(textBox1.Location.X, textBox1.Location.Y + textBox1.Size.Height + 5);
+            button5.Location = new Point(button6.Location.X + button6.Size.Width + 20, button6.Location.Y);
+            button4.Location = new Point(button5.Location.X + button5.Size.Width + 10, button5.Location.Y);
         }
         //---------------------------------------------------------------------------------------------------------
         // Close button
