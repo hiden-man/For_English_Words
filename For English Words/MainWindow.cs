@@ -140,7 +140,7 @@ radioButton3_Size-8.25";
             if(countSwitch == 1)
             {
                 paramArray = param.Split('\n');
-                param2 = paramArray[indexParam];
+                param2 = paramArray[indexParam-1];
                 paramArray2 = param2.Split(',');
                 x = x + Convert.ToInt32(paramArray2[0]);
                 y = y + Convert.ToInt32(paramArray2[1]);
