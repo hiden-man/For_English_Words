@@ -106,6 +106,8 @@ radioButton3_Size-8.25";
         // Методи вираховування розмурів контролерів
         private void CalculateSizeControlsUp()
         {
+            label2.Text = "";
+            label2.Location = new Point(label1.Location.X + 5, label1.Location.Y);
             // 550 * 10% / 100 + 550
             if (!File.Exists(pathToValueParameters))
             {
@@ -132,16 +134,16 @@ radioButton3_Size-8.25";
             if (countSwitch == 0)
             {
                 paramArray = param.Split(',');
-                x += Convert.ToInt32(paramArray[0]);
-                y += Convert.ToInt32(paramArray[1]);
+                x = x + Convert.ToInt32(paramArray[0]);
+                y = y + Convert.ToInt32(paramArray[1]);
             }
             if(countSwitch == 1)
             {
                 paramArray = param.Split('\n');
-                param2 = paramArray[indexParam-1];
+                param2 = paramArray[indexParam];
                 paramArray2 = param2.Split(',');
-                x += Convert.ToInt32(paramArray2[0]);
-                y += Convert.ToInt32(paramArray2[1]);
+                x = x + Convert.ToInt32(paramArray2[0]);
+                y = y + Convert.ToInt32(paramArray2[1]);
             }
 
             //x = x*19/100+x;
@@ -229,7 +231,7 @@ radioButton3_Size-8.25";
             // Створення файла для лічильника
             if (!File.Exists(pathToCounterFile))
                 using (StreamWriter sw5 = new StreamWriter(pathToCounterFile))
-                    sw5.Write(1);
+                    sw5.Write(0);
 
                     // Запис кількості слів у текстовий файл
                     if (!File.Exists(pathToSizeFile))
@@ -663,10 +665,8 @@ radioButton3_Size-8.25";
         // Кнопка збільшення розміру вікна
         private void button1_Click(object sender, EventArgs e)
         {
-            string tempStr = "";
-            using (StreamReader sr245 = new StreamReader(pathToCounterFile))
-                tempStr = sr245.ReadToEnd();
-            label2.Text = tempStr;
+            using (StreamReader sr = new StreamReader(pathToCounterFile))
+                indexParam = Convert.ToInt32(sr.ReadToEnd());
 
                 int tempX = x*19/100+x;
             if (tempX < screenSize.Width)
@@ -684,9 +684,11 @@ radioButton3_Size-8.25";
                 MainWindowLocation();
                 label1.Text = Size.Height.ToString();
 
+                indexParam++;
                 using (StreamWriter sw = new StreamWriter(pathToCounterFile))
-                    indexParam++;
+                    sw.Write(indexParam);
             }
+
             if (tempX == screenSize.Width || tempX > screenSize.Width)
             {
                 Size = new Size(x, 240);
