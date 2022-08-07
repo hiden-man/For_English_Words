@@ -20,21 +20,23 @@ namespace For_English_Words
             pathToRandomAsnwer = $@"C:\FEW\Random answer.mw",
             pathToSwitchIndex = $@"C:\FEW\Switch index.mw",
             pathToConfogFile = $@"C:\FEW\Config.cfg",
+            pathToValueParameters = $@"C:\FEW\Value of Parameters.par",
+            pathToCounterFile = $@"C:\FEW\CounterCaseArray.ct",
             pathToSizeFile = $@"C:\FEW\Number of the words.mw";
 
         string defaultSettings = 
 $@"Main_window:
 Size-550,81
 Random_word_field_Location-12,3
-Random_word_field_Size-18 
+Random_word_field_Size-14.25
 Random_word_field_Font-Microsoft Sans Serif
 Random_word_field_Color-255,102,102
 radioButton1_Color-255,102,102
-radioButton1_Size-9.75
+radioButton1_Size-8.25
 radioButton2_Color-255,102,102
-radioButton2_Size-9.75
+radioButton2_Size-8.25
 radioButton3_Color-255,102,102
-radioButton3_Size-9.75";
+radioButton3_Size-8.25";
 
         string[] defaultWords = {
             "white","black","orange","blue","green","red","brown","gray","pink","yellow","magenta","purple",
@@ -51,9 +53,14 @@ radioButton3_Size-9.75";
             "пояснювати","говорити","проводити","дивний","вирощувати","сад","постачальники","ситуація","відповідь",
             "кліенти","ненавидіти","плавати","обіцяти","відмова"};
 
+        float fontS = 18F, fontSRbutton = 9.75F;
+
         private int 
             IDWords = 0, IDTranslate = 0, randomIDWord = 0,
-            correctItem = 0, randomChoise = 0;
+            correctItem = 0, randomChoise = 0, 
+            x = 440, y = 90, 
+            countSwitch = 0, indexParam = 0;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -85,26 +92,84 @@ radioButton3_Size-9.75";
         // Метод дефолтних налаштувань
         private void DefaultMySettings()
         {
-            Size = new Size(550, 81);
+            Size = new Size(x, y);
             radioButton1.Location = new Point(textBox1.Location.X + textBox1.Size.Width + pictureBox1.Size.Width + 10, 3);
             radioButton2.Location = new Point(radioButton1.Location.X, radioButton1.Location.Y + radioButton1.Size.Height + 5);
             radioButton3.Location = new Point(radioButton1.Location.X, radioButton2.Location.Y + radioButton2.Size.Height + 5);
             button6.Location = new Point(textBox1.Location.X, textBox1.Location.Y + textBox1.Size.Height + 5);
-            button5.Location = new Point(button6.Location.X + button6.Size.Width + 20, button6.Location.Y);
-            button4.Location = new Point(button5.Location.X + button5.Size.Width + 10, button5.Location.Y);
+            button5.Location = new Point(button6.Location.X + button6.Size.Width + 4, button6.Location.Y);
+            button4.Location = new Point(button5.Location.X + button5.Size.Width + 2, button5.Location.Y);
+            button9.Location = new Point(button6.Location.X, button6.Location.Y + button6.Size.Height+5);
+            button1.Location = new Point(button9.Location.X + button9.Size.Width, button9.Location.Y);
         }
         //---------------------------------------------------------------------------------------------------------
-        // Метод вираховування розмурів контролерів
-        private void CalculateSizeControls()
+        // Методи вираховування розмурів контролерів
+        private void CalculateSizeControlsUp()
         {
             // 550 * 10% / 100 + 550
-            Size = new Size(550*10/100+550, 130*10/100+130);
-            textBox1.Font = new Font("Microsoft Sans Serif", 30F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            textBox1.Size = new Size(textBox1.Size.Width + 30, textBox1.Size.Height);
+            if (!File.Exists(pathToValueParameters))
+            {
+                countSwitch = 0;
+                using (StreamWriter sw1 = new StreamWriter(pathToValueParameters, true))
+                    sw1.Write($"{x*19/100},{y*13/100}");
+            }
+            else
+            {
+                countSwitch = 1;
+                using (StreamWriter sw1 = new StreamWriter(pathToValueParameters, true))
+                    sw1.Write($"\n{x*19/100},{y*13/100}");
+            }
+
+            string param = "", param2 = "";
+            string[] paramArray;
+            string[] paramArray2;
+            using (StreamReader sr6 = new StreamReader(pathToCounterFile))
+                indexParam = Convert.ToInt32(sr6.ReadToEnd());
+
+            using (StreamReader sr1 = new StreamReader(pathToValueParameters))
+                param = sr1.ReadToEnd();
+
+            if (countSwitch == 0)
+            {
+                paramArray = param.Split(',');
+                x += Convert.ToInt32(paramArray[0]);
+                y += Convert.ToInt32(paramArray[1]);
+            }
+            if(countSwitch == 1)
+            {
+                paramArray = param.Split('\n');
+                param2 = paramArray[indexParam-1];
+                paramArray2 = param2.Split(',');
+                x += Convert.ToInt32(paramArray2[0]);
+                y += Convert.ToInt32(paramArray2[1]);
+            }
+
+            //x = x*19/100+x;
+            //y = y*13/100+y;
+            fontS = fontS*20/100+fontS;
+            fontSRbutton = fontSRbutton*20/100+fontSRbutton;
+            Size = new Size(x, y);
+            textBox1.Font = new Font("Microsoft Sans Serif", fontS, FontStyle.Regular, GraphicsUnit.Point, 204);
+            textBox1.Size = new Size(textBox1.Size.Width*20/100+textBox1.Size.Width, textBox1.Size.Height);
             pictureBox1.Size = new Size(pictureBox1.Size.Width + 5, pictureBox1.Size.Height + 5);
-            radioButton1.Font = new Font("Microsoft Sans Serif", 20F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            radioButton2.Font = new Font("Microsoft Sans Serif", 20F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            radioButton3.Font = new Font("Microsoft Sans Serif", 20F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            radioButton1.Font = new Font("Microsoft Sans Serif", fontSRbutton, FontStyle.Regular, GraphicsUnit.Point, 204);
+            radioButton2.Font = new Font("Microsoft Sans Serif", fontSRbutton, FontStyle.Regular, GraphicsUnit.Point, 204);
+            radioButton3.Font = new Font("Microsoft Sans Serif", fontSRbutton, FontStyle.Regular, GraphicsUnit.Point, 204);
+        }
+        //---------------------------------------------------------------------------------------------------------
+        private void CalculateSizeControlsDown()
+        {
+            x = x - (x*18/100);
+            y = y - (y*13/100);
+            fontS = fontS - (fontS*20/100);
+            fontSRbutton = fontSRbutton - (fontSRbutton*20/100);
+            Size = new Size(x, y);
+            textBox1.Font = new Font("Microsoft Sans Serif", fontS, FontStyle.Regular, GraphicsUnit.Point, 204);
+            textBox1.Size = new Size(textBox1.Size.Width - (textBox1.Size.Width*20/100), textBox1.Size.Height);
+            pictureBox1.Size = new Size(pictureBox1.Size.Width - 5, pictureBox1.Size.Height - 5);
+            radioButton1.Font = new Font("Microsoft Sans Serif", fontSRbutton, FontStyle.Regular, GraphicsUnit.Point, 204);
+            radioButton2.Font = new Font("Microsoft Sans Serif", fontSRbutton, FontStyle.Regular, GraphicsUnit.Point, 204);
+            radioButton3.Font = new Font("Microsoft Sans Serif", fontSRbutton, FontStyle.Regular, GraphicsUnit.Point, 204);
         }
         //---------------------------------------------------------------------------------------------------------
         // Метод створення директорії та неохідних файлів
@@ -114,7 +179,7 @@ radioButton3_Size-9.75";
             Directory.CreateDirectory(defaultPath);
 
             // Перевірка на навність необхідних файлів
-            // Створення файлу для слів
+            // Створення файла для слів
             if (!File.Exists(pathToFileWords))
                 using (StreamWriter sw1 = new StreamWriter(pathToFileWords))
                     // запис дефолтних слів
@@ -127,7 +192,7 @@ radioButton3_Size-9.75";
                         IDWords++;
                     }
 
-            // Створення файлу для перекладу
+            // Створення файла для перекладу
             if (!File.Exists(pathToFileTranslate))
                 using (StreamWriter sw2 = new StreamWriter(pathToFileTranslate))
                     // запис дефолтних перекладів
@@ -140,7 +205,7 @@ radioButton3_Size-9.75";
                         IDTranslate++;
                     }
 
-            // Створення файлу для вірних відповідей
+            // Створення файла для вірних відповідей
             if (!File.Exists(pathToCorecctAnswerFile))
                 using (StreamWriter sw3 = new StreamWriter(pathToCorecctAnswerFile))
                     // нумерація комірок
@@ -150,19 +215,25 @@ radioButton3_Size-9.75";
                         else
                             sw3.Write($"\n{correctItem}");
 
-            // Створення файлу для перемішування відповідей
+            // Створення файла для перемішування відповідей
             if (!File.Exists(pathToRandomAsnwer))
-                using (FileStream fs3 = new FileStream(pathToRandomAsnwer, FileMode.Create)) { };
+                using (FileStream fs1 = new FileStream(pathToRandomAsnwer, FileMode.Create)) { };
+
+            // Створення Config файла
             if (!File.Exists(pathToConfogFile))
                 using (StreamWriter sw4 = new StreamWriter(pathToConfogFile))
                 {
                     sw4.Write($@"");
                 }
 
+            // Створення файла для лічильника
+            if (!File.Exists(pathToCounterFile))
+                using (StreamWriter sw5 = new StreamWriter(pathToCounterFile))
+                    sw5.Write(1);
 
-            // Запис кількості слів у текстовий файл
-            if (!File.Exists(pathToSizeFile))
-                SaveNumberOfSize();
+                    // Запис кількості слів у текстовий файл
+                    if (!File.Exists(pathToSizeFile))
+                        SaveNumberOfSize();
         }
         //---------------------------------------------------------------------------------------------------------
         // Метод перераховування кількості слів при повторному відкритті программи
@@ -540,6 +611,7 @@ radioButton3_Size-9.75";
                 }
             }
         }
+        //---------------------------------------------------------------------------------------------------------
         // КОНТРОЛЕРИ
         //---------------------------------------------------------------------------------------------------------
         // Кнопка відкриття меню
@@ -588,16 +660,56 @@ radioButton3_Size-9.75";
             Repetition();
         }
         //---------------------------------------------------------------------------------------------------------
-        // Кнопка зміни розміру вікна
+        // Кнопка збільшення розміру вікна
         private void button1_Click(object sender, EventArgs e)
         {
-            CalculateSizeControls();
+            string tempStr = "";
+            using (StreamReader sr245 = new StreamReader(pathToCounterFile))
+                tempStr = sr245.ReadToEnd();
+            label2.Text = tempStr;
+
+                int tempX = x*19/100+x;
+            if (tempX < screenSize.Width)
+            {
+                CalculateSizeControlsUp();
+                radioButton1.Location = new Point(textBox1.Location.X + textBox1.Size.Width + pictureBox1.Size.Width + 10, 3);
+                radioButton2.Location = new Point(radioButton1.Location.X, radioButton1.Location.Y + radioButton1.Size.Height + 5);
+                radioButton3.Location = new Point(radioButton1.Location.X, radioButton2.Location.Y + radioButton2.Size.Height + 5);
+                button6.Location = new Point(textBox1.Location.X, textBox1.Location.Y + textBox1.Size.Height + 5);
+                button5.Location = new Point(button6.Location.X + button6.Size.Width + 4, button6.Location.Y);
+                button4.Location = new Point(button5.Location.X + button5.Size.Width + 2, button5.Location.Y);
+                button9.Location = new Point(button6.Location.X, button6.Location.Y + button6.Size.Height+5);
+                button1.Location = new Point(button9.Location.X + button9.Size.Width, button9.Location.Y);
+                label1.Location = new Point(button1.Location.X + button1.Size.Width + 2, button1.Location.Y + 5);
+                MainWindowLocation();
+                label1.Text = Size.Height.ToString();
+
+                using (StreamWriter sw = new StreamWriter(pathToCounterFile))
+                    indexParam++;
+            }
+            if (tempX == screenSize.Width || tempX > screenSize.Width)
+            {
+                Size = new Size(x, 240);
+                label1.Text = Size.Height.ToString();
+                MessageBox.Show("Maximum size reached!", "Information",MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+        //---------------------------------------------------------------------------------------------------------
+        // Кнопка зменьшення розміру вікна
+        private void button9_Click(object sender, EventArgs e)
+        {
+            CalculateSizeControlsDown();
             radioButton1.Location = new Point(textBox1.Location.X + textBox1.Size.Width + pictureBox1.Size.Width + 10, 3);
             radioButton2.Location = new Point(radioButton1.Location.X, radioButton1.Location.Y + radioButton1.Size.Height + 5);
             radioButton3.Location = new Point(radioButton1.Location.X, radioButton2.Location.Y + radioButton2.Size.Height + 5);
             button6.Location = new Point(textBox1.Location.X, textBox1.Location.Y + textBox1.Size.Height + 5);
             button5.Location = new Point(button6.Location.X + button6.Size.Width + 20, button6.Location.Y);
             button4.Location = new Point(button5.Location.X + button5.Size.Width + 10, button5.Location.Y);
+            button9.Location = new Point(button6.Location.X, button6.Location.Y + button6.Size.Height+5);
+            button1.Location = new Point(button9.Location.X + button9.Size.Width, button9.Location.Y);
+            label1.Location = new Point(button1.Location.X + button1.Size.Width + 2, button1.Location.Y + 5);
+            MainWindowLocation();
+            label1.Text = Size.Height.ToString();
         }
         //---------------------------------------------------------------------------------------------------------
         // Close button
