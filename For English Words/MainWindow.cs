@@ -21,12 +21,12 @@ namespace For_English_Words
             pathToSwitchIndex = $@"C:\FEW\Switch index.mw",
             pathToConfogFile = $@"C:\FEW\Config.cfg",
             pathToValueParameters = $@"C:\FEW\Value of Parameters.par",
-            pathToCounterFile = $@"C:\FEW\CounterCaseArray.ct",
+            pathToCounterFile = $@"C:\FEW\Case index.ci",
             pathToSizeFile = $@"C:\FEW\Number of the words.mw";
 
         string defaultSettings = 
 $@"Main_window:
-Size-550,81
+Size-440,81
 Random_word_field_Location-12,3
 Random_word_field_Size-14.25
 Random_word_field_Font-Microsoft Sans Serif
@@ -58,7 +58,7 @@ radioButton3_Size-8.25";
         private int 
             IDWords = 0, IDTranslate = 0, randomIDWord = 0,
             correctItem = 0, randomChoise = 0, 
-            x = 440, y = 90, 
+            x = 440, y = 81, 
             countSwitch = 0, indexParam = 0;
 
         public MainWindow()
@@ -106,20 +106,20 @@ radioButton3_Size-8.25";
         // Методи вираховування розмурів контролерів
         private void CalculateSizeControlsUp()
         {
-            label2.Text = "";
-            label2.Location = new Point(label1.Location.X + 5, label1.Location.Y);
             // 550 * 10% / 100 + 550
+
+            label1.Text = Size.Height.ToString();
             if (!File.Exists(pathToValueParameters))
             {
                 countSwitch = 0;
                 using (StreamWriter sw1 = new StreamWriter(pathToValueParameters, true))
-                    sw1.Write($"{x*19/100},{y*13/100}");
+                    sw1.Write($"{x*20/100+x},{y*20/100+y}");
             }
             else
             {
                 countSwitch = 1;
                 using (StreamWriter sw1 = new StreamWriter(pathToValueParameters, true))
-                    sw1.Write($"\n{x*19/100},{y*13/100}");
+                    sw1.Write($"\n{x*20/100+x},{y*20/100+y}");
             }
 
             string param = "", param2 = "";
@@ -134,26 +134,26 @@ radioButton3_Size-8.25";
             if (countSwitch == 0)
             {
                 paramArray = param.Split(',');
-                x = x + Convert.ToInt32(paramArray[0]);
-                y = y + Convert.ToInt32(paramArray[1]);
+                x = Convert.ToInt32(paramArray[0]);
+                y = Convert.ToInt32(paramArray[1]);
             }
             if(countSwitch == 1)
             {
                 paramArray = param.Split('\n');
-                param2 = paramArray[indexParam-1];
+                param2 = paramArray[indexParam];
                 paramArray2 = param2.Split(',');
-                x = x + Convert.ToInt32(paramArray2[0]);
-                y = y + Convert.ToInt32(paramArray2[1]);
+                x = Convert.ToInt32(paramArray2[0]);
+                y = Convert.ToInt32(paramArray2[1]);
             }
 
             //x = x*19/100+x;
-            //y = y*13/100+y;
-            fontS = fontS*20/100+fontS;
-            fontSRbutton = fontSRbutton*20/100+fontSRbutton;
+            ////y = y*13/100+y;
+            //fontS = fontS*20/100+fontS;
+            //fontSRbutton = fontSRbutton*17/100+fontSRbutton;
             Size = new Size(x, y);
             textBox1.Font = new Font("Microsoft Sans Serif", fontS, FontStyle.Regular, GraphicsUnit.Point, 204);
-            textBox1.Size = new Size(textBox1.Size.Width*20/100+textBox1.Size.Width, textBox1.Size.Height);
-            pictureBox1.Size = new Size(pictureBox1.Size.Width + 5, pictureBox1.Size.Height + 5);
+            //textBox1.Size = new Size(textBox1.Size.Width*20/100+textBox1.Size.Width, textBox1.Size.Height);
+            //pictureBox1.Size = new Size(pictureBox1.Size.Width + 5, pictureBox1.Size.Height + 5);
             radioButton1.Font = new Font("Microsoft Sans Serif", fontSRbutton, FontStyle.Regular, GraphicsUnit.Point, 204);
             radioButton2.Font = new Font("Microsoft Sans Serif", fontSRbutton, FontStyle.Regular, GraphicsUnit.Point, 204);
             radioButton3.Font = new Font("Microsoft Sans Serif", fontSRbutton, FontStyle.Regular, GraphicsUnit.Point, 204);
@@ -161,8 +161,6 @@ radioButton3_Size-8.25";
         //---------------------------------------------------------------------------------------------------------
         private void CalculateSizeControlsDown()
         {
-            x = x - (x*18/100);
-            y = y - (y*13/100);
             fontS = fontS - (fontS*20/100);
             fontSRbutton = fontSRbutton - (fontSRbutton*20/100);
             Size = new Size(x, y);
@@ -680,9 +678,8 @@ radioButton3_Size-8.25";
                 button4.Location = new Point(button5.Location.X + button5.Size.Width + 2, button5.Location.Y);
                 button9.Location = new Point(button6.Location.X, button6.Location.Y + button6.Size.Height+5);
                 button1.Location = new Point(button9.Location.X + button9.Size.Width, button9.Location.Y);
-                label1.Location = new Point(button1.Location.X + button1.Size.Width + 2, button1.Location.Y + 5);
+                label1.Location = new Point(button1.Location.X+button1.Size.Width, button1.Location.Y);
                 MainWindowLocation();
-                label1.Text = Size.Height.ToString();
 
                 indexParam++;
                 using (StreamWriter sw = new StreamWriter(pathToCounterFile))
@@ -691,8 +688,7 @@ radioButton3_Size-8.25";
 
             if (tempX == screenSize.Width || tempX > screenSize.Width)
             {
-                Size = new Size(x, 240);
-                label1.Text = Size.Height.ToString();
+                Size = new Size(x, y);
                 MessageBox.Show("Maximum size reached!", "Information",MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
@@ -709,9 +705,7 @@ radioButton3_Size-8.25";
             button4.Location = new Point(button5.Location.X + button5.Size.Width + 10, button5.Location.Y);
             button9.Location = new Point(button6.Location.X, button6.Location.Y + button6.Size.Height+5);
             button1.Location = new Point(button9.Location.X + button9.Size.Width, button9.Location.Y);
-            label1.Location = new Point(button1.Location.X + button1.Size.Width + 2, button1.Location.Y + 5);
             MainWindowLocation();
-            label1.Text = Size.Height.ToString();
         }
         //---------------------------------------------------------------------------------------------------------
         // Close button
