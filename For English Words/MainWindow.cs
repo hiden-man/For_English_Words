@@ -106,20 +106,15 @@ radioButton3_Size-8.25";
         // Методи вираховування розмурів контролерів
         private void CalculateSizeControlsUp()
         {
-            // 550 * 10% / 100 + 550
-
-            label1.Text = Size.Height.ToString();
-
-            using (StreamWriter sw1 = new StreamWriter(pathToValueParameters, true))
-                sw1.Write($"\n{x*20/100+x},{y*20/100+y}");
-
+            string strIndexP = "";
             using (StreamReader sr6 = new StreamReader(pathToCounterFile))
-                indexParam = Convert.ToInt32(sr6.ReadToEnd());
+                strIndexP = sr6.ReadToEnd();
+            string[] strIndexPArray = strIndexP.Split(',');
+
 
             string param = "", param2 = "";
             string[] paramArray;
             string[] paramArray2;
-
 
             using (StreamReader sr1 = new StreamReader(pathToValueParameters))
                 param = sr1.ReadToEnd();
@@ -221,6 +216,8 @@ radioButton3_Size-8.25";
                     bool boolerCheck = true;
                     for (int i = 0; boolerCheck;)
                     {
+                        // 440 * 20 / 100 + 440 = 528
+
                         int tempXY = x * 20 / 100 + x;
                         if (tempXY < screenSize.Width)
                         {
@@ -232,14 +229,14 @@ radioButton3_Size-8.25";
                                 y = y * 20 / 100 + y;
                                 sw6.Write($"\n{x},{y}");
                             }
-                            using (StreamWriter sw01 = new StreamWriter(pathToCounterFile))
-                                sw01.Write(i);
                             i++;
                         }
                         if (tempXY == screenSize.Width || tempXY > screenSize.Width)
                         {
                             boolerCheck = false;
                         }
+                        using (StreamWriter sw01 = new StreamWriter(pathToCounterFile))
+                            sw01.Write($"{i},{0}");
                     }
                 }
 
@@ -690,7 +687,6 @@ radioButton3_Size-8.25";
                 button4.Location = new Point(button5.Location.X + button5.Size.Width + 2, button5.Location.Y);
                 button9.Location = new Point(button6.Location.X, button6.Location.Y + button6.Size.Height+5);
                 button1.Location = new Point(button9.Location.X + button9.Size.Width, button9.Location.Y);
-                label1.Location = new Point(button1.Location.X+button1.Size.Width, button1.Location.Y);
                 MainWindowLocation();
 
                 indexParam++;
