@@ -55,11 +55,10 @@ radioButton3_Size-8.25";
 
         float fontS = 18F, fontSRbutton = 9.75F;
 
-        private int 
+        private int
             IDWords = 0, IDTranslate = 0, randomIDWord = 0,
-            correctItem = 0, randomChoise = 0, 
-            x = 440, y = 81, 
-            countSwitch = 0, indexParam = 0;
+            correctItem = 0, randomChoise = 0,
+            x = 440, y = 81, indexParam = 0;
 
         public MainWindow()
         {
@@ -68,6 +67,7 @@ radioButton3_Size-8.25";
 
         private void Form1_Load(object sender, EventArgs e)
         {
+
             MainWindowLocation();
             DefaultMySettings();
             CreateDirectoryAndFiles();
@@ -109,42 +109,26 @@ radioButton3_Size-8.25";
             // 550 * 10% / 100 + 550
 
             label1.Text = Size.Height.ToString();
-            if (!File.Exists(pathToValueParameters))
-            {
-                countSwitch = 0;
-                using (StreamWriter sw1 = new StreamWriter(pathToValueParameters, true))
-                    sw1.Write($"{x*20/100+x},{y*20/100+y}");
-            }
-            else
-            {
-                countSwitch = 1;
-                using (StreamWriter sw1 = new StreamWriter(pathToValueParameters, true))
-                    sw1.Write($"\n{x*20/100+x},{y*20/100+y}");
-            }
+
+            using (StreamWriter sw1 = new StreamWriter(pathToValueParameters, true))
+                sw1.Write($"\n{x*20/100+x},{y*20/100+y}");
+
+            using (StreamReader sr6 = new StreamReader(pathToCounterFile))
+                indexParam = Convert.ToInt32(sr6.ReadToEnd());
 
             string param = "", param2 = "";
             string[] paramArray;
             string[] paramArray2;
-            using (StreamReader sr6 = new StreamReader(pathToCounterFile))
-                indexParam = Convert.ToInt32(sr6.ReadToEnd());
+
 
             using (StreamReader sr1 = new StreamReader(pathToValueParameters))
                 param = sr1.ReadToEnd();
 
-            if (countSwitch == 0)
-            {
-                paramArray = param.Split(',');
-                x = Convert.ToInt32(paramArray[0]);
-                y = Convert.ToInt32(paramArray[1]);
-            }
-            if(countSwitch == 1)
-            {
-                paramArray = param.Split('\n');
-                param2 = paramArray[indexParam];
-                paramArray2 = param2.Split(',');
-                x = Convert.ToInt32(paramArray2[0]);
-                y = Convert.ToInt32(paramArray2[1]);
-            }
+            paramArray = param.Split('\n');
+            param2 = paramArray[indexParam];
+            paramArray2 = param2.Split(',');
+            x = Convert.ToInt32(paramArray2[0]);
+            y = Convert.ToInt32(paramArray2[1]);
 
             //x = x*19/100+x;
             ////y = y*13/100+y;
@@ -219,21 +203,49 @@ radioButton3_Size-8.25";
             if (!File.Exists(pathToRandomAsnwer))
                 using (FileStream fs1 = new FileStream(pathToRandomAsnwer, FileMode.Create)) { };
 
-            // Створення Config файла
-            if (!File.Exists(pathToConfogFile))
-                using (StreamWriter sw4 = new StreamWriter(pathToConfogFile))
-                {
-                    sw4.Write($@"");
-                }
+            //// Створення Config файла
+            //if (!File.Exists(pathToConfogFile))
+            //    using (StreamWriter sw4 = new StreamWriter(pathToConfogFile))
+            //    {
+            //        sw4.Write($@"");
+            //    }
 
             // Створення файла для лічильника
             if (!File.Exists(pathToCounterFile))
-                using (StreamWriter sw5 = new StreamWriter(pathToCounterFile))
-                    sw5.Write(0);
+                using (FileStream fs2 = new FileStream(pathToCounterFile, FileMode.Create)) { };
 
-                    // Запис кількості слів у текстовий файл
-                    if (!File.Exists(pathToSizeFile))
-                        SaveNumberOfSize();
+            // Створення файла параметрів
+            if (!File.Exists(pathToValueParameters))
+                using (StreamWriter sw6 = new StreamWriter(pathToValueParameters))
+                {
+                    bool boolerCheck = true;
+                    for (int i = 0; boolerCheck;)
+                    {
+                        int tempXY = x * 20 / 100 + x;
+                        if (tempXY < screenSize.Width)
+                        {
+                            if (i == 0)
+                                sw6.Write($"{x},{y}");
+                            else
+                            {
+                                x = x * 20 / 100 + x;
+                                y = y * 20 / 100 + y;
+                                sw6.Write($"\n{x},{y}");
+                            }
+                            using (StreamWriter sw01 = new StreamWriter(pathToCounterFile))
+                                sw01.Write(i);
+                            i++;
+                        }
+                        if (tempXY == screenSize.Width || tempXY > screenSize.Width)
+                        {
+                            boolerCheck = false;
+                        }
+                    }
+                }
+
+            // Запис кількості слів у текстовий файл
+            if (!File.Exists(pathToSizeFile))
+                SaveNumberOfSize();
         }
         //---------------------------------------------------------------------------------------------------------
         // Метод перераховування кількості слів при повторному відкритті программи
@@ -666,7 +678,7 @@ radioButton3_Size-8.25";
             using (StreamReader sr = new StreamReader(pathToCounterFile))
                 indexParam = Convert.ToInt32(sr.ReadToEnd());
 
-                int tempX = x*19/100+x;
+                int tempX = x*20/100+x;
             if (tempX < screenSize.Width)
             {
                 CalculateSizeControlsUp();
