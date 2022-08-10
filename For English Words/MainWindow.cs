@@ -20,7 +20,11 @@ namespace For_English_Words
             pathToRandomAsnwer = $@"C:\FEW\Random answer.mw",
             pathToSwitchIndex = $@"C:\FEW\Switch index.mw",
             pathToConfigFile = $@"C:\FEW\Config.cfg",
-            pathToValueParameters = $@"C:\FEW\Value of Parameters.par",
+            pathToValueParameters = $@"C:\FEW\Value of size window parameters.par",
+            pathToValueParameters2 = $@"C:\FEW\Value of font main text parameters.par",
+            pathToValueParameters3 = $@"C:\FEW\Value of font answer text parameters.par",
+            pathToValueParameters4 = $@"C:\FEW\Value of font button text parameters.par",
+            pathToValueParameters5 = $@"C:\FEW\Value of size textBox parameters.par",
             pathToCounterFile = $@"C:\FEW\Case index.ci",
             pathToSizeFile = $@"C:\FEW\Number of the words.mw";
 
@@ -53,12 +57,18 @@ radioButton3_Size-8.25";
             "пояснювати","говорити","проводити","дивний","вирощувати","сад","постачальники","ситуація","відповідь",
             "кліенти","ненавидіти","плавати","обіцяти","відмова"};
 
-        float fontS = 14.25F, fontSRbutton = 8.25F;
+        uint fontS = 14, fontSB = 8, fontSRButton = 8;
 
         private int
             IDWords = 0, IDTranslate = 0, randomIDWord = 0,
-            correctItem = 0, randomChoise = 0,
-            x = 440, y = 81, indexParam = 0;
+            correctItem = 0, randomChoise = 0, x = 440, y = 81, 
+            indexParam = 0, numberOfIter = 0, 
+            sizeTextBoxX = 229;
+
+        private const byte 
+            perCentS = 20, perCentST = 30, 
+            perCentSB = 20, perCentSRB = 31,
+            perCentSTextBox = 19;
 
         public MainWindow()
         {
@@ -118,8 +128,8 @@ radioButton3_Size-8.25";
             button6.Location = new Point(textBox1.Location.X, textBox1.Location.Y + textBox1.Size.Height + 5);
             button5.Location = new Point(button6.Location.X + button6.Size.Width + 4, button6.Location.Y);
             button4.Location = new Point(button5.Location.X + button5.Size.Width + 2, button5.Location.Y);
-            button9.Location = new Point(button6.Location.X, button6.Location.Y + button6.Size.Height+5);
-            button1.Location = new Point(button9.Location.X + button9.Size.Width, button9.Location.Y);
+            // for test
+            textBox2.Location = new Point(0, button4.Location.Y + button4.Size.Height+2);
 
             MainWindowLocation();
         }
@@ -133,6 +143,7 @@ radioButton3_Size-8.25";
             // Перевірка на навність необхідних файлів
             // Створення файла для слів
             if (!File.Exists(pathToFileWords))
+            {
                 using (StreamWriter sw1 = new StreamWriter(pathToFileWords))
                     // запис дефолтних слів
                     foreach (string words in defaultWords)
@@ -143,22 +154,26 @@ radioButton3_Size-8.25";
                             sw1.Write($"\n{words.ToLower()}");
                         IDWords++;
                     }
+            }
 
             // Створення файла для перекладу
             if (!File.Exists(pathToFileTranslate))
+            {
                 using (StreamWriter sw2 = new StreamWriter(pathToFileTranslate))
                     // запис дефолтних перекладів
-                    foreach (string translate in defaultTranslate) 
-                    { 
+                    foreach (string translate in defaultTranslate)
+                    {
                         if (IDTranslate == 0)
                             sw2.Write($"{translate.ToLower()}");
                         else
                             sw2.Write($"\n{translate.ToLower()}");
                         IDTranslate++;
                     }
+            }
 
             // Створення файла для вірних відповідей
             if (!File.Exists(pathToCorecctAnswerFile))
+            {
                 using (StreamWriter sw3 = new StreamWriter(pathToCorecctAnswerFile))
                     // нумерація комірок
                     for (int i = 0; i < IDWords; i++)
@@ -166,6 +181,7 @@ radioButton3_Size-8.25";
                             sw3.Write(correctItem);
                         else
                             sw3.Write($"\n{correctItem}");
+            }
 
             // Створення файла для перемішування відповідей
             if (!File.Exists(pathToRandomAsnwer))
@@ -180,11 +196,14 @@ radioButton3_Size-8.25";
 
             // Створення файла для лічильника
             if (!File.Exists(pathToCounterFile))
+            {
                 using (StreamWriter sw8 = new StreamWriter(pathToCounterFile))
                     sw8.Write(0);
+            }
 
-            // Створення файла параметрів
+            // Створення файлів для параметрів
             if (!File.Exists(pathToValueParameters))
+            {
                 using (StreamWriter sw6 = new StreamWriter(pathToValueParameters))
                 {
                     bool boolerCheck = true;
@@ -192,15 +211,15 @@ radioButton3_Size-8.25";
                     {
                         // 440 * 20 / 100 + 440 = 528
 
-                        int tempXY = x * 20 / 100 + x;
+                        int tempXY = x * perCentS / 100 + x;
                         if (tempXY < screenSize.Width)
                         {
                             if (i == 0)
                                 sw6.Write($"{x},{y}");
                             else
                             {
-                                x = x * 20 / 100 + x;
-                                y = y * 20 / 100 + y;
+                                x = x * perCentS / 100 + x;
+                                y = y * perCentS / 100 + y;
                                 sw6.Write($"\n{x},{y}");
                             }
                             i++;
@@ -209,13 +228,94 @@ radioButton3_Size-8.25";
                         {
                             boolerCheck = false;
                         }
+                        numberOfIter = i;
                     }
                 }
+            }
+            //---------------------------------------------------------------------------------------------------------
+            if (!File.Exists(pathToValueParameters2))
+            {
+                using (StreamWriter sw = new StreamWriter(pathToValueParameters2))
+                {
+                    for (int i = 0; i < numberOfIter; i++)
+                    {
+                        if (i == 0)
+                        {
+                            sw.Write($"{fontS}");
+                        }
+                        else
+                        {
+                            fontS = fontS * perCentST / 100 + fontS;
+                            sw.Write($"\n{fontS}");
+                        }
+                    }
+                }
+            }
+            //---------------------------------------------------------------------------------------------------------
+            if (!File.Exists(pathToValueParameters3))
+            {
+                using (StreamWriter sw = new StreamWriter(pathToValueParameters3))
+                {
+                    for (int i = 0; i < numberOfIter; i++)
+                    {
+                        if (i == 0)
+                        {
+                            sw.Write(fontSRButton);
+                        }
+                        else
+                        {
+                            fontSRButton = fontSRButton * perCentSRB / 100 + fontSRButton;
+                            sw.Write($"\n{fontSRButton}");
+                        }
+                    }
+                }
+            }
+            //---------------------------------------------------------------------------------------------------------
+            if (!File.Exists(pathToValueParameters4))
+            {
+                using (StreamWriter sw = new StreamWriter(pathToValueParameters4))
+                {
+                    for (int i = 0; i < numberOfIter; i++)
+                    {
+                        if (i == 0)
+                        {
+                            sw.Write(fontSB);
+                        }
+                        else
+                        {
+                            fontSB = fontSB * perCentSB / 100 + fontSB;
+                            sw.Write($"\n{fontSB}");
+                        }
+                    }
+                }
+            }
+            //---------------------------------------------------------------------------------------------------------
+            if (!File.Exists(pathToValueParameters5))
+            {
+                using (StreamWriter sw = new StreamWriter(pathToValueParameters5))
+                {
+                    for (int i = 0; i < numberOfIter; i++)
+                    {
+                        if (i == 0)
+                        {
+                            sw.Write(sizeTextBoxX);
+                        }
+                        else
+                        {
+                            sizeTextBoxX = sizeTextBoxX * perCentSTextBox / 100 + sizeTextBoxX;
+                            sw.Write($"\n{sizeTextBoxX}");
+                        }
+                    }
+                }
+            }
 
             // Запис кількості слів у текстовий файл
             if (!File.Exists(pathToSizeFile))
+            {
                 SaveNumberOfSize();
+            }
         }
+
         //---------------------------------------------------------------------------------------------------------
         // Метод перераховування кількості слів при повторному відкритті программи
         private void RecountTheNumberOfWords()
@@ -615,15 +715,43 @@ radioButton3_Size-8.25";
             using (StreamWriter sw = new StreamWriter(pathToCounterFile))
                 sw.Write(indexParam);
 
-            //fontS = fontS*20/100+fontS;
-            //fontSRbutton = fontSRbutton*17/100+fontSRbutton;
+            //---------------------------------------------------------------------------------------------------------
+
+            string strParamMainText = "";
+            string[] strParamMainTextArray;
+
+            using (StreamReader sr1 = new StreamReader(pathToValueParameters2))
+                strParamMainText = sr1.ReadToEnd();
+            strParamMainTextArray = strParamMainText.Split('\n');
+            fontS = Convert.ToUInt32(strParamMainTextArray[indexParam]);
+
+            //---------------------------------------------------------------------------------------------------------
+
+            string strParamTextBoxX = "";
+            string[] strParamTextBoxXArray;
+
+            using (StreamReader sr1 = new StreamReader(pathToValueParameters5))
+                strParamTextBoxX = sr1.ReadToEnd();
+            strParamTextBoxXArray = strParamTextBoxX.Split('\n');
+            sizeTextBoxX = Convert.ToInt32(strParamTextBoxXArray[indexParam]);
+
+            //---------------------------------------------------------------------------------------------------------
+
+            string strParamSRB = "";
+            string[] strParamSRBArray;
+
+            using (StreamReader sr1 = new StreamReader(pathToValueParameters3))
+                strParamSRB = sr1.ReadToEnd();
+            strParamSRBArray = strParamSRB.Split('\n');
+            fontSRButton = Convert.ToUInt32(strParamSRBArray[indexParam]);
+
             Size = new Size(x, y);
             textBox1.Font = new Font("Microsoft Sans Serif", fontS, FontStyle.Regular, GraphicsUnit.Point, 204);
-            //textBox1.Size = new Size(textBox1.Size.Width*20/100+textBox1.Size.Width, textBox1.Size.Height);
-            //pictureBox1.Size = new Size(pictureBox1.Size.Width + 5, pictureBox1.Size.Height + 5);
-            radioButton1.Font = new Font("Microsoft Sans Serif", fontSRbutton, FontStyle.Regular, GraphicsUnit.Point, 204);
-            radioButton2.Font = new Font("Microsoft Sans Serif", fontSRbutton, FontStyle.Regular, GraphicsUnit.Point, 204);
-            radioButton3.Font = new Font("Microsoft Sans Serif", fontSRbutton, FontStyle.Regular, GraphicsUnit.Point, 204);
+            textBox1.Size = new Size(sizeTextBoxX, textBox1.Size.Height);
+            pictureBox1.Size = new Size(pictureBox1.Size.Width + 5, pictureBox1.Size.Height + 5);
+            radioButton1.Font = new Font("Microsoft Sans Serif", fontSRButton, FontStyle.Regular, GraphicsUnit.Point, 204);
+            radioButton2.Font = new Font("Microsoft Sans Serif", fontSRButton, FontStyle.Regular, GraphicsUnit.Point, 204);
+            radioButton3.Font = new Font("Microsoft Sans Serif", fontSRButton, FontStyle.Regular, GraphicsUnit.Point, 204);
         }
         //---------------------------------------------------------------------------------------------------------
         private void CalculateSizeControlsDown()
@@ -650,15 +778,52 @@ radioButton3_Size-8.25";
             using (StreamWriter sw = new StreamWriter(pathToCounterFile))
                 sw.Write(indexParam);
 
-            //fontS = fontS - (fontS*20/100);
-            //fontSRbutton = fontSRbutton - (fontSRbutton*20/100);
+            //---------------------------------------------------------------------------------------------------------
+
+            if(indexParam > 0)
+            {
+                string strParamMainText = "";
+                string[] strParamMainTextArray;
+
+                using (StreamReader sr1 = new StreamReader(pathToValueParameters2))
+                    strParamMainText = sr1.ReadToEnd();
+                strParamMainTextArray = strParamMainText.Split('\n');
+                fontS = Convert.ToUInt32(strParamMainTextArray[indexParam]);
+
+                //---------------------------------------------------------------------------------------------------------
+
+                string strParamTextBoxX = "";
+                string[] strParamTextBoxXArray;
+
+                using (StreamReader sr1 = new StreamReader(pathToValueParameters5))
+                    strParamTextBoxX = sr1.ReadToEnd();
+                strParamTextBoxXArray = strParamTextBoxX.Split('\n');
+                sizeTextBoxX = Convert.ToInt32(strParamTextBoxXArray[indexParam]);
+
+                //---------------------------------------------------------------------------------------------------------
+
+                string strParamSRB = "";
+                string[] strParamSRBArray;
+
+                using (StreamReader sr1 = new StreamReader(pathToValueParameters3))
+                    strParamSRB = sr1.ReadToEnd();
+                strParamSRBArray = strParamSRB.Split('\n');
+                fontSRButton = Convert.ToUInt32(strParamSRBArray[indexParam]);
+            }
+            if (indexParam == 0)
+            {
+                sizeTextBoxX = 229;
+                fontSRButton = 8;
+                pictureBox1.Size = new Size(15, 15);
+            }
+
             Size = new Size(x, y);
             textBox1.Font = new Font("Microsoft Sans Serif", fontS, FontStyle.Regular, GraphicsUnit.Point, 204);
-            //textBox1.Size = new Size(textBox1.Size.Width - (textBox1.Size.Width*20/100), textBox1.Size.Height);
-            //pictureBox1.Size = new Size(pictureBox1.Size.Width - 5, pictureBox1.Size.Height - 5);
-            radioButton1.Font = new Font("Microsoft Sans Serif", fontSRbutton, FontStyle.Regular, GraphicsUnit.Point, 204);
-            radioButton2.Font = new Font("Microsoft Sans Serif", fontSRbutton, FontStyle.Regular, GraphicsUnit.Point, 204);
-            radioButton3.Font = new Font("Microsoft Sans Serif", fontSRbutton, FontStyle.Regular, GraphicsUnit.Point, 204);
+            textBox1.Size = new Size(sizeTextBoxX, textBox1.Size.Height);
+            pictureBox1.Size = new Size(pictureBox1.Size.Width - 5, pictureBox1.Size.Height - 5);
+            radioButton1.Font = new Font("Microsoft Sans Serif", fontSRButton, FontStyle.Regular, GraphicsUnit.Point, 204);
+            radioButton2.Font = new Font("Microsoft Sans Serif", fontSRButton, FontStyle.Regular, GraphicsUnit.Point, 204);
+            radioButton3.Font = new Font("Microsoft Sans Serif", fontSRButton, FontStyle.Regular, GraphicsUnit.Point, 204);
         }
         //---------------------------------------------------------------------------------------------------------
         // КОНТРОЛЕРИ
@@ -709,49 +874,59 @@ radioButton3_Size-8.25";
             Repetition();
         }
         //---------------------------------------------------------------------------------------------------------
-        // Кнопка збільшення розміру вікна
-        private void button1_Click(object sender, EventArgs e)
+        // Close button
+        private void button8_Click(object sender, EventArgs e)
         {
-                int tempX = x*20/100+x;
-            if (tempX < screenSize.Width)
+            Close();
+        }
+        //---------------------------------------------------------------------------------------------------------
+        // Close Key
+        private void MainWindow_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue == (char)Keys.Oemplus)
             {
-                CalculateSizeControlsUp();
+                int tempX = x*20/100+x;
+                if (tempX < screenSize.Width)
+                {
+                    CalculateSizeControlsUp();
+                    
+                    textBox2.Text = radioButton1.Font.Size.ToString();
+
+                    radioButton1.Location = new Point(textBox1.Location.X + textBox1.Size.Width + pictureBox1.Size.Width + 10, 3);
+                    radioButton2.Location = new Point(radioButton1.Location.X, radioButton1.Location.Y + radioButton1.Size.Height + 5);
+                    radioButton3.Location = new Point(radioButton1.Location.X, radioButton2.Location.Y + radioButton2.Size.Height + 5);
+                    button6.Location = new Point(textBox1.Location.X, textBox1.Location.Y + textBox1.Size.Height + 5);
+                    button5.Location = new Point(button6.Location.X + button6.Size.Width + 4, button6.Location.Y);
+                    button4.Location = new Point(button5.Location.X + button5.Size.Width + 2, button5.Location.Y);
+                    // for test
+                    textBox2.Location = new Point(0, button4.Location.Y + button4.Size.Height+2);
+                    MainWindowLocation();
+                }
+
+                if (tempX == screenSize.Width || tempX > screenSize.Width)
+                {
+                    Size = new Size(x, y);
+                }
+            }
+            if(e.KeyValue == (char)Keys.OemMinus)
+            {
+                CalculateSizeControlsDown();
+
+                textBox2.Text = radioButton1.Font.Size.ToString();
+                
                 radioButton1.Location = new Point(textBox1.Location.X + textBox1.Size.Width + pictureBox1.Size.Width + 10, 3);
                 radioButton2.Location = new Point(radioButton1.Location.X, radioButton1.Location.Y + radioButton1.Size.Height + 5);
                 radioButton3.Location = new Point(radioButton1.Location.X, radioButton2.Location.Y + radioButton2.Size.Height + 5);
                 button6.Location = new Point(textBox1.Location.X, textBox1.Location.Y + textBox1.Size.Height + 5);
                 button5.Location = new Point(button6.Location.X + button6.Size.Width + 4, button6.Location.Y);
                 button4.Location = new Point(button5.Location.X + button5.Size.Width + 2, button5.Location.Y);
-                button9.Location = new Point(button6.Location.X, button6.Location.Y + button6.Size.Height+5);
-                button1.Location = new Point(button9.Location.X + button9.Size.Width, button9.Location.Y);
+                // for test
+                textBox2.Location = new Point(0, button4.Location.Y + button4.Size.Height+2);
                 MainWindowLocation();
             }
+            if(e.KeyValue == (char)Keys.Escape)
+                Close();
 
-            if (tempX == screenSize.Width || tempX > screenSize.Width)
-            {
-                Size = new Size(x, y);
-            }
-        }
-        //---------------------------------------------------------------------------------------------------------
-        // Кнопка зменьшення розміру вікна
-        private void button9_Click(object sender, EventArgs e)
-        {
-            CalculateSizeControlsDown();
-            radioButton1.Location = new Point(textBox1.Location.X + textBox1.Size.Width + pictureBox1.Size.Width + 10, 3);
-            radioButton2.Location = new Point(radioButton1.Location.X, radioButton1.Location.Y + radioButton1.Size.Height + 5);
-            radioButton3.Location = new Point(radioButton1.Location.X, radioButton2.Location.Y + radioButton2.Size.Height + 5);
-            button6.Location = new Point(textBox1.Location.X, textBox1.Location.Y + textBox1.Size.Height + 5);
-            button5.Location = new Point(button6.Location.X + button6.Size.Width + 4, button6.Location.Y);
-            button4.Location = new Point(button5.Location.X + button5.Size.Width + 2, button5.Location.Y);
-            button9.Location = new Point(button6.Location.X, button6.Location.Y + button6.Size.Height+5);
-            button1.Location = new Point(button9.Location.X + button9.Size.Width, button9.Location.Y);
-            MainWindowLocation();
-        }
-        //---------------------------------------------------------------------------------------------------------
-        // Close button
-        private void button8_Click(object sender, EventArgs e)
-        {
-            Close();
         }
     }
 }
