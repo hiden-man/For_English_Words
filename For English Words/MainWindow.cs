@@ -24,6 +24,7 @@ namespace For_English_Words
             pathToValueParameters2 = $@"C:\FEW\Value of font main text parameters.par",
             pathToValueParameters3 = $@"C:\FEW\Value of font answer text parameters.par",
             pathToValueParameters4 = $@"C:\FEW\Value of font button text parameters.par",
+            pathToValueParameters6 = $@"C:\FEW\Value of size button parameters.par",
             pathToValueParameters5 = $@"C:\FEW\Value of size textBox parameters.par",
             pathToCounterFile = $@"C:\FEW\Case index.ci",
             pathToSizeFile = $@"C:\FEW\Number of the words.mw";
@@ -32,15 +33,15 @@ namespace For_English_Words
 $@"Main_window:
 Size-440,81
 Random_word_field_Location-12,3
-Random_word_field_Size-14.25
+Random_word_field_FontSize-14
 Random_word_field_Font-Microsoft Sans Serif
 Random_word_field_Color-255,102,102
 radioButton1_Color-255,102,102
-radioButton1_Size-8.25
+radioButton1_Size-8
 radioButton2_Color-255,102,102
-radioButton2_Size-8.25
+radioButton2_Size-8
 radioButton3_Color-255,102,102
-radioButton3_Size-8.25";
+radioButton3_Size-8";
 
         string[] defaultWords = {
             "white","black","orange","blue","green","red","brown","gray","pink","yellow","magenta","purple",
@@ -48,7 +49,6 @@ radioButton3_Size-8.25";
             "husband","wife","get","expensive","perfectly","better","mistakes","effectively","take","useful",
             "workers","offer","ticket","mean","explain","speak","spend","strange","grow","garden","suppliers",
             "situation","answer","clients","hate","swim","promise","refuse"},
-
             defaultTranslate = {
             "білий","чорний","помаранчевий","блакитний","зелений","червоний","коричневий","сірий","рожевий",
             "жовтий","пурпурний","фіолетовий","бордовий","порада","згоден","терміново","продовжити","зустріч",
@@ -62,9 +62,10 @@ radioButton3_Size-8.25";
         private int
             IDWords = 0, IDTranslate = 0, randomIDWord = 0,
             correctItem = 0, randomChoise = 0, x = 440, y = 81, 
-            indexParam = 0, numberOfIter = 0, 
+            indexParam = 0, numberOfIter = 0, xB = 54, yB = 22, 
             sizeTextBoxX = 229;
 
+        // Проценти
         private const byte 
             perCentS = 20, perCentST = 30, 
             perCentSB = 20, perCentSRB = 31,
@@ -119,7 +120,77 @@ radioButton3_Size-8.25";
             x = Convert.ToInt32(strIndexParamArray[0]);
             y = Convert.ToInt32(strIndexParamArray[1]);
 
+            //---------------------------------------------------------------------------------------------------------
+
+            string strParamMainText = "";
+            string[] strParamMainTextArray;
+
+            using (StreamReader sr2 = new StreamReader(pathToValueParameters2))
+                strParamMainText = sr2.ReadToEnd();
+            strParamMainTextArray = strParamMainText.Split('\n');
+            fontS = Convert.ToUInt32(strParamMainTextArray[indexParam]);
+
+            //---------------------------------------------------------------------------------------------------------
+
+            string strParamTextBoxX = "";
+            string[] strParamTextBoxXArray;
+
+            using (StreamReader sr3 = new StreamReader(pathToValueParameters5))
+                strParamTextBoxX = sr3.ReadToEnd();
+            strParamTextBoxXArray = strParamTextBoxX.Split('\n');
+            sizeTextBoxX = Convert.ToInt32(strParamTextBoxXArray[indexParam]);
+
+            //---------------------------------------------------------------------------------------------------------
+
+            string strParamSRB = "";
+            string[] strParamSRBArray;
+
+            using (StreamReader sr4 = new StreamReader(pathToValueParameters3))
+                strParamSRB = sr4.ReadToEnd();
+            strParamSRBArray = strParamSRB.Split('\n');
+            fontSRButton = Convert.ToUInt32(strParamSRBArray[indexParam]);
+
+            //---------------------------------------------------------------------------------------------------------
+
+            string strParamSB = "";
+            string[] strParamSBArray;
+
+            using (StreamReader sr5 = new StreamReader(pathToValueParameters4))
+                strParamSB = sr5.ReadToEnd();
+            strParamSBArray = strParamSB.Split('\n');
+            fontSB = Convert.ToUInt32(strParamSBArray[indexParam]);
+
+            //---------------------------------------------------------------------------------------------------------
+
+            string strParamSB1 = "", strParamSB2 = "";
+            string[] strParamSBArray1, strParamSBArray2;
+
+            using (StreamReader sr5 = new StreamReader(pathToValueParameters6))
+                strParamSB = sr5.ReadToEnd();
+            strParamSBArray = strParamSB.Split('\n');
+            strParamSB2 = strParamSBArray[indexParam];
+            strParamSBArray2 = strParamSB2.Split(',');
+
+            xB = Convert.ToInt32(strParamSBArray2[0]);
+            yB = Convert.ToInt32(strParamSBArray2[1]);
+
+            //---------------------------------------------------------------------------------------------------------
+
             Size = new Size(x, y);
+            textBox1.Font = new Font("Microsoft Sans Serif", fontS, FontStyle.Regular, GraphicsUnit.Point, 204);
+            textBox1.Size = new Size(sizeTextBoxX, textBox1.Size.Height);
+            pictureBox1.Size = new Size(pictureBox1.Size.Width + 5, pictureBox1.Size.Height + 5);
+            radioButton1.Font = new Font("Microsoft Sans Serif", fontSRButton, FontStyle.Regular, GraphicsUnit.Point, 204);
+            radioButton2.Font = new Font("Microsoft Sans Serif", fontSRButton, FontStyle.Regular, GraphicsUnit.Point, 204);
+            radioButton3.Font = new Font("Microsoft Sans Serif", fontSRButton, FontStyle.Regular, GraphicsUnit.Point, 204);
+            button4.Font = new Font("Microsoft Sans Serif", fontSB, FontStyle.Regular, GraphicsUnit.Point, 0);
+            button4.Size = new Size(xB, yB);
+            button5.Font = new Font("Microsoft Sans Serif", fontSB, FontStyle.Regular, GraphicsUnit.Point, 0);
+            button5.Size = new Size(xB, yB);
+            button6.Font = new Font("Microsoft Sans Serif", fontSB, FontStyle.Regular, GraphicsUnit.Point, 0);
+            button6.Size = new Size(xB, yB);
+
+        //---------------------------------------------------------------------------------------------------------
 
             radioButton1.Location = new Point(textBox1.Location.X + textBox1.Size.Width + pictureBox1.Size.Width + 10, 3);
             radioButton2.Location = new Point(radioButton1.Location.X, radioButton1.Location.Y + radioButton1.Size.Height + 5);
@@ -128,6 +199,7 @@ radioButton3_Size-8.25";
             button6.Location = new Point(textBox1.Location.X, textBox1.Location.Y + textBox1.Size.Height + 5);
             button5.Location = new Point(button6.Location.X + button6.Size.Width + 4, button6.Location.Y);
             button4.Location = new Point(button5.Location.X + button5.Size.Width + 2, button5.Location.Y);
+
             // for test
             textBox2.Location = new Point(0, button4.Location.Y + button4.Size.Height+2);
 
@@ -304,6 +376,26 @@ radioButton3_Size-8.25";
                         {
                             sizeTextBoxX = sizeTextBoxX * perCentSTextBox / 100 + sizeTextBoxX;
                             sw.Write($"\n{sizeTextBoxX}");
+                        }
+                    }
+                }
+            }
+            //---------------------------------------------------------------------------------------------------------
+            if (!File.Exists(pathToValueParameters6))
+            {
+                using (StreamWriter sw = new StreamWriter(pathToValueParameters6))
+                {
+                    for (int i = 0; i < numberOfIter; i++)
+                    {
+                        if (i == 0)
+                        {
+                            sw.Write($"{xB},{yB}");
+                        }
+                        else
+                        {
+                            xB = xB * perCentSB / 100 + xB;
+                            yB = yB * perCentSB / 100 + yB;
+                            sw.Write($"\n{xB},{yB}");
                         }
                     }
                 }
@@ -720,8 +812,8 @@ radioButton3_Size-8.25";
             string strParamMainText = "";
             string[] strParamMainTextArray;
 
-            using (StreamReader sr1 = new StreamReader(pathToValueParameters2))
-                strParamMainText = sr1.ReadToEnd();
+            using (StreamReader sr2 = new StreamReader(pathToValueParameters2))
+                strParamMainText = sr2.ReadToEnd();
             strParamMainTextArray = strParamMainText.Split('\n');
             fontS = Convert.ToUInt32(strParamMainTextArray[indexParam]);
 
@@ -730,8 +822,8 @@ radioButton3_Size-8.25";
             string strParamTextBoxX = "";
             string[] strParamTextBoxXArray;
 
-            using (StreamReader sr1 = new StreamReader(pathToValueParameters5))
-                strParamTextBoxX = sr1.ReadToEnd();
+            using (StreamReader sr3 = new StreamReader(pathToValueParameters5))
+                strParamTextBoxX = sr3.ReadToEnd();
             strParamTextBoxXArray = strParamTextBoxX.Split('\n');
             sizeTextBoxX = Convert.ToInt32(strParamTextBoxXArray[indexParam]);
 
@@ -740,10 +832,35 @@ radioButton3_Size-8.25";
             string strParamSRB = "";
             string[] strParamSRBArray;
 
-            using (StreamReader sr1 = new StreamReader(pathToValueParameters3))
-                strParamSRB = sr1.ReadToEnd();
+            using (StreamReader sr4 = new StreamReader(pathToValueParameters3))
+                strParamSRB = sr4.ReadToEnd();
             strParamSRBArray = strParamSRB.Split('\n');
             fontSRButton = Convert.ToUInt32(strParamSRBArray[indexParam]);
+
+            //---------------------------------------------------------------------------------------------------------
+
+            string strParamSB = "";
+            string[] strParamSBArray;
+
+            using (StreamReader sr5 = new StreamReader(pathToValueParameters4))
+                strParamSB = sr5.ReadToEnd();
+            strParamSBArray = strParamSB.Split('\n');
+            fontSB = Convert.ToUInt32(strParamSBArray[indexParam]);
+
+            //---------------------------------------------------------------------------------------------------------
+
+            string strParamSB1 = "", strParamSB2 = "";
+            string[] strParamSBArray1, strParamSBArray2;
+
+            using (StreamReader sr5 = new StreamReader(pathToValueParameters6))
+                strParamSB = sr5.ReadToEnd();
+            strParamSBArray = strParamSB.Split('\n');
+            strParamSB2 = strParamSBArray[indexParam];
+            strParamSBArray2 = strParamSB2.Split(',');
+
+            xB = Convert.ToInt32(strParamSBArray2[0]);
+            yB = Convert.ToInt32(strParamSBArray2[1]);
+
 
             Size = new Size(x, y);
             textBox1.Font = new Font("Microsoft Sans Serif", fontS, FontStyle.Regular, GraphicsUnit.Point, 204);
@@ -752,6 +869,12 @@ radioButton3_Size-8.25";
             radioButton1.Font = new Font("Microsoft Sans Serif", fontSRButton, FontStyle.Regular, GraphicsUnit.Point, 204);
             radioButton2.Font = new Font("Microsoft Sans Serif", fontSRButton, FontStyle.Regular, GraphicsUnit.Point, 204);
             radioButton3.Font = new Font("Microsoft Sans Serif", fontSRButton, FontStyle.Regular, GraphicsUnit.Point, 204);
+            button4.Font = new Font("Microsoft Sans Serif",fontSB, FontStyle.Regular, GraphicsUnit.Point,0);
+            button4.Size = new Size(xB, yB);
+            button5.Font = new Font("Microsoft Sans Serif",fontSB, FontStyle.Regular, GraphicsUnit.Point,0);
+            button5.Size = new Size(xB, yB);
+            button6.Font = new Font("Microsoft Sans Serif",fontSB, FontStyle.Regular, GraphicsUnit.Point,0);
+            button6.Size = new Size(xB, yB);
         }
         //---------------------------------------------------------------------------------------------------------
         private void CalculateSizeControlsDown()
@@ -809,12 +932,40 @@ radioButton3_Size-8.25";
                     strParamSRB = sr1.ReadToEnd();
                 strParamSRBArray = strParamSRB.Split('\n');
                 fontSRButton = Convert.ToUInt32(strParamSRBArray[indexParam]);
+
+                //---------------------------------------------------------------------------------------------------------
+
+                string strParamSB = "";
+                string[] strParamSBArray;
+
+                using (StreamReader sr5 = new StreamReader(pathToValueParameters4))
+                    strParamSB = sr5.ReadToEnd();
+                strParamSBArray = strParamSB.Split('\n');
+                fontSB = Convert.ToUInt32(strParamSBArray[indexParam]);
+
+                //---------------------------------------------------------------------------------------------------------
+
+                string strParamSB1 = "", strParamSB2 = "";
+                string[] strParamSBArray1, strParamSBArray2;
+
+                using (StreamReader sr5 = new StreamReader(pathToValueParameters6))
+                    strParamSB1 = sr5.ReadToEnd();
+                strParamSBArray1 = strParamSB1.Split('\n');
+                strParamSB2 = strParamSBArray1[indexParam];
+                strParamSBArray2 = strParamSB2.Split(',');
+
+                xB = Convert.ToInt32(strParamSBArray2[0]);
+                yB = Convert.ToInt32(strParamSBArray2[1]);
             }
             if (indexParam == 0)
             {
+                xB = 54;
+                yB = 22;
                 sizeTextBoxX = 229;
                 fontSRButton = 8;
-                pictureBox1.Size = new Size(15, 15);
+                fontS = 14;
+                fontSB = 8;
+                pictureBox1.Size = new Size(20, 20);
             }
 
             Size = new Size(x, y);
@@ -824,6 +975,12 @@ radioButton3_Size-8.25";
             radioButton1.Font = new Font("Microsoft Sans Serif", fontSRButton, FontStyle.Regular, GraphicsUnit.Point, 204);
             radioButton2.Font = new Font("Microsoft Sans Serif", fontSRButton, FontStyle.Regular, GraphicsUnit.Point, 204);
             radioButton3.Font = new Font("Microsoft Sans Serif", fontSRButton, FontStyle.Regular, GraphicsUnit.Point, 204);
+            button4.Font = new Font("Microsoft Sans Serif", fontSB, FontStyle.Regular, GraphicsUnit.Point, 0);
+            button4.Size = new Size(xB, yB);
+            button5.Font = new Font("Microsoft Sans Serif", fontSB, FontStyle.Regular, GraphicsUnit.Point, 0);
+            button5.Size = new Size(xB, yB);
+            button6.Font = new Font("Microsoft Sans Serif", fontSB, FontStyle.Regular, GraphicsUnit.Point, 0);
+            button6.Size = new Size(xB, yB);
         }
         //---------------------------------------------------------------------------------------------------------
         // КОНТРОЛЕРИ

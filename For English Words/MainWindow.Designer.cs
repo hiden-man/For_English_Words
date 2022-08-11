@@ -119,7 +119,7 @@
             this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button4.ForeColor = System.Drawing.Color.Red;
-            this.button4.Location = new System.Drawing.Point(124, 36);
+            this.button4.Location = new System.Drawing.Point(132, 36);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(54, 22);
             this.button4.TabIndex = 9;
@@ -132,7 +132,7 @@
             this.button5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
             this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button5.ForeColor = System.Drawing.Color.Red;
-            this.button5.Location = new System.Drawing.Point(64, 36);
+            this.button5.Location = new System.Drawing.Point(72, 36);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(54, 22);
             this.button5.TabIndex = 9;
@@ -194,10 +194,11 @@
             // 
             this.button6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
             this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button6.ForeColor = System.Drawing.Color.Red;
             this.button6.Location = new System.Drawing.Point(12, 36);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(46, 22);
+            this.button6.Size = new System.Drawing.Size(54, 22);
             this.button6.TabIndex = 12;
             this.button6.Text = "Menu";
             this.button6.UseVisualStyleBackColor = false;
@@ -223,7 +224,7 @@
             // 
             this.textBox2.Location = new System.Drawing.Point(1, 58);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(259, 20);
+            this.textBox2.Size = new System.Drawing.Size(57, 20);
             this.textBox2.TabIndex = 14;
             // 
             // MainWindow

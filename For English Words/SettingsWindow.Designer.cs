@@ -28,34 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode33 = new System.Windows.Forms.TreeNode("Font and Size");
-            System.Windows.Forms.TreeNode treeNode34 = new System.Windows.Forms.TreeNode("Back color");
-            System.Windows.Forms.TreeNode treeNode35 = new System.Windows.Forms.TreeNode("Text color");
-            System.Windows.Forms.TreeNode treeNode36 = new System.Windows.Forms.TreeNode("Color", new System.Windows.Forms.TreeNode[] {
-            treeNode34,
-            treeNode35});
-            System.Windows.Forms.TreeNode treeNode37 = new System.Windows.Forms.TreeNode("Main window", new System.Windows.Forms.TreeNode[] {
-            treeNode33,
-            treeNode36});
-            System.Windows.Forms.TreeNode treeNode38 = new System.Windows.Forms.TreeNode("Font and Size");
-            System.Windows.Forms.TreeNode treeNode39 = new System.Windows.Forms.TreeNode("Back color");
-            System.Windows.Forms.TreeNode treeNode40 = new System.Windows.Forms.TreeNode("Text color");
-            System.Windows.Forms.TreeNode treeNode41 = new System.Windows.Forms.TreeNode("Color", new System.Windows.Forms.TreeNode[] {
-            treeNode39,
-            treeNode40});
-            System.Windows.Forms.TreeNode treeNode42 = new System.Windows.Forms.TreeNode("Add words window", new System.Windows.Forms.TreeNode[] {
-            treeNode38,
-            treeNode41});
-            System.Windows.Forms.TreeNode treeNode43 = new System.Windows.Forms.TreeNode("Font and Size");
-            System.Windows.Forms.TreeNode treeNode44 = new System.Windows.Forms.TreeNode("Back color");
-            System.Windows.Forms.TreeNode treeNode45 = new System.Windows.Forms.TreeNode("Text color");
-            System.Windows.Forms.TreeNode treeNode46 = new System.Windows.Forms.TreeNode("Color", new System.Windows.Forms.TreeNode[] {
-            treeNode44,
-            treeNode45});
-            System.Windows.Forms.TreeNode treeNode47 = new System.Windows.Forms.TreeNode("Settings window", new System.Windows.Forms.TreeNode[] {
-            treeNode43,
-            treeNode46});
-            System.Windows.Forms.TreeNode treeNode48 = new System.Windows.Forms.TreeNode("Hotkeys");
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Font");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Back color");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Text color");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Color", new System.Windows.Forms.TreeNode[] {
+            treeNode2,
+            treeNode3});
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Main window", new System.Windows.Forms.TreeNode[] {
+            treeNode1,
+            treeNode4});
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Font");
+            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Back color");
+            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Text color");
+            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Color", new System.Windows.Forms.TreeNode[] {
+            treeNode7,
+            treeNode8});
+            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Add words window", new System.Windows.Forms.TreeNode[] {
+            treeNode6,
+            treeNode9});
+            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("Font");
+            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("Back color");
+            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("Text color");
+            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("Color", new System.Windows.Forms.TreeNode[] {
+            treeNode12,
+            treeNode13});
+            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("Settings window", new System.Windows.Forms.TreeNode[] {
+            treeNode11,
+            treeNode14});
+            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("Hotkeys");
             this.button1 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -575,43 +575,43 @@
             this.treeView1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(123)))), ((int)(((byte)(123)))));
             this.treeView1.Location = new System.Drawing.Point(0, 50);
             this.treeView1.Name = "treeView1";
-            treeNode33.Name = "FontMain";
-            treeNode33.Text = "Font and Size";
-            treeNode34.Name = "BackColorMain";
-            treeNode34.Text = "Back color";
-            treeNode35.Name = "TextColorMain";
-            treeNode35.Text = "Text color";
-            treeNode36.Name = "ColorMain";
-            treeNode36.Text = "Color";
-            treeNode37.Name = "MainWindow";
-            treeNode37.Text = "Main window";
-            treeNode38.Name = "FontAdd";
-            treeNode38.Text = "Font and Size";
-            treeNode39.Name = "BackColorAdd";
-            treeNode39.Text = "Back color";
-            treeNode40.Name = "TextColorAdd";
-            treeNode40.Text = "Text color";
-            treeNode41.Name = "ColorAdd";
-            treeNode41.Text = "Color";
-            treeNode42.Name = "AddWordsWindow";
-            treeNode42.Text = "Add words window";
-            treeNode43.Name = "FontSettings";
-            treeNode43.Text = "Font and Size";
-            treeNode44.Name = "BackColorSettings";
-            treeNode44.Text = "Back color";
-            treeNode45.Name = "TextColorSettings";
-            treeNode45.Text = "Text color";
-            treeNode46.Name = "ColorSettings";
-            treeNode46.Text = "Color";
-            treeNode47.Name = "SettingsWindow";
-            treeNode47.Text = "Settings window";
-            treeNode48.Name = "HotKeys1";
-            treeNode48.Text = "Hotkeys";
+            treeNode1.Name = "FontMain";
+            treeNode1.Text = "Font";
+            treeNode2.Name = "BackColorMain";
+            treeNode2.Text = "Back color";
+            treeNode3.Name = "TextColorMain";
+            treeNode3.Text = "Text color";
+            treeNode4.Name = "ColorMain";
+            treeNode4.Text = "Color";
+            treeNode5.Name = "MainWindow";
+            treeNode5.Text = "Main window";
+            treeNode6.Name = "FontAdd";
+            treeNode6.Text = "Font";
+            treeNode7.Name = "BackColorAdd";
+            treeNode7.Text = "Back color";
+            treeNode8.Name = "TextColorAdd";
+            treeNode8.Text = "Text color";
+            treeNode9.Name = "ColorAdd";
+            treeNode9.Text = "Color";
+            treeNode10.Name = "AddWordsWindow";
+            treeNode10.Text = "Add words window";
+            treeNode11.Name = "FontSettings";
+            treeNode11.Text = "Font";
+            treeNode12.Name = "BackColorSettings";
+            treeNode12.Text = "Back color";
+            treeNode13.Name = "TextColorSettings";
+            treeNode13.Text = "Text color";
+            treeNode14.Name = "ColorSettings";
+            treeNode14.Text = "Color";
+            treeNode15.Name = "SettingsWindow";
+            treeNode15.Text = "Settings window";
+            treeNode16.Name = "HotKeys1";
+            treeNode16.Text = "Hotkeys";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode37,
-            treeNode42,
-            treeNode47,
-            treeNode48});
+            treeNode5,
+            treeNode10,
+            treeNode15,
+            treeNode16});
             this.treeView1.Size = new System.Drawing.Size(196, 361);
             this.treeView1.TabIndex = 10;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
