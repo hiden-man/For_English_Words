@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Drawing;
+using System.IO;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace For_English_Words
@@ -7,6 +10,14 @@ namespace For_English_Words
     public partial class SettingsWindow : Form
     {
         Size screenSize = Screen.PrimaryScreen.Bounds.Size;
+
+        string pathToCounterFile = $@"C:\FEW\Case index.ci",
+            pathToApplySettings = $@"C:\FEW\Index apply settings.ias";
+
+        byte counterIndex = 0;
+
+        public byte twoSwitch = 0;
+
         public SettingsWindow()
         {
             InitializeComponent();
@@ -176,6 +187,10 @@ namespace For_English_Words
             // пошук підходящої ноди по системному імені
             switch (tNode1.Name)
             {
+                case "MainWindow":
+
+                    break;
+
                 case "FontMain":
                     break;
 
@@ -216,5 +231,33 @@ namespace For_English_Words
                     break;
             }
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            string strCounterIndex = "";
+            using (StreamReader sr = new StreamReader(pathToCounterFile))
+                strCounterIndex = sr.ReadToEnd();
+            counterIndex = Convert.ToByte(strCounterIndex);
+            counterIndex++;
+            using (StreamWriter sw = new StreamWriter(pathToCounterFile))
+                sw.Write(counterIndex);
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            string strCounterIndex = "";
+            using (StreamReader sr = new StreamReader(pathToCounterFile))
+                strCounterIndex = sr.ReadToEnd();
+            counterIndex = Convert.ToByte(strCounterIndex);
+            if (counterIndex > 0)
+                counterIndex--;
+            if(counterIndex == 0)
+                using (StreamWriter sw = new StreamWriter(pathToCounterFile))
+                    sw.Write(0);
+
+            using (StreamWriter sw = new StreamWriter(pathToCounterFile))
+                sw.Write(counterIndex);
+        }
+
     }
 }

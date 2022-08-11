@@ -28,34 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Font");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Back color");
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Text color");
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Color", new System.Windows.Forms.TreeNode[] {
-            treeNode2,
-            treeNode3});
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Main window", new System.Windows.Forms.TreeNode[] {
-            treeNode1,
-            treeNode4});
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Font");
-            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Back color");
-            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Text color");
-            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Color", new System.Windows.Forms.TreeNode[] {
-            treeNode7,
-            treeNode8});
-            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Add words window", new System.Windows.Forms.TreeNode[] {
-            treeNode6,
-            treeNode9});
-            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("Font");
-            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("Back color");
-            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("Text color");
-            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("Color", new System.Windows.Forms.TreeNode[] {
-            treeNode12,
-            treeNode13});
-            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("Settings window", new System.Windows.Forms.TreeNode[] {
-            treeNode11,
-            treeNode14});
-            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("Hotkeys");
+            System.Windows.Forms.TreeNode treeNode65 = new System.Windows.Forms.TreeNode("Font");
+            System.Windows.Forms.TreeNode treeNode66 = new System.Windows.Forms.TreeNode("Back color");
+            System.Windows.Forms.TreeNode treeNode67 = new System.Windows.Forms.TreeNode("Text color");
+            System.Windows.Forms.TreeNode treeNode68 = new System.Windows.Forms.TreeNode("Color", new System.Windows.Forms.TreeNode[] {
+            treeNode66,
+            treeNode67});
+            System.Windows.Forms.TreeNode treeNode69 = new System.Windows.Forms.TreeNode("Main window", new System.Windows.Forms.TreeNode[] {
+            treeNode65,
+            treeNode68});
+            System.Windows.Forms.TreeNode treeNode70 = new System.Windows.Forms.TreeNode("Font");
+            System.Windows.Forms.TreeNode treeNode71 = new System.Windows.Forms.TreeNode("Back color");
+            System.Windows.Forms.TreeNode treeNode72 = new System.Windows.Forms.TreeNode("Text color");
+            System.Windows.Forms.TreeNode treeNode73 = new System.Windows.Forms.TreeNode("Color", new System.Windows.Forms.TreeNode[] {
+            treeNode71,
+            treeNode72});
+            System.Windows.Forms.TreeNode treeNode74 = new System.Windows.Forms.TreeNode("Add words window", new System.Windows.Forms.TreeNode[] {
+            treeNode70,
+            treeNode73});
+            System.Windows.Forms.TreeNode treeNode75 = new System.Windows.Forms.TreeNode("Font");
+            System.Windows.Forms.TreeNode treeNode76 = new System.Windows.Forms.TreeNode("Back color");
+            System.Windows.Forms.TreeNode treeNode77 = new System.Windows.Forms.TreeNode("Text color");
+            System.Windows.Forms.TreeNode treeNode78 = new System.Windows.Forms.TreeNode("Color", new System.Windows.Forms.TreeNode[] {
+            treeNode76,
+            treeNode77});
+            System.Windows.Forms.TreeNode treeNode79 = new System.Windows.Forms.TreeNode("Settings window", new System.Windows.Forms.TreeNode[] {
+            treeNode75,
+            treeNode78});
+            System.Windows.Forms.TreeNode treeNode80 = new System.Windows.Forms.TreeNode("Hotkeys");
             this.button1 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -96,6 +96,8 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -575,43 +577,43 @@
             this.treeView1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(123)))), ((int)(((byte)(123)))));
             this.treeView1.Location = new System.Drawing.Point(0, 50);
             this.treeView1.Name = "treeView1";
-            treeNode1.Name = "FontMain";
-            treeNode1.Text = "Font";
-            treeNode2.Name = "BackColorMain";
-            treeNode2.Text = "Back color";
-            treeNode3.Name = "TextColorMain";
-            treeNode3.Text = "Text color";
-            treeNode4.Name = "ColorMain";
-            treeNode4.Text = "Color";
-            treeNode5.Name = "MainWindow";
-            treeNode5.Text = "Main window";
-            treeNode6.Name = "FontAdd";
-            treeNode6.Text = "Font";
-            treeNode7.Name = "BackColorAdd";
-            treeNode7.Text = "Back color";
-            treeNode8.Name = "TextColorAdd";
-            treeNode8.Text = "Text color";
-            treeNode9.Name = "ColorAdd";
-            treeNode9.Text = "Color";
-            treeNode10.Name = "AddWordsWindow";
-            treeNode10.Text = "Add words window";
-            treeNode11.Name = "FontSettings";
-            treeNode11.Text = "Font";
-            treeNode12.Name = "BackColorSettings";
-            treeNode12.Text = "Back color";
-            treeNode13.Name = "TextColorSettings";
-            treeNode13.Text = "Text color";
-            treeNode14.Name = "ColorSettings";
-            treeNode14.Text = "Color";
-            treeNode15.Name = "SettingsWindow";
-            treeNode15.Text = "Settings window";
-            treeNode16.Name = "HotKeys1";
-            treeNode16.Text = "Hotkeys";
+            treeNode65.Name = "FontMain";
+            treeNode65.Text = "Font";
+            treeNode66.Name = "BackColorMain";
+            treeNode66.Text = "Back color";
+            treeNode67.Name = "TextColorMain";
+            treeNode67.Text = "Text color";
+            treeNode68.Name = "ColorMain";
+            treeNode68.Text = "Color";
+            treeNode69.Name = "MainWindow";
+            treeNode69.Text = "Main window";
+            treeNode70.Name = "FontAdd";
+            treeNode70.Text = "Font";
+            treeNode71.Name = "BackColorAdd";
+            treeNode71.Text = "Back color";
+            treeNode72.Name = "TextColorAdd";
+            treeNode72.Text = "Text color";
+            treeNode73.Name = "ColorAdd";
+            treeNode73.Text = "Color";
+            treeNode74.Name = "AddWordsWindow";
+            treeNode74.Text = "Add words window";
+            treeNode75.Name = "FontSettings";
+            treeNode75.Text = "Font";
+            treeNode76.Name = "BackColorSettings";
+            treeNode76.Text = "Back color";
+            treeNode77.Name = "TextColorSettings";
+            treeNode77.Text = "Text color";
+            treeNode78.Name = "ColorSettings";
+            treeNode78.Text = "Color";
+            treeNode79.Name = "SettingsWindow";
+            treeNode79.Text = "Settings window";
+            treeNode80.Name = "HotKeys1";
+            treeNode80.Text = "Hotkeys";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode5,
-            treeNode10,
-            treeNode15,
-            treeNode16});
+            treeNode69,
+            treeNode74,
+            treeNode79,
+            treeNode80});
             this.treeView1.Size = new System.Drawing.Size(196, 361);
             this.treeView1.TabIndex = 10;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
@@ -631,6 +633,8 @@
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.panel5.Controls.Add(this.button3);
+            this.panel5.Controls.Add(this.button2);
             this.panel5.Controls.Add(this.comboBox1);
             this.panel5.Controls.Add(this.label6);
             this.panel5.Location = new System.Drawing.Point(196, 50);
@@ -669,12 +673,32 @@
             this.label6.TabIndex = 0;
             this.label6.Text = "Theme:";
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(104, 69);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(20, 20);
+            this.button2.TabIndex = 2;
+            this.button2.Text = "+";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(130, 69);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(20, 20);
+            this.button3.TabIndex = 3;
+            this.button3.Text = "-";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
             // SettingsWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
-            this.ClientSize = new System.Drawing.Size(1258, 903);
+            this.ClientSize = new System.Drawing.Size(1295, 914);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.treeView1);
@@ -766,5 +790,7 @@
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button2;
     }
 }

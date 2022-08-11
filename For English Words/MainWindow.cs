@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.IO;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace For_English_Words
@@ -65,6 +66,8 @@ radioButton3_Size-8";
             indexParam = 0, numberOfIter = 0, xB = 54, yB = 22, 
             sizeTextBoxX = 229;
 
+        private byte coun = 1;
+
         // Проценти
         private const byte 
             perCentS = 20, perCentST = 30, 
@@ -101,7 +104,7 @@ radioButton3_Size-8";
         }
         //---------------------------------------------------------------------------------------------------------
         // Метод дефолтних налаштувань
-        private void MySettings()
+        private void MySettings()   // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! зробити асинхронний метод та написати метод для зміни розміру галочки (картинки) !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         {
             string strParam = "", strParam2 = "";
             string[] strParamArray, strIndexParamArray;
@@ -179,7 +182,7 @@ radioButton3_Size-8";
             Size = new Size(x, y);
             textBox1.Font = new Font("Microsoft Sans Serif", fontS, FontStyle.Regular, GraphicsUnit.Point, 204);
             textBox1.Size = new Size(sizeTextBoxX, textBox1.Size.Height);
-            pictureBox1.Size = new Size(pictureBox1.Size.Width + 5, pictureBox1.Size.Height + 5);
+            pictureBox1.Size = new Size(pictureBox1.Size.Width, pictureBox1.Size.Height);
             radioButton1.Font = new Font("Microsoft Sans Serif", fontSRButton, FontStyle.Regular, GraphicsUnit.Point, 204);
             radioButton2.Font = new Font("Microsoft Sans Serif", fontSRButton, FontStyle.Regular, GraphicsUnit.Point, 204);
             radioButton3.Font = new Font("Microsoft Sans Serif", fontSRButton, FontStyle.Regular, GraphicsUnit.Point, 204);
@@ -190,7 +193,7 @@ radioButton3_Size-8";
             button6.Font = new Font("Microsoft Sans Serif", fontSB, FontStyle.Regular, GraphicsUnit.Point, 0);
             button6.Size = new Size(xB, yB);
 
-        //---------------------------------------------------------------------------------------------------------
+            //---------------------------------------------------------------------------------------------------------
 
             radioButton1.Location = new Point(textBox1.Location.X + textBox1.Size.Width + pictureBox1.Size.Width + 10, 3);
             radioButton2.Location = new Point(radioButton1.Location.X, radioButton1.Location.Y + radioButton1.Size.Height + 5);
@@ -991,7 +994,6 @@ radioButton3_Size-8";
             button6.Focus();
             panel1.Location = new Point(0, 0);
             panel1.Visible = true;
-            button6.Visible = false;
         }
         //---------------------------------------------------------------------------------------------------------
         // Кнопка закриття меню
@@ -1005,6 +1007,7 @@ radioButton3_Size-8";
         private void button2_Click(object sender, EventArgs e)
         {
             settingsWindow.Show();
+            panel1.Visible = false;
         }
 
         //---------------------------------------------------------------------------------------------------------
@@ -1019,6 +1022,7 @@ radioButton3_Size-8";
         private void button3_Click(object sender, EventArgs e)
         {
             AddNewWordWindow.Show();
+            panel1.Visible = false;
         }
         //---------------------------------------------------------------------------------------------------------
         // Кнопка оновлення
@@ -1047,7 +1051,7 @@ radioButton3_Size-8";
                 {
                     CalculateSizeControlsUp();
                     
-                    textBox2.Text = radioButton1.Font.Size.ToString();
+                    textBox2.Text = pictureBox1.Location.X.ToString();
 
                     radioButton1.Location = new Point(textBox1.Location.X + textBox1.Size.Width + pictureBox1.Size.Width + 10, 3);
                     radioButton2.Location = new Point(radioButton1.Location.X, radioButton1.Location.Y + radioButton1.Size.Height + 5);
@@ -1069,8 +1073,8 @@ radioButton3_Size-8";
             {
                 CalculateSizeControlsDown();
 
-                textBox2.Text = radioButton1.Font.Size.ToString();
-                
+                textBox2.Text = pictureBox1.Location.X.ToString();
+
                 radioButton1.Location = new Point(textBox1.Location.X + textBox1.Size.Width + pictureBox1.Size.Width + 10, 3);
                 radioButton2.Location = new Point(radioButton1.Location.X, radioButton1.Location.Y + radioButton1.Size.Height + 5);
                 radioButton3.Location = new Point(radioButton1.Location.X, radioButton2.Location.Y + radioButton2.Size.Height + 5);
