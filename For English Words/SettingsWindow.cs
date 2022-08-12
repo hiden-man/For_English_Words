@@ -2,7 +2,6 @@
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
-using System.Threading;
 using System.Windows.Forms;
 
 namespace For_English_Words
@@ -12,7 +11,7 @@ namespace For_English_Words
         Size screenSize = Screen.PrimaryScreen.Bounds.Size;
 
         string pathToCounterFile = $@"C:\FEW\Case index.ci",
-            pathToApplySettings = $@"C:\FEW\Index apply settings.ias";
+            pathToApplySettingFile = $@"C:\FEW\Apply.bat";
 
         byte counterIndex = 0;
 
@@ -42,6 +41,15 @@ namespace For_English_Words
         {
             panel2.Visible = false;
             panel3.Visible = false;
+        }
+        private void Cmd(string line)
+        {
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = "cmd",
+                Arguments = $"/c {line}",
+                WindowStyle = ProcessWindowStyle.Hidden
+            });
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -243,6 +251,7 @@ namespace For_English_Words
                 sw.Write(counterIndex);
         }
 
+
         private void button3_Click(object sender, EventArgs e)
         {
             string strCounterIndex = "";
@@ -258,6 +267,9 @@ namespace For_English_Words
             using (StreamWriter sw = new StreamWriter(pathToCounterFile))
                 sw.Write(counterIndex);
         }
-
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Cmd(pathToApplySettingFile);
+        }
     }
 }

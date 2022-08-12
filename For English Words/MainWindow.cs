@@ -28,6 +28,8 @@ namespace For_English_Words
             pathToValueParameters6 = $@"C:\FEW\Value of size button parameters.par",
             pathToValueParameters5 = $@"C:\FEW\Value of size textBox parameters.par",
             pathToCounterFile = $@"C:\FEW\Case index.ci",
+            pathToCounterFile2 = $@"C:\FEW\Index for switch.ci",
+            pathToApplySettingFile = $@"C:\FEW\Apply.bat",
             pathToSizeFile = $@"C:\FEW\Number of the words.mw";
 
         string defaultSettings = 
@@ -62,11 +64,9 @@ radioButton3_Size-8";
 
         private int
             IDWords = 0, IDTranslate = 0, randomIDWord = 0,
-            correctItem = 0, randomChoise = 0, x = 440, y = 81, 
-            indexParam = 0, numberOfIter = 0, xB = 54, yB = 22, 
-            sizeTextBoxX = 229;
-
-        private byte coun = 1;
+            correctItem = 0, randomChoise = 0, x = 440, y = 81,
+            indexParam = 0, numberOfIter = 0, xB = 54, yB = 22,
+            sizeTextBoxX = 229, coun = 0;
 
         // Проценти
         private const byte 
@@ -104,7 +104,8 @@ radioButton3_Size-8";
         }
         //---------------------------------------------------------------------------------------------------------
         // Метод дефолтних налаштувань
-        private void MySettings()   // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! зробити асинхронний метод та написати метод для зміни розміру галочки (картинки) !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        private void MySettings()   
+// !!!!!!!!!!!!!зробити асинхронний метод та написати метод для зміни розміру галочки (картинки) !!!!!!!!!!!!!!!!!!!!!!!!!!!!
         {
             string strParam = "", strParam2 = "";
             string[] strParamArray, strIndexParamArray;
@@ -401,6 +402,21 @@ radioButton3_Size-8";
                             sw.Write($"\n{xB},{yB}");
                         }
                     }
+                }
+            }
+            //---------------------------------------------------------------------------------------------------------
+            if (!File.Exists(pathToCounterFile2))
+            {
+                using (StreamWriter sw = new StreamWriter(pathToCounterFile2))
+                    sw.Write(2);
+            }
+
+            if (!File.Exists(pathToApplySettingFile))
+            {
+                using (StreamWriter sw = new StreamWriter(pathToApplySettingFile))
+                {
+                    sw.Write($@"taskkill /IM ""For English Words.exe"" /F
+start """" ""For English Words.exe""");
                 }
             }
 
@@ -788,7 +804,7 @@ radioButton3_Size-8";
             }
         }
         //---------------------------------------------------------------------------------------------------------
-        // Методи вираховування розмурів контролерів
+        // Методи вираховування розмірів контролерів
         private void CalculateSizeControlsUp()
         {
             using (StreamReader sr6 = new StreamReader(pathToCounterFile))
