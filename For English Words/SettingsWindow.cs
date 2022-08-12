@@ -11,12 +11,11 @@ namespace For_English_Words
         Size screenSize = Screen.PrimaryScreen.Bounds.Size;
 
         string pathToCounterFile = $@"C:\FEW\Case index.ci",
-            pathToApplySettingFile = $@"C:\FEW\Apply.bat";
+            pathToApplySettingFile = $@"C:\FEW\Apply.bat",
+            pathToValueParameters = $@"C:\FEW\Value of size window parameters.par";
 
-        byte counterIndex = 0;
-
-        public byte twoSwitch = 0;
-
+        sbyte counterIndex = 0;
+        int counterParIndex = 0;
         public SettingsWindow()
         {
             InitializeComponent();
@@ -35,6 +34,17 @@ namespace For_English_Words
             Location = new Point((screenSize.Width/2)-(Size.Width/2),
                 (screenSize.Height/2)-(Size.Height/2));
             panel4.Visible = false;
+            GetNumberOfParameters();
+        }
+
+        private void GetNumberOfParameters()
+        {
+            string str = "";
+            string[] strArray;
+            using (StreamReader sr = new StreamReader(pathToValueParameters))
+                str = sr.ReadToEnd();
+            strArray = str.Split('\n');
+            counterParIndex = strArray.Length - 1;
         }
 
         private void HideColorPanel()
@@ -245,10 +255,17 @@ namespace For_English_Words
             string strCounterIndex = "";
             using (StreamReader sr = new StreamReader(pathToCounterFile))
                 strCounterIndex = sr.ReadToEnd();
-            counterIndex = Convert.ToByte(strCounterIndex);
-            counterIndex++;
-            using (StreamWriter sw = new StreamWriter(pathToCounterFile))
-                sw.Write(counterIndex);
+            counterIndex = Convert.ToSByte(strCounterIndex);
+            if (counterIndex < counterParIndex)
+            {
+                counterIndex++;
+                label7.Text = $"Level: {counterIndex}";
+                using (StreamWriter sw = new StreamWriter(pathToCounterFile))
+                    sw.Write(counterIndex);
+            }
+            if (counterIndex == counterParIndex)
+                counterIndex = (sbyte)(counterParIndex);
+            label7.Text = $"Level: {counterIndex}";
         }
 
 
@@ -257,16 +274,18 @@ namespace For_English_Words
             string strCounterIndex = "";
             using (StreamReader sr = new StreamReader(pathToCounterFile))
                 strCounterIndex = sr.ReadToEnd();
-            counterIndex = Convert.ToByte(strCounterIndex);
+            counterIndex = Convert.ToSByte(strCounterIndex);
             if (counterIndex > 0)
                 counterIndex--;
             if(counterIndex == 0)
                 using (StreamWriter sw = new StreamWriter(pathToCounterFile))
                     sw.Write(0);
+            label7.Text = $"Level: {counterIndex}";
 
             using (StreamWriter sw = new StreamWriter(pathToCounterFile))
                 sw.Write(counterIndex);
         }
+
         private void button4_Click(object sender, EventArgs e)
         {
             Cmd(pathToApplySettingFile);
