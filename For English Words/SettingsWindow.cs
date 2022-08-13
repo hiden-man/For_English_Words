@@ -34,17 +34,22 @@ namespace For_English_Words
             Location = new Point((screenSize.Width/2)-(Size.Width/2),
                 (screenSize.Height/2)-(Size.Height/2));
             panel4.Visible = false;
-            GetNumberOfParameters();
+            GetParameters();
         }
 
-        private void GetNumberOfParameters()
+        private void GetParameters()
         {
-            string str = "";
-            string[] strArray;
+            string str = "", strArrays = "";
+            string[] strArray1, strArray2;
             using (StreamReader sr = new StreamReader(pathToValueParameters))
                 str = sr.ReadToEnd();
-            strArray = str.Split('\n');
-            counterParIndex = strArray.Length - 1;
+            strArray1 = str.Split('\n');
+            counterParIndex = strArray1.Length - 1;
+            using (StreamReader sr = new StreamReader(pathToCounterFile))
+                strArrays = strArray1[Convert.ToSByte(sr.ReadToEnd())];
+            strArray2 = strArrays.Split(',');
+            label7.Text = $"X: {strArray2[0]}\nY: {strArray2[1]}";
+
         }
 
         private void HideColorPanel()
@@ -74,6 +79,7 @@ namespace For_English_Words
             panel3.Location = new Point(390, 0);
             panel3.Visible = true;
         }
+        /*
         //----------------------------------------------------------------------------------
         // Black
         private void pictureBox3_Click(object sender, EventArgs e)
@@ -197,6 +203,7 @@ namespace For_English_Words
         {
 
         }
+        */
 
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
@@ -206,72 +213,60 @@ namespace For_English_Words
             switch (tNode1.Name)
             {
                 case "MainWindow":
-
                     break;
 
-                case "FontMain":
+                case "AddWordsWindow":
                     break;
 
-                case "ColorMain":
+                case "SettingsWindow":
                     break;
 
-                case "BackColorMain":
-                    break;
-
-                case "TextColorMain":
-                    break;
-
-                case "FontAdd":
-                    break;
-
-                case "ColorAdd":
-                    break;
-
-                case "BackColorAdd":
-                    break;
-
-                case "TextColorAdd":
-                    break;
-
-                case "FontSettings":
-                    break;
-
-                case "ColorSettings":
-                    break;
-
-                case "BackColorSettings":
-                    break;
-
-                case "TextColorSettings":
-                    break;
-
-                case "HotKeys1":
+                case "HotKeys":
                     break;
             }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            string strCounterIndex = "";
+            string strCounterIndex = "", str = "", strArrays = "";
+            string[] strArray1, strArray2;
             using (StreamReader sr = new StreamReader(pathToCounterFile))
                 strCounterIndex = sr.ReadToEnd();
             counterIndex = Convert.ToSByte(strCounterIndex);
             if (counterIndex < counterParIndex)
             {
                 counterIndex++;
-                label7.Text = $"Level: {counterIndex}";
+
+                using (StreamReader sr = new StreamReader(pathToValueParameters))
+                    str = sr.ReadToEnd();
+                strArray1 = str.Split('\n');
+                strArrays = strArray1[counterIndex];
+                strArray2 = strArrays.Split(',');
+                label7.Text = $"X: {strArray2[0]}\nY: {strArray2[1]}";
+
                 using (StreamWriter sw = new StreamWriter(pathToCounterFile))
                     sw.Write(counterIndex);
             }
-            if (counterIndex == counterParIndex)
-                counterIndex = (sbyte)(counterParIndex);
-            label7.Text = $"Level: {counterIndex}";
-        }
 
+            if (counterIndex == counterParIndex)
+            {
+                counterIndex = (sbyte)counterParIndex;
+
+                using (StreamReader sr = new StreamReader(pathToValueParameters))
+                    str = sr.ReadToEnd();
+                strArray1 = str.Split('\n');
+                strArrays = strArray1[counterIndex];
+                strArray2 = strArrays.Split(',');
+                label7.Text = $"X: {strArray2[0]}\nY: {strArray2[1]}";
+            }
+
+            
+        }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            string strCounterIndex = "";
+            string strCounterIndex = "", str = "", strArrays = "";
+            string[] strArray1, strArray2;
             using (StreamReader sr = new StreamReader(pathToCounterFile))
                 strCounterIndex = sr.ReadToEnd();
             counterIndex = Convert.ToSByte(strCounterIndex);
@@ -280,7 +275,13 @@ namespace For_English_Words
             if(counterIndex == 0)
                 using (StreamWriter sw = new StreamWriter(pathToCounterFile))
                     sw.Write(0);
-            label7.Text = $"Level: {counterIndex}";
+
+            using (StreamReader sr = new StreamReader(pathToValueParameters))
+                str = sr.ReadToEnd();
+            strArray1 = str.Split('\n');
+            strArrays = strArray1[counterIndex];
+            strArray2 = strArrays.Split(',');
+            label7.Text = $"X: {strArray2[0]}\nY: {strArray2[1]}";
 
             using (StreamWriter sw = new StreamWriter(pathToCounterFile))
                 sw.Write(counterIndex);

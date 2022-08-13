@@ -199,13 +199,11 @@ radioButton3_Size-8";
             radioButton1.Location = new Point(textBox1.Location.X + textBox1.Size.Width + pictureBox1.Size.Width + 10, 3);
             radioButton2.Location = new Point(radioButton1.Location.X, radioButton1.Location.Y + radioButton1.Size.Height + 5);
             radioButton3.Location = new Point(radioButton1.Location.X, radioButton2.Location.Y + radioButton2.Size.Height + 5);
+            pictureBox1.Location = new Point();
 
             button6.Location = new Point(textBox1.Location.X, textBox1.Location.Y + textBox1.Size.Height + 5);
             button5.Location = new Point(button6.Location.X + button6.Size.Width + 4, button6.Location.Y);
             button4.Location = new Point(button5.Location.X + button5.Size.Width + 2, button5.Location.Y);
-
-            // for test
-            textBox2.Location = new Point(0, button4.Location.Y + button4.Size.Height+2);
 
             MainWindowLocation();
         }
@@ -751,17 +749,20 @@ start """" ""For English Words.exe""");
             {
                 if (radioButton1.Text == corrAnswer[randomIDWord])
                 {
-                    pictureBox1.Location = new Point(radioButton1.Location.X - (pictureBox1.Size.Width + 5), radioButton1.Location.Y);
+                    pictureBox1.Location = new Point(radioButton1.Location.X - (pictureBox1.Size.Width + 5), 
+                        radioButton1.Location.Y + ((radioButton1.Size.Height/2)-(pictureBox1.Size.Height/2)));
                     pictureBox1.Visible = true;
                 }
                 if (radioButton2.Text == corrAnswer[randomIDWord])
                 {
-                    pictureBox1.Location = new Point(radioButton2.Location.X - (pictureBox1.Size.Width + 5), radioButton2.Location.Y);
+                    pictureBox1.Location = new Point(radioButton2.Location.X - (pictureBox1.Size.Width + 5),
+                        radioButton2.Location.Y + ((radioButton2.Size.Height/2)-(pictureBox1.Size.Height/2)));
                     pictureBox1.Visible = true;
                 }
                 if (radioButton3.Text == corrAnswer[randomIDWord]) 
                 {
-                    pictureBox1.Location = new Point(radioButton3.Location.X - (pictureBox1.Size.Width + 5), radioButton3.Location.Y);
+                    pictureBox1.Location = new Point(radioButton3.Location.X - (pictureBox1.Size.Width + 5),
+                        radioButton3.Location.Y + ((radioButton3.Size.Height/2)-(pictureBox1.Size.Height/2)));
                     pictureBox1.Visible = true;
                 }
 
@@ -770,17 +771,20 @@ start """" ""For English Words.exe""");
             {
                 if (radioButton1.Text == corrAnswer[randomIDWord]) 
                 {
-                    pictureBox1.Location = new Point(radioButton1.Location.X - (pictureBox1.Size.Width + 5), radioButton1.Location.Y);
-                    pictureBox1.Visible = true;
-                }
-                if (radioButton2.Text == corrAnswer[randomIDWord]) 
-                {
-                    pictureBox1.Location = new Point(radioButton2.Location.X - (pictureBox1.Size.Width + 5), radioButton2.Location.Y);
-                    pictureBox1.Visible = true;
-                }
-                if (radioButton3.Text == corrAnswer[randomIDWord]) 
-                {
-                    pictureBox1.Location = new Point(radioButton3.Location.X - (pictureBox1.Size.Width + 5), radioButton3.Location.Y);
+                    pictureBox1.Location = new Point(radioButton1.Location.X - (pictureBox1.Size.Width + 5),
+                        radioButton1.Location.Y + ((radioButton1.Size.Height/2)-(pictureBox1.Size.Height/2)));
+                    pictureBox1.Visible = true;                                                                                     
+                }                                                                                                                   
+                if (radioButton2.Text == corrAnswer[randomIDWord])                                                                  
+                {                                                                                                                   
+                    pictureBox1.Location = new Point(radioButton2.Location.X - (pictureBox1.Size.Width + 5),
+                        radioButton2.Location.Y + ((radioButton2.Size.Height/2)-(pictureBox1.Size.Height/2)));
+                    pictureBox1.Visible = true;                                                                                     
+                }                                                                                                                   
+                if (radioButton3.Text == corrAnswer[randomIDWord])                                                                  
+                {                                                                                                                   
+                    pictureBox1.Location = new Point(radioButton3.Location.X - (pictureBox1.Size.Width + 5),
+                        radioButton3.Location.Y + ((radioButton3.Size.Height/2)-(pictureBox1.Size.Height/2)));
                     pictureBox1.Visible = true;
                 }
             }
@@ -788,17 +792,20 @@ start """" ""For English Words.exe""");
             {
                 if (radioButton1.Text == corrAnswer[randomIDWord]) 
                 {
-                    pictureBox1.Location = new Point(radioButton1.Location.X - (pictureBox1.Size.Width + 5), radioButton1.Location.Y);
+                    pictureBox1.Location = new Point(radioButton1.Location.X - (pictureBox1.Size.Width + 5),
+                        radioButton1.Location.Y + ((radioButton1.Size.Height/2)-(pictureBox1.Size.Height/2)));
                     pictureBox1.Visible = true;
                 }
                 if (radioButton2.Text == corrAnswer[randomIDWord]) 
                 {
-                    pictureBox1.Location = new Point(radioButton2.Location.X - (pictureBox1.Size.Width + 5), radioButton2.Location.Y);
+                    pictureBox1.Location = new Point(radioButton2.Location.X - (pictureBox1.Size.Width + 5),
+                        radioButton2.Location.Y + ((radioButton2.Size.Height/2)-(pictureBox1.Size.Height/2)));
                     pictureBox1.Visible = true;
                 }
                 if (radioButton3.Text == corrAnswer[randomIDWord]) 
                 {
-                    pictureBox1.Location = new Point(radioButton3.Location.X - (pictureBox1.Size.Width + 5), radioButton3.Location.Y);
+                    pictureBox1.Location = new Point(radioButton3.Location.X - (pictureBox1.Size.Width + 5),
+                        radioButton3.Location.Y + ((radioButton3.Size.Height/2)-(pictureBox1.Size.Height/2)));
                     pictureBox1.Visible = true;
                 }
             }
@@ -1066,17 +1073,12 @@ start """" ""For English Words.exe""");
                 if (tempX < screenSize.Width)
                 {
                     CalculateSizeControlsUp();
-                    
-                    textBox2.Text = pictureBox1.Location.X.ToString();
-
                     radioButton1.Location = new Point(textBox1.Location.X + textBox1.Size.Width + pictureBox1.Size.Width + 10, 3);
                     radioButton2.Location = new Point(radioButton1.Location.X, radioButton1.Location.Y + radioButton1.Size.Height + 5);
                     radioButton3.Location = new Point(radioButton1.Location.X, radioButton2.Location.Y + radioButton2.Size.Height + 5);
                     button6.Location = new Point(textBox1.Location.X, textBox1.Location.Y + textBox1.Size.Height + 5);
                     button5.Location = new Point(button6.Location.X + button6.Size.Width + 4, button6.Location.Y);
                     button4.Location = new Point(button5.Location.X + button5.Size.Width + 2, button5.Location.Y);
-                    // for test
-                    textBox2.Location = new Point(0, button4.Location.Y + button4.Size.Height+2);
                     MainWindowLocation();
                 }
 
@@ -1088,17 +1090,12 @@ start """" ""For English Words.exe""");
             if(e.KeyValue == (char)Keys.OemMinus)
             {
                 CalculateSizeControlsDown();
-
-                textBox2.Text = pictureBox1.Location.X.ToString();
-
                 radioButton1.Location = new Point(textBox1.Location.X + textBox1.Size.Width + pictureBox1.Size.Width + 10, 3);
                 radioButton2.Location = new Point(radioButton1.Location.X, radioButton1.Location.Y + radioButton1.Size.Height + 5);
                 radioButton3.Location = new Point(radioButton1.Location.X, radioButton2.Location.Y + radioButton2.Size.Height + 5);
                 button6.Location = new Point(textBox1.Location.X, textBox1.Location.Y + textBox1.Size.Height + 5);
                 button5.Location = new Point(button6.Location.X + button6.Size.Width + 4, button6.Location.Y);
                 button4.Location = new Point(button5.Location.X + button5.Size.Width + 2, button5.Location.Y);
-                // for test
-                textBox2.Location = new Point(0, button4.Location.Y + button4.Size.Height+2);
                 MainWindowLocation();
             }
             if(e.KeyValue == (char)Keys.Escape)
