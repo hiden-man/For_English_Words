@@ -31,10 +31,9 @@ namespace For_English_Words
             Size = new Size(966, 410);
             panel1.Size = new Size(771, 361);
             panel1.Location = new Point(196, 50);
-            Location = new Point((screenSize.Width/2)-(Size.Width/2),
-                (screenSize.Height/2)-(Size.Height/2));
-            panel4.Visible = false;
+            Location = new Point((screenSize.Width/2)-(Size.Width/2), (screenSize.Height/2)-(Size.Height/2));
             GetParameters();
+            comboBox1.SelectedIndex = 0;
         }
 
         private void GetParameters()
@@ -51,12 +50,6 @@ namespace For_English_Words
             label7.Text = $"X: {strArray2[0]}\nY: {strArray2[1]}";
 
         }
-
-        private void HideColorPanel()
-        {
-            panel2.Visible = false;
-            panel3.Visible = false;
-        }
         private void Cmd(string line)
         {
             Process.Start(new ProcessStartInfo
@@ -67,17 +60,22 @@ namespace For_English_Words
             });
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            panel2.Location = new Point(390, 0);
-            panel3.Visible = false;
-            panel2.Visible = true;
-        }
-        private void pictureBox2_Click(object sender, EventArgs e)
-        {
-            panel2.Visible = false;
-            panel3.Location = new Point(390, 0);
-            panel3.Visible = true;
+            if (comboBox1.SelectedIndex == 0)
+                pictureBox1.Image = Properties.Resources.Black_color_0_0_0_;
+            else if (comboBox1.SelectedIndex == 1)
+                pictureBox1.Image = Properties.Resources.White_color_255_255_255_;
+            else if (comboBox1.SelectedIndex == 2)
+                pictureBox1.Image = Properties.Resources.Pink_color_255_0_240_;
+            else if (comboBox1.SelectedIndex == 3)
+                pictureBox1.Image = Properties.Resources.Light_green_color_211_255_105_;
+            else if (comboBox1.SelectedIndex == 4)
+                pictureBox1.Image = Properties.Resources.Brown_color_71_38_0_;
+            else if (comboBox1.SelectedIndex == 5)
+                pictureBox1.Image = Properties.Resources.Orange_color_255_132_0_;
+            else if (comboBox1.SelectedIndex == 6)
+                pictureBox1.Image = Properties.Resources.Yellow_color_255_255_0_;
         }
 
         private void button2_Click(object sender, EventArgs e)
