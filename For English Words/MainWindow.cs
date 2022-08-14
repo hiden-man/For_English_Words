@@ -25,8 +25,9 @@ namespace For_English_Words
             pathToValueParameters2 = $@"C:\FEW\Value of font main text parameters.par",
             pathToValueParameters3 = $@"C:\FEW\Value of font answer text parameters.par",
             pathToValueParameters4 = $@"C:\FEW\Value of font button text parameters.par",
-            pathToValueParameters6 = $@"C:\FEW\Value of size button parameters.par",
             pathToValueParameters5 = $@"C:\FEW\Value of size textBox parameters.par",
+            pathToValueParameters6 = $@"C:\FEW\Value of size button parameters.par",
+            pathToValueParameters7 = $@"C:\FEW\Value of size correct answer picture parameters.par",
             pathToCounterFile = $@"C:\FEW\Case index.ci",
             pathToCounterFile2 = $@"C:\FEW\Index for switch.ci",
             pathToApplySettingFile = $@"C:\FEW\Apply.bat",
@@ -66,7 +67,7 @@ radioButton3_Size-8";
             IDWords = 0, IDTranslate = 0, randomIDWord = 0,
             correctItem = 0, randomChoise = 0, x = 440, y = 81,
             indexParam = 0, numberOfIter = 0, xB = 54, yB = 22,
-            sizeTextBoxX = 229, coun = 0;
+            sizeTextBoxX = 229, sizePicture = 15;
 
         // Проценти
         private const byte 
@@ -105,7 +106,6 @@ radioButton3_Size-8";
         //---------------------------------------------------------------------------------------------------------
         // Метод дефолтних налаштувань
         private void MySettings()   
-// !!!!!!!!!!!!!зробити асинхронний метод та написати метод для зміни розміру галочки (картинки) !!!!!!!!!!!!!!!!!!!!!!!!!!!!
         {
             string strParam = "", strParam2 = "";
             string[] strParamArray, strIndexParamArray;
@@ -180,10 +180,19 @@ radioButton3_Size-8";
 
             //---------------------------------------------------------------------------------------------------------
 
+            string strParamSP = "";
+            string[] strParamSPArray;
+            using (StreamReader sr6 = new StreamReader(pathToValueParameters7))
+                strParamSP = sr6.ReadToEnd();
+            strParamSPArray = strParamSP.Split('\n');
+            sizePicture = Convert.ToInt32(strParamSPArray[indexParam]);
+
+            //---------------------------------------------------------------------------------------------------------
+
             Size = new Size(x, y);
             textBox1.Font = new Font("Microsoft Sans Serif", fontS, FontStyle.Regular, GraphicsUnit.Point, 204);
             textBox1.Size = new Size(sizeTextBoxX, textBox1.Size.Height);
-            pictureBox1.Size = new Size(pictureBox1.Size.Width, pictureBox1.Size.Height);
+            pictureBox1.Size = new Size(sizePicture, sizePicture);
             radioButton1.Font = new Font("Microsoft Sans Serif", fontSRButton, FontStyle.Regular, GraphicsUnit.Point, 204);
             radioButton2.Font = new Font("Microsoft Sans Serif", fontSRButton, FontStyle.Regular, GraphicsUnit.Point, 204);
             radioButton3.Font = new Font("Microsoft Sans Serif", fontSRButton, FontStyle.Regular, GraphicsUnit.Point, 204);
@@ -403,6 +412,26 @@ radioButton3_Size-8";
                 }
             }
             //---------------------------------------------------------------------------------------------------------
+            if (!File.Exists(pathToValueParameters7))
+            {
+                using (StreamWriter sw = new StreamWriter(pathToValueParameters7))
+                {
+                    for (int i = 0; i < numberOfIter; i++)
+                    {
+                        if (i == 0)
+                        {
+                            sw.Write($"{sizePicture}");
+                        }
+                        else
+                        {
+                            sizePicture = sizePicture + 5;
+                            sw.Write($"\n{sizePicture}");
+                        }
+                    }
+                }
+            }
+            //---------------------------------------------------------------------------------------------------------
+
             if (!File.Exists(pathToCounterFile2))
             {
                 using (StreamWriter sw = new StreamWriter(pathToCounterFile2))
@@ -887,11 +916,19 @@ start """" ""For English Words.exe""");
             xB = Convert.ToInt32(strParamSBArray2[0]);
             yB = Convert.ToInt32(strParamSBArray2[1]);
 
+            //---------------------------------------------------------------------------------------------------------
+
+            string strParamSP = "";
+            string[] strParamSPArray;
+            using (StreamReader sr6 = new StreamReader(pathToValueParameters7))
+                strParamSP = sr6.ReadToEnd();
+            strParamSPArray = strParamSP.Split('\n');
+            sizePicture = Convert.ToInt32(strParamSPArray[indexParam]);
 
             Size = new Size(x, y);
             textBox1.Font = new Font("Microsoft Sans Serif", fontS, FontStyle.Regular, GraphicsUnit.Point, 204);
             textBox1.Size = new Size(sizeTextBoxX, textBox1.Size.Height);
-            pictureBox1.Size = new Size(pictureBox1.Size.Width + 5, pictureBox1.Size.Height + 5);
+            pictureBox1.Size = new Size(sizePicture, sizePicture);
             radioButton1.Font = new Font("Microsoft Sans Serif", fontSRButton, FontStyle.Regular, GraphicsUnit.Point, 204);
             radioButton2.Font = new Font("Microsoft Sans Serif", fontSRButton, FontStyle.Regular, GraphicsUnit.Point, 204);
             radioButton3.Font = new Font("Microsoft Sans Serif", fontSRButton, FontStyle.Regular, GraphicsUnit.Point, 204);
@@ -982,6 +1019,15 @@ start """" ""For English Words.exe""");
 
                 xB = Convert.ToInt32(strParamSBArray2[0]);
                 yB = Convert.ToInt32(strParamSBArray2[1]);
+
+                //---------------------------------------------------------------------------------------------------------
+
+                string strParamSP = "";
+                string[] strParamSPArray;
+                using (StreamReader sr6 = new StreamReader(pathToValueParameters7))
+                    strParamSP = sr6.ReadToEnd();
+                strParamSPArray = strParamSP.Split('\n');
+                sizePicture = Convert.ToInt32(strParamSPArray[indexParam]);
             }
             if (indexParam == 0)
             {
