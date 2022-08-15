@@ -14,7 +14,8 @@ namespace For_English_Words
         AddNewWord AddNewWordWindow = new AddNewWord();
         SettingsWindow settingsWindow = new SettingsWindow();
 
-        string defaultPath = @"C:\FEW",
+        //string defaultPath = @"C:\FEW",
+        string defaultPath = "",
             pathToFileWords = $@"C:\FEW\English words.mw",
             pathToFileTranslate = $@"C:\FEW\Translate.mw",
             pathToCorecctAnswerFile = $@"C:\FEW\Counter of correct answer.mw",
@@ -219,9 +220,24 @@ radioButton3_Size-8";
             MainWindowLocation();
         }
         //---------------------------------------------------------------------------------------------------------
+        private void CreateDirectoryForFiles()
+        {
+
+        }
+        //---------------------------------------------------------------------------------------------------------
         // Метод створення директорії та неохідних файлів
         private void CreateDirectoryAndFiles()
         {
+            // файл зі шляхом до документів
+            if (!File.Exists("PathForDocument.dfp"))
+            {
+                using (StreamWriter sw = new StreamWriter("PathForDocument.dfp"))
+                    sw.Write(@"C:\FEW");
+            }
+
+            using (StreamReader sr = new StreamReader("PathForDocument.dfp"))
+                defaultPath = sr.ReadToEnd();
+
             // Створення дерикторії
             Directory.CreateDirectory(defaultPath);
 
@@ -448,7 +464,6 @@ radioButton3_Size-8";
 start """" ""For English Words.exe""");
                 }
             }
-
             // Запис кількості слів у текстовий файл
             if (!File.Exists(pathToSizeFile))
             {

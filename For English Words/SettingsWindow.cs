@@ -10,7 +10,8 @@ namespace For_English_Words
     {
         Size screenSize = Screen.PrimaryScreen.Bounds.Size;
 
-        string pathToCounterFile = $@"C:\FEW\Case index.ci",
+        string defaultPath = @"C:\FEW", 
+            pathToCounterFile = $@"C:\FEW\Case index.ci",
             pathToApplySettingFile = $@"C:\FEW\Apply.bat",
             pathToValueParameters = $@"C:\FEW\Value of size window parameters.par";
 
@@ -36,6 +37,7 @@ namespace For_English_Words
             Location = new Point((screenSize.Width/2)-(Size.Width/2), (screenSize.Height/2)-(Size.Height/2));
             GetParameters();
             comboBox1.SelectedIndex = 0;
+            textBox1.Text = defaultPath+"\\";
         }
 
         private void GetParameters()
@@ -123,6 +125,16 @@ namespace For_English_Words
         private void button8_MouseEnter(object sender, EventArgs e)
         {
             button8.BackColor = Color.FromArgb(30, 30, 30);
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            panel5.Visible = true;
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            panel5.Visible = false;
         }
 
         private void button8_MouseLeave(object sender, EventArgs e)
