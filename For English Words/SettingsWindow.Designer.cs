@@ -69,7 +69,8 @@
             this.button18 = new System.Windows.Forms.Button();
             this.label12 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.panel1.SuspendLayout();
+            this.button19 = new System.Windows.Forms.Button();
+            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.panel5.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -97,7 +98,6 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.panel1.Controls.Add(this.button18);
             this.panel1.Location = new System.Drawing.Point(0, 417);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(449, 361);
@@ -118,6 +118,8 @@
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.panel5.Controls.Add(this.button19);
+            this.panel5.Controls.Add(this.button18);
             this.panel5.Controls.Add(this.groupBox4);
             this.panel5.Controls.Add(this.label12);
             this.panel5.Controls.Add(this.button4);
@@ -560,20 +562,21 @@
             this.button17.ForeColor = System.Drawing.Color.Red;
             this.button17.Location = new System.Drawing.Point(335, 15);
             this.button17.Name = "button17";
-            this.button17.Size = new System.Drawing.Size(104, 26);
+            this.button17.Size = new System.Drawing.Size(103, 26);
             this.button17.TabIndex = 1;
             this.button17.Text = "Path";
             this.button17.UseVisualStyleBackColor = true;
+            this.button17.Click += new System.EventHandler(this.button17_Click);
             // 
             // button18
             // 
             this.button18.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button18.ForeColor = System.Drawing.Color.Red;
-            this.button18.Location = new System.Drawing.Point(178, 144);
+            this.button18.Location = new System.Drawing.Point(335, 56);
             this.button18.Name = "button18";
-            this.button18.Size = new System.Drawing.Size(104, 26);
+            this.button18.Size = new System.Drawing.Size(103, 26);
             this.button18.TabIndex = 1;
-            this.button18.Text = "Default path";
+            this.button18.Text = "Save path";
             this.button18.UseVisualStyleBackColor = true;
             // 
             // label12
@@ -597,6 +600,17 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Path";
             // 
+            // button19
+            // 
+            this.button19.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button19.ForeColor = System.Drawing.Color.Red;
+            this.button19.Location = new System.Drawing.Point(335, 88);
+            this.button19.Name = "button19";
+            this.button19.Size = new System.Drawing.Size(103, 26);
+            this.button19.TabIndex = 1;
+            this.button19.Text = "Default path";
+            this.button19.UseVisualStyleBackColor = true;
+            // 
             // SettingsWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -616,7 +630,6 @@
             this.Load += new System.EventHandler(this.SettingsWindow_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SettingsWindow_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.SettingsWindow_KeyUp);
-            this.panel1.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -678,5 +691,7 @@
         private System.Windows.Forms.Button button17;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Button button19;
+        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
     }
 }

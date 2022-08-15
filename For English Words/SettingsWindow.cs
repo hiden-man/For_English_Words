@@ -132,6 +132,12 @@ namespace For_English_Words
             panel5.Visible = true;
         }
 
+        private void button17_Click(object sender, EventArgs e)
+        {
+            if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
+                textBox1.Text = folderBrowserDialog1.SelectedPath;
+        }
+
         private void button8_Click(object sender, EventArgs e)
         {
             panel5.Visible = false;

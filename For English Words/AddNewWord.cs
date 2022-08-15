@@ -11,10 +11,12 @@ namespace For_English_Words
     {
         // Поля
         Size screenSize = Screen.PrimaryScreen.Bounds.Size;
-        string pathToFileWords = $@"C:\FEW\English words.mw",
-            pathToFileTranslate = $@"C:\FEW\Translate.mw",
-            pathToSizeFile = $@"C:\FEW\Number of the words.mw",
-            pathToCorecctAnswerFile = $@"C:\FEW\Counter of correct answer.mw";
+        string path = "",
+            pathToFileWords = "English words.mw",
+            pathToFileTranslate = "Translate.mw",
+            pathToSizeFile = "Number of the words.mw",
+            pathToCorecctAnswerFile = "Counter of correct answer.mw";
+
         string strWord = "", strTranslate = "";
         private int IDWords = 0;
         
@@ -25,8 +27,16 @@ namespace For_English_Words
         private void Settings_Load(object sender, EventArgs e)
         {
             MainWindowLocation();
+            GetPath();
             SetIDWord();
         }
+
+        private void GetPath()
+        {
+            using (StreamReader sr = new StreamReader("PathForDocument.dfp"))
+                path = sr.ReadToEnd();
+        }
+
         private void MainWindowLocation()
         {
             Location = new Point((screenSize.Width/2)-(Size.Width/2),
@@ -106,7 +116,7 @@ namespace For_English_Words
         // Метод встановлення кількості англійських слів у файлі
         private void SetIDWord()
         {
-            using (StreamReader sr = new StreamReader(pathToSizeFile))
+            using (StreamReader sr = new StreamReader($@"{path}\{pathToSizeFile}"))
                 IDWords = Convert.ToInt32(sr.ReadLine());
         }
         // Кнопка запису слів та перекладу
@@ -124,7 +134,7 @@ namespace For_English_Words
         // Метод створення файлу та запис кількості англійських слів 
         public void SaveNumberOfSize()
         {
-            using (StreamWriter sw = new StreamWriter(pathToSizeFile))
+            using (StreamWriter sw = new StreamWriter($@"{path}\{pathToSizeFile}"))
                 sw.Write(IDWords);
         }
         // Метод запису нового слова та перекладу у файли
@@ -137,16 +147,16 @@ namespace For_English_Words
             string[] strWordArray = strWord.Split(' ');
             string[] strTranslateArray = strTranslate.Split(' ');
 
-            using (StreamWriter sw1 = new StreamWriter(pathToFileWords, true))
+            using (StreamWriter sw1 = new StreamWriter($@"{path}\{pathToFileWords}", true))
                 for (int i = 0; i < strWordArray.Length; i++)
                 {
                     sw1.Write($"\n{strWordArray[i]}");
                     IDWords++;
                 }
-            using (StreamWriter sw2 = new StreamWriter(pathToFileTranslate, true))
+            using (StreamWriter sw2 = new StreamWriter($@"{path}\{pathToFileTranslate}", true))
                 for (int i = 0; i < strTranslateArray.Length; i++)
                     sw2.Write($"\n{strTranslateArray[i]}");
-            using (StreamWriter sw3 = new StreamWriter(pathToCorecctAnswerFile, true))
+            using (StreamWriter sw3 = new StreamWriter($@"{path}\{pathToCorecctAnswerFile}", true))
                 for (int i = 0; i < strWordArray.Length; i++)
                     sw3.Write($"\n{0}");
             SaveNumberOfSize();

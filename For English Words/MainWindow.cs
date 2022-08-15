@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Drawing;
 using System.IO;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace For_English_Words
@@ -14,25 +13,24 @@ namespace For_English_Words
         AddNewWord AddNewWordWindow = new AddNewWord();
         SettingsWindow settingsWindow = new SettingsWindow();
 
-        //string defaultPath = @"C:\FEW",
         string defaultPath = "",
-            pathToFileWords = $@"C:\FEW\English words.mw",
-            pathToFileTranslate = $@"C:\FEW\Translate.mw",
-            pathToCorecctAnswerFile = $@"C:\FEW\Counter of correct answer.mw",
-            pathToRandomAsnwer = $@"C:\FEW\Random answer.mw",
-            pathToSwitchIndex = $@"C:\FEW\Switch index.mw",
-            pathToConfigFile = $@"C:\FEW\Config.cfg",
-            pathToValueParameters = $@"C:\FEW\Value of size window parameters.par",
-            pathToValueParameters2 = $@"C:\FEW\Value of font main text parameters.par",
-            pathToValueParameters3 = $@"C:\FEW\Value of font answer text parameters.par",
-            pathToValueParameters4 = $@"C:\FEW\Value of font button text parameters.par",
-            pathToValueParameters5 = $@"C:\FEW\Value of size textBox parameters.par",
-            pathToValueParameters6 = $@"C:\FEW\Value of size button parameters.par",
-            pathToValueParameters7 = $@"C:\FEW\Value of size correct answer picture parameters.par",
-            pathToCounterFile = $@"C:\FEW\Case index.ci",
-            pathToCounterFile2 = $@"C:\FEW\Index for switch.ci",
-            pathToApplySettingFile = $@"C:\FEW\Apply.bat",
-            pathToSizeFile = $@"C:\FEW\Number of the words.mw";
+            pathToFileWords = "English words.mw",
+            pathToFileTranslate = "Translate.mw",
+            pathToCorecctAnswerFile = "Counter of correct answer.mw",
+            pathToRandomAsnwer = "Random answer.mw",
+            pathToSwitchIndex = "Switch index.mw",
+            //pathToConfigFile = "Config.cfg",
+            pathToValueParameters = "Value of size window parameters.par",
+            pathToValueParameters2 ="Value of font main text parameters.par",
+            pathToValueParameters3 = "Value of font answer text parameters.par",
+            pathToValueParameters4 = "Value of font button text parameters.par",
+            pathToValueParameters5 = "Value of size textBox parameters.par",
+            pathToValueParameters6 = "Value of size button parameters.par",
+            pathToValueParameters7 = "Value of size correct answer picture parameters.par",
+            pathToCounterFile = "Case index.ci",
+            pathToCounterFile2 = "Index for switch.ci",
+            pathToApplySettingFile = "Apply.bat",
+            pathToSizeFile = "Number of the words.mw";
 
         string defaultSettings = 
 $@"Main_window:
@@ -70,6 +68,7 @@ radioButton3_Size-8";
             indexParam = 0, numberOfIter = 0, xB = 54, yB = 22,
             sizeTextBoxX = 229, sizePicture = 15;
 
+        sbyte valueWW = 0;
         // Проценти
         private const byte 
             perCentS = 20, perCentST = 30, 
@@ -87,6 +86,7 @@ radioButton3_Size-8";
         {
 
             MainWindowLocation();
+            CreateDirectoryForFiles();
             CreateDirectoryAndFiles();
             MySettings();
             RecountTheNumberOfWords();
@@ -113,12 +113,12 @@ radioButton3_Size-8";
             string strParam = "", strParam2 = "";
             string[] strParamArray, strIndexParamArray;
 
-            using (StreamReader streamR = new StreamReader(pathToValueParameters))
+            using (StreamReader streamR = new StreamReader($@"{defaultPath}\{pathToValueParameters}"))
                 strParam = streamR.ReadToEnd();
 
             strParamArray = strParam.Split('\n');
 
-            using (StreamReader streamR1 = new StreamReader(pathToCounterFile))
+            using (StreamReader streamR1 = new StreamReader($@"{defaultPath}\{pathToCounterFile}"))
                 indexParam = Convert.ToInt32(streamR1.ReadToEnd());
 
             strParam2 = strParamArray[indexParam];
@@ -132,7 +132,7 @@ radioButton3_Size-8";
             string strParamMainText = "";
             string[] strParamMainTextArray;
 
-            using (StreamReader sr2 = new StreamReader(pathToValueParameters2))
+            using (StreamReader sr2 = new StreamReader($@"{defaultPath}\{pathToValueParameters2}"))
                 strParamMainText = sr2.ReadToEnd();
             strParamMainTextArray = strParamMainText.Split('\n');
             fontS = Convert.ToUInt32(strParamMainTextArray[indexParam]);
@@ -142,7 +142,7 @@ radioButton3_Size-8";
             string strParamTextBoxX = "";
             string[] strParamTextBoxXArray;
 
-            using (StreamReader sr3 = new StreamReader(pathToValueParameters5))
+            using (StreamReader sr3 = new StreamReader($@"{defaultPath}\{pathToValueParameters5}"))
                 strParamTextBoxX = sr3.ReadToEnd();
             strParamTextBoxXArray = strParamTextBoxX.Split('\n');
             sizeTextBoxX = Convert.ToInt32(strParamTextBoxXArray[indexParam]);
@@ -152,7 +152,7 @@ radioButton3_Size-8";
             string strParamSRB = "";
             string[] strParamSRBArray;
 
-            using (StreamReader sr4 = new StreamReader(pathToValueParameters3))
+            using (StreamReader sr4 = new StreamReader($@"{defaultPath}\{pathToValueParameters3}"))
                 strParamSRB = sr4.ReadToEnd();
             strParamSRBArray = strParamSRB.Split('\n');
             fontSRButton = Convert.ToUInt32(strParamSRBArray[indexParam]);
@@ -162,7 +162,7 @@ radioButton3_Size-8";
             string strParamSB = "";
             string[] strParamSBArray;
 
-            using (StreamReader sr5 = new StreamReader(pathToValueParameters4))
+            using (StreamReader sr5 = new StreamReader($@"{defaultPath}\{pathToValueParameters4}"))
                 strParamSB = sr5.ReadToEnd();
             strParamSBArray = strParamSB.Split('\n');
             fontSB = Convert.ToUInt32(strParamSBArray[indexParam]);
@@ -172,7 +172,7 @@ radioButton3_Size-8";
             string strParamSB1 = "", strParamSB2 = "";
             string[] strParamSBArray1, strParamSBArray2;
 
-            using (StreamReader sr5 = new StreamReader(pathToValueParameters6))
+            using (StreamReader sr5 = new StreamReader($@"{defaultPath}\{pathToValueParameters6}"))
                 strParamSB = sr5.ReadToEnd();
             strParamSBArray = strParamSB.Split('\n');
             strParamSB2 = strParamSBArray[indexParam];
@@ -185,7 +185,7 @@ radioButton3_Size-8";
 
             string strParamSP = "";
             string[] strParamSPArray;
-            using (StreamReader sr6 = new StreamReader(pathToValueParameters7))
+            using (StreamReader sr6 = new StreamReader($@"{defaultPath}\{pathToValueParameters7}"))
                 strParamSP = sr6.ReadToEnd();
             strParamSPArray = strParamSP.Split('\n');
             sizePicture = Convert.ToInt32(strParamSPArray[indexParam]);
@@ -222,30 +222,40 @@ radioButton3_Size-8";
         //---------------------------------------------------------------------------------------------------------
         private void CreateDirectoryForFiles()
         {
+            if (!File.Exists("Value change WW.ww"))
+            {
+                using (StreamWriter sw = new StreamWriter("Value change WW.ww"))
+                    sw.Write(0);
+            }
 
-        }
-        //---------------------------------------------------------------------------------------------------------
-        // Метод створення директорії та неохідних файлів
-        private void CreateDirectoryAndFiles()
-        {
             // файл зі шляхом до документів
             if (!File.Exists("PathForDocument.dfp"))
             {
                 using (StreamWriter sw = new StreamWriter("PathForDocument.dfp"))
-                    sw.Write(@"C:\FEW");
+                    sw.Write(@"C:\ForEnglishWords");
             }
 
-            using (StreamReader sr = new StreamReader("PathForDocument.dfp"))
-                defaultPath = sr.ReadToEnd();
+            using (StreamReader sr = new StreamReader("Value change WW.ww"))
+                valueWW = Convert.ToSByte(sr.ReadToEnd());
 
-            // Створення дерикторії
+            if(valueWW == 0)
+            {
+                using (StreamReader sr = new StreamReader("PathForDocument.dfp"))
+                    defaultPath = sr.ReadToEnd();
+            }
+        }
+        //---------------------------------------------------------------------------------------------------------
+        // Метод створення директорії та неохідних файлів
+        private void CreateDirectoryAndFiles()
+        {  
+            // Перевірка на навність необхідних файлів
+
             Directory.CreateDirectory(defaultPath);
 
-            // Перевірка на навність необхідних файлів
             // Створення файла для слів
-            if (!File.Exists(pathToFileWords))
+            if (!File.Exists($@"{defaultPath}\{pathToFileWords}"))
             {
-                using (StreamWriter sw1 = new StreamWriter(pathToFileWords))
+                using (StreamWriter sw1 = new StreamWriter($@"{defaultPath}\{pathToFileWords}"))
                     // запис дефолтних слів
                     foreach (string words in defaultWords)
                     {
@@ -258,9 +268,9 @@ radioButton3_Size-8";
             }
 
             // Створення файла для перекладу
-            if (!File.Exists(pathToFileTranslate))
+            if (!File.Exists($@"{defaultPath}\{pathToFileTranslate}"))
             {
-                using (StreamWriter sw2 = new StreamWriter(pathToFileTranslate))
+                using (StreamWriter sw2 = new StreamWriter($@"{defaultPath}\{pathToFileTranslate}"))
                     // запис дефолтних перекладів
                     foreach (string translate in defaultTranslate)
                     {
@@ -273,9 +283,9 @@ radioButton3_Size-8";
             }
 
             // Створення файла для вірних відповідей
-            if (!File.Exists(pathToCorecctAnswerFile))
+            if (!File.Exists($@"{defaultPath}\{pathToCorecctAnswerFile}"))
             {
-                using (StreamWriter sw3 = new StreamWriter(pathToCorecctAnswerFile))
+                using (StreamWriter sw3 = new StreamWriter($@"{defaultPath}\{pathToCorecctAnswerFile}"))
                     // нумерація комірок
                     for (int i = 0; i < IDWords; i++)
                         if (i == 0)
@@ -285,8 +295,8 @@ radioButton3_Size-8";
             }
 
             // Створення файла для перемішування відповідей
-            if (!File.Exists(pathToRandomAsnwer))
-                using (FileStream fs1 = new FileStream(pathToRandomAsnwer, FileMode.Create)) { };
+            if (!File.Exists($@"{defaultPath}\{pathToRandomAsnwer}"))
+                using (FileStream fs1 = new FileStream($@"{defaultPath}\{pathToRandomAsnwer}", FileMode.Create)) { };
 
             //// Створення Config файла
             //if (!File.Exists(pathToConfigFile))
@@ -296,16 +306,16 @@ radioButton3_Size-8";
             //    }
 
             // Створення файла для лічильника
-            if (!File.Exists(pathToCounterFile))
+            if (!File.Exists($@"{defaultPath}\{pathToCounterFile}"))
             {
-                using (StreamWriter sw8 = new StreamWriter(pathToCounterFile))
+                using (StreamWriter sw8 = new StreamWriter($@"{defaultPath}\{pathToCounterFile}"))
                     sw8.Write(0);
             }
 
             // Створення файлів для параметрів
-            if (!File.Exists(pathToValueParameters))
+            if (!File.Exists($@"{defaultPath}\{pathToValueParameters}"))
             {
-                using (StreamWriter sw6 = new StreamWriter(pathToValueParameters))
+                using (StreamWriter sw6 = new StreamWriter($@"{defaultPath}\{pathToValueParameters}"))
                 {
                     bool boolerCheck = true;
                     for (int i = 0; boolerCheck;)
@@ -334,9 +344,9 @@ radioButton3_Size-8";
                 }
             }
             //---------------------------------------------------------------------------------------------------------
-            if (!File.Exists(pathToValueParameters2))
+            if (!File.Exists($@"{defaultPath}\{pathToValueParameters2}"))
             {
-                using (StreamWriter sw = new StreamWriter(pathToValueParameters2))
+                using (StreamWriter sw = new StreamWriter($@"{defaultPath}\{pathToValueParameters2}"))
                 {
                     for (int i = 0; i < numberOfIter; i++)
                     {
@@ -353,9 +363,9 @@ radioButton3_Size-8";
                 }
             }
             //---------------------------------------------------------------------------------------------------------
-            if (!File.Exists(pathToValueParameters3))
+            if (!File.Exists($@"{defaultPath}\{pathToValueParameters3}"))
             {
-                using (StreamWriter sw = new StreamWriter(pathToValueParameters3))
+                using (StreamWriter sw = new StreamWriter($@"{defaultPath}\{pathToValueParameters3}"))
                 {
                     for (int i = 0; i < numberOfIter; i++)
                     {
@@ -372,9 +382,9 @@ radioButton3_Size-8";
                 }
             }
             //---------------------------------------------------------------------------------------------------------
-            if (!File.Exists(pathToValueParameters4))
+            if (!File.Exists($@"{defaultPath}\{pathToValueParameters4}"))
             {
-                using (StreamWriter sw = new StreamWriter(pathToValueParameters4))
+                using (StreamWriter sw = new StreamWriter($@"{defaultPath}\{pathToValueParameters4}"))
                 {
                     for (int i = 0; i < numberOfIter; i++)
                     {
@@ -391,9 +401,9 @@ radioButton3_Size-8";
                 }
             }
             //---------------------------------------------------------------------------------------------------------
-            if (!File.Exists(pathToValueParameters5))
+            if (!File.Exists($@"{defaultPath}\{pathToValueParameters5}"))
             {
-                using (StreamWriter sw = new StreamWriter(pathToValueParameters5))
+                using (StreamWriter sw = new StreamWriter($@"{defaultPath}\{pathToValueParameters5}"))
                 {
                     for (int i = 0; i < numberOfIter; i++)
                     {
@@ -410,9 +420,9 @@ radioButton3_Size-8";
                 }
             }
             //---------------------------------------------------------------------------------------------------------
-            if (!File.Exists(pathToValueParameters6))
+            if (!File.Exists($@"{defaultPath}\{pathToValueParameters6}"))
             {
-                using (StreamWriter sw = new StreamWriter(pathToValueParameters6))
+                using (StreamWriter sw = new StreamWriter($@"{defaultPath}\{pathToValueParameters6}"))
                 {
                     for (int i = 0; i < numberOfIter; i++)
                     {
@@ -430,9 +440,9 @@ radioButton3_Size-8";
                 }
             }
             //---------------------------------------------------------------------------------------------------------
-            if (!File.Exists(pathToValueParameters7))
+            if (!File.Exists($@"{defaultPath}\{pathToValueParameters7}"))
             {
-                using (StreamWriter sw = new StreamWriter(pathToValueParameters7))
+                using (StreamWriter sw = new StreamWriter($@"{defaultPath}\{pathToValueParameters7}"))
                 {
                     for (int i = 0; i < numberOfIter; i++)
                     {
@@ -450,22 +460,23 @@ radioButton3_Size-8";
             }
             //---------------------------------------------------------------------------------------------------------
 
-            if (!File.Exists(pathToCounterFile2))
+            if (!File.Exists($@"{defaultPath}\{pathToCounterFile2}"))
             {
-                using (StreamWriter sw = new StreamWriter(pathToCounterFile2))
+                using (StreamWriter sw = new StreamWriter($@"{defaultPath}\{pathToCounterFile2}"))
                     sw.Write(2);
             }
 
-            if (!File.Exists(pathToApplySettingFile))
+            if (!File.Exists($@"{defaultPath}\{pathToApplySettingFile}"))
             {
-                using (StreamWriter sw = new StreamWriter(pathToApplySettingFile))
+                using (StreamWriter sw = new StreamWriter($@"{defaultPath}\{pathToApplySettingFile}"))
                 {
                     sw.Write($@"taskkill /IM ""For English Words.exe"" /F
 start """" ""For English Words.exe""");
                 }
             }
+
             // Запис кількості слів у текстовий файл
-            if (!File.Exists(pathToSizeFile))
+            if (!File.Exists($@"{defaultPath}\{pathToSizeFile}"))
             {
                 SaveNumberOfSize();
             }
@@ -476,7 +487,7 @@ start """" ""For English Words.exe""");
         private void RecountTheNumberOfWords()
         {
             string strRecount = "";
-            using (StreamReader sr = new StreamReader(pathToFileWords))
+            using (StreamReader sr = new StreamReader($@"{defaultPath}\{pathToFileWords}"))
                 strRecount = sr.ReadToEnd();
             string[] strRecountArray = strRecount.Split('\n');
             for (int i = 0; i < strRecountArray.GetLength(0); i++)
@@ -486,7 +497,7 @@ start """" ""For English Words.exe""");
         // Метод створення файлу та запис кількості англійських слів
         public void SaveNumberOfSize()
         {
-            using (StreamWriter sw = new StreamWriter(pathToSizeFile))
+            using (StreamWriter sw = new StreamWriter($@"{defaultPath}\{pathToSizeFile}"))
                 sw.Write($"{IDWords}");
             SetIDWord();
         }
@@ -494,7 +505,7 @@ start """" ""For English Words.exe""");
         // Метод встановлення кількості англійських слів у файлі
         private void SetIDWord()
         {
-            using (StreamReader sr = new StreamReader(pathToSizeFile))
+            using (StreamReader sr = new StreamReader($@"{defaultPath}\{pathToSizeFile}"))
                 IDWords = Convert.ToInt32(sr.ReadToEnd());
         }
         //---------------------------------------------------------------------------------------------------------
@@ -506,7 +517,7 @@ start """" ""For English Words.exe""");
             // Рядок для запису даних із текстового файлу
             string strCorNum = "";
             // Читаємо данні з файлу
-            using (StreamReader sr = new StreamReader(pathToCorecctAnswerFile))
+            using (StreamReader sr = new StreamReader($@"{defaultPath}\{pathToCorecctAnswerFile}"))
                 // Записуємо дані з файлу у текстовий рядок
                 strCorNum = sr.ReadToEnd();
             // перетворюємо текстовий рядок у масив
@@ -551,7 +562,7 @@ start """" ""For English Words.exe""");
                                 break;
                             }
                         }
-                        using (StreamWriter sw = new StreamWriter(pathToCorecctAnswerFile))
+                        using (StreamWriter sw = new StreamWriter($@"{defaultPath}\{pathToCorecctAnswerFile}"))
                         {
                             for (int t = 0; t < shortStrCorNum.Length; t++)
                             {
@@ -566,7 +577,7 @@ start """" ""For English Words.exe""");
                         }
                         //---------------------------------------------------------------
                         string str11 = "";
-                        using (StreamReader sr = new StreamReader(pathToFileWords))
+                        using (StreamReader sr = new StreamReader($@"{defaultPath}\{pathToFileWords}"))
                             str11 = sr.ReadToEnd();
                         string[] strWorNumArray = str11.Split('\n');
                         string[] shortStrWorNumArray = new string[strWorNumArray.Length - 1];
@@ -589,7 +600,7 @@ start """" ""For English Words.exe""");
                                 break;
                             }
                         }
-                        using (StreamWriter sw = new StreamWriter(pathToFileWords))
+                        using (StreamWriter sw = new StreamWriter($@"{defaultPath}\{pathToFileWords}"))
                         {
                             for (int y = 0; y < shortStrWorNumArray.Length; y++)
                             {
@@ -601,7 +612,7 @@ start """" ""For English Words.exe""");
                         }
                         //---------------------------------------------------------------
                         string str22 = "";
-                        using (StreamReader sr = new StreamReader(pathToFileTranslate))
+                        using (StreamReader sr = new StreamReader($@"{defaultPath}\{pathToFileTranslate}"))
                             str22 = sr.ReadToEnd();
                         string[] strTraNumArray = str22.Split('\n');
                         string[] shortStrTraNumArray = new string[strTraNumArray.Length - 1];
@@ -624,7 +635,7 @@ start """" ""For English Words.exe""");
                                 break;
                             }
                         }
-                        using (StreamWriter sw = new StreamWriter(pathToFileTranslate))
+                        using (StreamWriter sw = new StreamWriter($@"{defaultPath}\{pathToFileTranslate}"))
                         {
                             for (int f = 0; f < shortStrTraNumArray.Length; f++)
                             {
@@ -635,14 +646,14 @@ start """" ""For English Words.exe""");
                             }
                         }
                         //---------------------------------------------------------------
-                        using (StreamWriter sw = new StreamWriter(pathToSizeFile))
+                        using (StreamWriter sw = new StreamWriter($@"{defaultPath}\{pathToSizeFile}"))
                             sw.Write(sizeNumber);
                     }
                 }
             }
 
             string stringWord = "";
-            using (StreamReader sr1 = new StreamReader(pathToFileWords))
+            using (StreamReader sr1 = new StreamReader($@"{defaultPath}\{pathToFileWords}"))
                 stringWord = sr1.ReadToEnd();
             string[] wordsArray = stringWord.Split('\n');
             //label3.Text = wordsArray[randomIDWord];
@@ -655,14 +666,14 @@ start """" ""For English Words.exe""");
 
             string stringTranslate = "";
             // Запис перекладів слів у рядок
-            using (StreamReader sr1 = new StreamReader(pathToFileTranslate))
+            using (StreamReader sr1 = new StreamReader($@"{defaultPath}\{pathToFileTranslate}"))
                 stringTranslate = sr1.ReadToEnd();
 
             // Перетворення рядка перекладів слів у масив
             string[] translateArray = stringTranslate.Split('\n');
 
             // Запис парвельної відповіді у файл відповідей
-            using (StreamWriter sw = new StreamWriter(pathToRandomAsnwer))
+            using (StreamWriter sw = new StreamWriter($@"{defaultPath}\{pathToRandomAsnwer}"))
                 sw.Write(translateArray[randomIDWord]);
             // створення масиву для збереження масиву з видаленим значенням
             string[] newTranslateArray = new string [translateArray.Length-1];
@@ -690,7 +701,7 @@ start """" ""For English Words.exe""");
                 }
             }
             // доповнює запис двома випадковими відповідями у файлі відповідей
-            using (StreamWriter sw = new StreamWriter(pathToRandomAsnwer, true))
+            using (StreamWriter sw = new StreamWriter($@"{defaultPath}\{pathToRandomAsnwer}", true))
             {
                 for (int i = 0; i < 2; i++)
                 {
@@ -700,7 +711,7 @@ start """" ""For English Words.exe""");
             // випадковий вибір варіанту перемішуваня відповідей
             randomChoise = random.Next(6);
             // запис відповідей з перезаписаного списку відповідей без правельної відповіді у текстовий рядок
-            using (StreamReader sr = new StreamReader(pathToRandomAsnwer))
+            using (StreamReader sr = new StreamReader($@"{defaultPath}\{pathToRandomAsnwer}"))
                 stringTranslate = sr.ReadToEnd();
             // перетворення рядку у масив
             translateArray = stringTranslate.Split('\n');
@@ -743,17 +754,17 @@ start """" ""For English Words.exe""");
         // Метод запису кількості правельних відповідей
         private void WriteNumberOfCorrectAnswers()
         {
-            if (!File.Exists(pathToSwitchIndex))
+            if (!File.Exists($@"{defaultPath}\{pathToSwitchIndex}"))
             {
-                using (FileStream fs = new FileStream(pathToSwitchIndex, FileMode.Create)) { };
+                using (FileStream fs = new FileStream($@"{defaultPath}\{pathToSwitchIndex}", FileMode.Create)) { };
 
                 string str1 = "";
-                using (StreamReader streamReader = new StreamReader(pathToCorecctAnswerFile))
+                using (StreamReader streamReader = new StreamReader($@"{defaultPath}\{pathToCorecctAnswerFile}"))
                     str1 = streamReader.ReadToEnd();
                 string[] str1Array = str1.Split('\n');
                 int diNumber = int.Parse(str1Array[randomIDWord]) + 1;
                 str1Array[randomIDWord] = diNumber.ToString();
-                using (StreamWriter sw = new StreamWriter(pathToCorecctAnswerFile))
+                using (StreamWriter sw = new StreamWriter($@"{defaultPath}\{pathToCorecctAnswerFile}"))
                 {
                     for (int i = 0; i < str1Array.GetLength(0); i++)
                         if (i == 0)
@@ -766,12 +777,12 @@ start """" ""For English Words.exe""");
             else
             {
                 string str1 = "";
-                using (StreamReader streamReader = new StreamReader(pathToCorecctAnswerFile))
+                using (StreamReader streamReader = new StreamReader($@"{defaultPath}\{pathToCorecctAnswerFile}"))
                     str1 = streamReader.ReadToEnd();
                 string[] str1Array = str1.Split('\n');
                 int diNumber = int.Parse(str1Array[randomIDWord]) + 1;
                 str1Array[randomIDWord] = diNumber.ToString();
-                using (StreamWriter sw = new StreamWriter(pathToCorecctAnswerFile))
+                using (StreamWriter sw = new StreamWriter($@"{defaultPath}\{pathToCorecctAnswerFile}"))
                     for (int i = 0; i < str1Array.GetLength(0); i++)
                         if (i == 0)
                             sw.Write(str1Array[i]);
@@ -786,7 +797,7 @@ start """" ""For English Words.exe""");
             // створення пустого рядку
             string str1 = "";
             // запис списку перекладів у рядок
-            using (StreamReader sr4 = new StreamReader(pathToFileTranslate))
+            using (StreamReader sr4 = new StreamReader($@"{defaultPath}\{pathToFileTranslate}"))
                 str1 = sr4.ReadToEnd();
             // перетворення рядка у масив
             string[] corrAnswer = str1.Split('\n');
@@ -860,13 +871,13 @@ start """" ""For English Words.exe""");
         // Методи вираховування розмірів контролерів
         private void CalculateSizeControlsUp()
         {
-            using (StreamReader sr6 = new StreamReader(pathToCounterFile))
+            using (StreamReader sr6 = new StreamReader($@"{defaultPath}\{pathToCounterFile}"))
                 indexParam = Convert.ToInt32(sr6.ReadToEnd());
 
             string param = "", param2 = "";
             string[] paramArray, paramArray2;
             
-            using (StreamReader sr1 = new StreamReader(pathToValueParameters))
+            using (StreamReader sr1 = new StreamReader($@"{defaultPath}\{pathToValueParameters}"))
                 param = sr1.ReadToEnd();
             paramArray = param.Split('\n');
             indexParam++;
@@ -876,7 +887,7 @@ start """" ""For English Words.exe""");
             x = Convert.ToInt32(paramArray2[0]);
             y = Convert.ToInt32(paramArray2[1]);
 
-            using (StreamWriter sw = new StreamWriter(pathToCounterFile))
+            using (StreamWriter sw = new StreamWriter($@"{defaultPath}\{pathToCounterFile}"))
                 sw.Write(indexParam);
 
             //---------------------------------------------------------------------------------------------------------
@@ -884,7 +895,7 @@ start """" ""For English Words.exe""");
             string strParamMainText = "";
             string[] strParamMainTextArray;
 
-            using (StreamReader sr2 = new StreamReader(pathToValueParameters2))
+            using (StreamReader sr2 = new StreamReader($@"{defaultPath}\{pathToValueParameters2}"))
                 strParamMainText = sr2.ReadToEnd();
             strParamMainTextArray = strParamMainText.Split('\n');
             fontS = Convert.ToUInt32(strParamMainTextArray[indexParam]);
@@ -894,7 +905,7 @@ start """" ""For English Words.exe""");
             string strParamTextBoxX = "";
             string[] strParamTextBoxXArray;
 
-            using (StreamReader sr3 = new StreamReader(pathToValueParameters5))
+            using (StreamReader sr3 = new StreamReader($@"{defaultPath}\{pathToValueParameters5}"))
                 strParamTextBoxX = sr3.ReadToEnd();
             strParamTextBoxXArray = strParamTextBoxX.Split('\n');
             sizeTextBoxX = Convert.ToInt32(strParamTextBoxXArray[indexParam]);
@@ -904,7 +915,7 @@ start """" ""For English Words.exe""");
             string strParamSRB = "";
             string[] strParamSRBArray;
 
-            using (StreamReader sr4 = new StreamReader(pathToValueParameters3))
+            using (StreamReader sr4 = new StreamReader($@"{defaultPath}\{pathToValueParameters3}"))
                 strParamSRB = sr4.ReadToEnd();
             strParamSRBArray = strParamSRB.Split('\n');
             fontSRButton = Convert.ToUInt32(strParamSRBArray[indexParam]);
@@ -914,7 +925,7 @@ start """" ""For English Words.exe""");
             string strParamSB = "";
             string[] strParamSBArray;
 
-            using (StreamReader sr5 = new StreamReader(pathToValueParameters4))
+            using (StreamReader sr5 = new StreamReader($@"{defaultPath}\{pathToValueParameters4}"))
                 strParamSB = sr5.ReadToEnd();
             strParamSBArray = strParamSB.Split('\n');
             fontSB = Convert.ToUInt32(strParamSBArray[indexParam]);
@@ -924,7 +935,7 @@ start """" ""For English Words.exe""");
             string strParamSB1 = "", strParamSB2 = "";
             string[] strParamSBArray1, strParamSBArray2;
 
-            using (StreamReader sr5 = new StreamReader(pathToValueParameters6))
+            using (StreamReader sr5 = new StreamReader($@"{defaultPath}\{pathToValueParameters6}"))
                 strParamSB = sr5.ReadToEnd();
             strParamSBArray = strParamSB.Split('\n');
             strParamSB2 = strParamSBArray[indexParam];
@@ -937,7 +948,7 @@ start """" ""For English Words.exe""");
 
             string strParamSP = "";
             string[] strParamSPArray;
-            using (StreamReader sr6 = new StreamReader(pathToValueParameters7))
+            using (StreamReader sr6 = new StreamReader($@"{defaultPath}\{pathToValueParameters7}"))
                 strParamSP = sr6.ReadToEnd();
             strParamSPArray = strParamSP.Split('\n');
             sizePicture = Convert.ToInt32(strParamSPArray[indexParam]);
@@ -959,13 +970,13 @@ start """" ""For English Words.exe""");
         //---------------------------------------------------------------------------------------------------------
         private void CalculateSizeControlsDown()
         {
-            using (StreamReader sr6 = new StreamReader(pathToCounterFile))
+            using (StreamReader sr6 = new StreamReader($@"{defaultPath}\{pathToCounterFile}"))
                 indexParam = Convert.ToInt32(sr6.ReadToEnd());
 
             string param = "", param2 = "";
             string[] paramArray, paramArray2;
 
-            using (StreamReader sr1 = new StreamReader(pathToValueParameters))
+            using (StreamReader sr1 = new StreamReader($@"{defaultPath}\{pathToValueParameters}"))
                 param = sr1.ReadToEnd();
             paramArray = param.Split('\n');
             if(indexParam > 0)
@@ -978,7 +989,7 @@ start """" ""For English Words.exe""");
             x = Convert.ToInt32(paramArray2[0]);
             y = Convert.ToInt32(paramArray2[1]);
 
-            using (StreamWriter sw = new StreamWriter(pathToCounterFile))
+            using (StreamWriter sw = new StreamWriter($@"{defaultPath}\{pathToCounterFile}"))
                 sw.Write(indexParam);
 
             //---------------------------------------------------------------------------------------------------------
@@ -988,7 +999,7 @@ start """" ""For English Words.exe""");
                 string strParamMainText = "";
                 string[] strParamMainTextArray;
 
-                using (StreamReader sr1 = new StreamReader(pathToValueParameters2))
+                using (StreamReader sr1 = new StreamReader($@"{defaultPath}\{pathToValueParameters2}"))
                     strParamMainText = sr1.ReadToEnd();
                 strParamMainTextArray = strParamMainText.Split('\n');
                 fontS = Convert.ToUInt32(strParamMainTextArray[indexParam]);
@@ -998,7 +1009,7 @@ start """" ""For English Words.exe""");
                 string strParamTextBoxX = "";
                 string[] strParamTextBoxXArray;
 
-                using (StreamReader sr1 = new StreamReader(pathToValueParameters5))
+                using (StreamReader sr1 = new StreamReader($@"{defaultPath}\{pathToValueParameters5}"))
                     strParamTextBoxX = sr1.ReadToEnd();
                 strParamTextBoxXArray = strParamTextBoxX.Split('\n');
                 sizeTextBoxX = Convert.ToInt32(strParamTextBoxXArray[indexParam]);
@@ -1008,7 +1019,7 @@ start """" ""For English Words.exe""");
                 string strParamSRB = "";
                 string[] strParamSRBArray;
 
-                using (StreamReader sr1 = new StreamReader(pathToValueParameters3))
+                using (StreamReader sr1 = new StreamReader($@"{defaultPath}\{pathToValueParameters3}"))
                     strParamSRB = sr1.ReadToEnd();
                 strParamSRBArray = strParamSRB.Split('\n');
                 fontSRButton = Convert.ToUInt32(strParamSRBArray[indexParam]);
@@ -1018,7 +1029,7 @@ start """" ""For English Words.exe""");
                 string strParamSB = "";
                 string[] strParamSBArray;
 
-                using (StreamReader sr5 = new StreamReader(pathToValueParameters4))
+                using (StreamReader sr5 = new StreamReader($@"{defaultPath}\{pathToValueParameters4}"))
                     strParamSB = sr5.ReadToEnd();
                 strParamSBArray = strParamSB.Split('\n');
                 fontSB = Convert.ToUInt32(strParamSBArray[indexParam]);
@@ -1028,7 +1039,7 @@ start """" ""For English Words.exe""");
                 string strParamSB1 = "", strParamSB2 = "";
                 string[] strParamSBArray1, strParamSBArray2;
 
-                using (StreamReader sr5 = new StreamReader(pathToValueParameters6))
+                using (StreamReader sr5 = new StreamReader($@"{defaultPath}\{pathToValueParameters6}"))
                     strParamSB1 = sr5.ReadToEnd();
                 strParamSBArray1 = strParamSB1.Split('\n');
                 strParamSB2 = strParamSBArray1[indexParam];
@@ -1041,7 +1052,7 @@ start """" ""For English Words.exe""");
 
                 string strParamSP = "";
                 string[] strParamSPArray;
-                using (StreamReader sr6 = new StreamReader(pathToValueParameters7))
+                using (StreamReader sr6 = new StreamReader($@"{defaultPath}\{pathToValueParameters7}"))
                     strParamSP = sr6.ReadToEnd();
                 strParamSPArray = strParamSP.Split('\n');
                 sizePicture = Convert.ToInt32(strParamSPArray[indexParam]);
