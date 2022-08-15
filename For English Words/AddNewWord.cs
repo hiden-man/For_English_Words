@@ -96,6 +96,13 @@ namespace For_English_Words
             label3.Text = "";
         }
 
+        private void AddNewWord_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+                Hide();
+        }
+
+
         // Метод встановлення кількості англійських слів у файлі
         private void SetIDWord()
         {

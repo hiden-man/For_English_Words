@@ -16,6 +16,8 @@ namespace For_English_Words
 
         sbyte counterIndex = 0, G = 0;
         int counterParIndex = 0;
+        bool ctrl = false, n = false, m = false, q = false;
+
         public SettingsWindow()
         {
             InitializeComponent();
@@ -28,7 +30,7 @@ namespace For_English_Words
 
         private void SettingsWindow_Load(object sender, EventArgs e)
         {
-            Size = new Size(966, 410);
+            Size = new Size(643, 410);
             panel1.Size = new Size(771, 361);
             panel1.Location = new Point(196, 50);
             Location = new Point((screenSize.Width/2)-(Size.Width/2), (screenSize.Height/2)-(Size.Height/2));
@@ -62,20 +64,102 @@ namespace For_English_Words
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboBox1.SelectedIndex == 0)
-                pictureBox1.Image = Properties.Resources.Black_color_0_0_0_;
+            if (comboBox1.SelectedIndex == 0) {
+                panel2.BackColor = Color.FromArgb(20, 20, 20);
+                label1.ForeColor = Color.FromArgb(255, 102, 102);
+                label2.ForeColor = Color.FromArgb(255, 102, 102);
+                label3.ForeColor = Color.FromArgb(255, 102, 102);
+                label4.ForeColor = Color.FromArgb(255, 102, 102);
+                button9.ForeColor = Color.FromArgb(255, 0, 0);
+                button10.ForeColor = Color.FromArgb(255, 0, 0);
+                button11.ForeColor = Color.FromArgb(255, 0, 0);
+            }
             else if (comboBox1.SelectedIndex == 1)
-                pictureBox1.Image = Properties.Resources.White_color_255_255_255_;
+            {
+                panel2.BackColor = Color.FromArgb(255,255,255);
+                label1.ForeColor = Color.FromArgb(0,0,0);
+                label2.ForeColor = Color.FromArgb(0,0,0);
+                label3.ForeColor = Color.FromArgb(0,0,0);
+                label4.ForeColor = Color.FromArgb(0,0,0);
+                button9.ForeColor = Color.FromArgb(0, 0, 255);
+                button10.ForeColor = Color.FromArgb(0, 0, 255);
+                button11.ForeColor = Color.FromArgb(0, 0, 255);
+            }
             else if (comboBox1.SelectedIndex == 2)
-                pictureBox1.Image = Properties.Resources.Pink_color_255_0_240_;
+            {
+                panel2.BackColor = Color.FromArgb(224, 150, 246);
+                label1.ForeColor = Color.FromArgb(255, 0, 0);
+                label2.ForeColor = Color.FromArgb(255, 0, 0);
+                label3.ForeColor = Color.FromArgb(255, 0, 0);
+                label4.ForeColor = Color.FromArgb(255, 0, 0);
+                button9.ForeColor = Color.FromArgb(255, 51, 255);
+                button10.ForeColor = Color.FromArgb(255, 51, 255);
+                button11.ForeColor = Color.FromArgb(255, 51, 255);
+            }
             else if (comboBox1.SelectedIndex == 3)
-                pictureBox1.Image = Properties.Resources.Light_green_color_211_255_105_;
-            else if (comboBox1.SelectedIndex == 4)
-                pictureBox1.Image = Properties.Resources.Brown_color_71_38_0_;
-            else if (comboBox1.SelectedIndex == 5)
-                pictureBox1.Image = Properties.Resources.Orange_color_255_132_0_;
-            else if (comboBox1.SelectedIndex == 6)
-                pictureBox1.Image = Properties.Resources.Yellow_color_255_255_0_;
+            {
+                panel2.BackColor = Color.FromArgb(153,255,153);
+                label1.ForeColor = Color.FromArgb(0, 0, 255);
+                label2.ForeColor = Color.FromArgb(0, 0, 255);
+                label3.ForeColor = Color.FromArgb(0, 0, 255);
+                label4.ForeColor = Color.FromArgb(0, 0, 255);
+                button9.ForeColor = Color.FromArgb(153, 0, 153);
+                button10.ForeColor = Color.FromArgb(153, 0, 153);
+                button11.ForeColor = Color.FromArgb(153, 0, 153);
+            }
+        }
+        //------------------------------------------------------------
+        private void button5_MouseEnter(object sender, EventArgs e)
+        {
+            button5.BackColor = Color.FromArgb(30,30,30);
+        }
+
+        private void button5_MouseLeave(object sender, EventArgs e)
+        {
+            button5.BackColor = Color.Transparent;
+        }
+
+        //------------------------------------------------------------
+        private void button8_MouseEnter(object sender, EventArgs e)
+        {
+            button8.BackColor = Color.FromArgb(30, 30, 30);
+        }
+
+        private void button8_MouseLeave(object sender, EventArgs e)
+        {
+            button8.BackColor = Color.Transparent;
+        }
+
+        //------------------------------------------------------------
+        private void SettingsWindow_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.ControlKey)
+                ctrl = true;
+            else if (e.KeyCode == Keys.N)
+                n = true;
+            else if (e.KeyCode == Keys.M)
+                m = true;
+            else if (e.KeyCode == Keys.Q)
+                q = true;
+            if(ctrl && n)
+                label12.Text = "ctrl + n";
+            if (ctrl && m)
+                label12.Text = "ctrl + m";
+            else if (e.KeyCode == Keys.Escape)
+                Hide();
+
+        }
+        private void SettingsWindow_KeyUp(object sender, KeyEventArgs e)
+        {
+
+            if (e.KeyCode == Keys.ControlKey)
+                ctrl = false;
+            else if (e.KeyCode == Keys.N)
+                n = false;
+            else if (e.KeyCode == Keys.M)
+                m = false;
+            else if (e.KeyCode == Keys.Q)
+                q = false;
         }
 
         private void button2_Click(object sender, EventArgs e)

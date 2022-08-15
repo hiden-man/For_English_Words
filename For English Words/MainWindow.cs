@@ -75,6 +75,8 @@ radioButton3_Size-8";
             perCentSB = 20, perCentSRB = 31,
             perCentSTextBox = 19;
 
+        // для комбінацій клавіш
+        bool ctrl = false, S = false, H = false, A = false, plus = false, minus = false;
         public MainWindow()
         {
             InitializeComponent();
@@ -1113,7 +1115,30 @@ start """" ""For English Words.exe""");
         // Close Key
         private void MainWindow_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyValue == (char)Keys.Oemplus)
+            if (e.KeyCode == Keys.ControlKey)
+                ctrl = true;
+            else if (e.KeyCode == Keys.S)
+                S = true;
+            else if (e.KeyCode == Keys.A)
+                A = true;
+            else if(e.KeyCode == Keys.Oemplus)
+                plus = true;
+            else if(e.KeyCode == Keys.OemMinus)
+                minus = true;
+
+            if (ctrl && S)
+            {
+                ctrl = false;
+                S = false;
+                settingsWindow.Show();
+            }
+            else if(ctrl && A)
+            {
+                ctrl = false;
+                A = false;
+                AddNewWordWindow.Show();
+            }
+            else if (ctrl && plus)
             {
                 int tempX = x*20/100+x;
                 if (tempX < screenSize.Width)
@@ -1133,7 +1158,7 @@ start """" ""For English Words.exe""");
                     Size = new Size(x, y);
                 }
             }
-            if(e.KeyValue == (char)Keys.OemMinus)
+            else if (ctrl && minus)
             {
                 CalculateSizeControlsDown();
                 radioButton1.Location = new Point(textBox1.Location.X + textBox1.Size.Width + pictureBox1.Size.Width + 10, 3);
@@ -1144,9 +1169,18 @@ start """" ""For English Words.exe""");
                 button4.Location = new Point(button5.Location.X + button5.Size.Width + 2, button5.Location.Y);
                 MainWindowLocation();
             }
-            if(e.KeyValue == (char)Keys.Escape)
-                Close();
 
+            if (e.KeyValue == (char)Keys.Escape)
+                Close();
+        }
+        private void MainWindow_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.ControlKey)
+                ctrl = false;
+            else if (e.KeyCode == Keys.Oemplus)
+                plus = false;
+            else if (e.KeyCode == Keys.OemMinus)
+                minus = false;
         }
     }
 }

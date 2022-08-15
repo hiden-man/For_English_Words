@@ -141,12 +141,11 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
             this.label5.Location = new System.Drawing.Point(-1, -1);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(214, 33);
+            this.label5.Size = new System.Drawing.Size(212, 31);
             this.label5.TabIndex = 12;
             this.label5.Text = "Add new words";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -176,8 +175,9 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
             this.Name = "AddNewWord";
-            this.Text = "Settings";
+            this.Text = "-";
             this.Load += new System.EventHandler(this.Settings_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.AddNewWord_KeyDown);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
