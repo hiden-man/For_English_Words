@@ -10,10 +10,10 @@ namespace For_English_Words
     {
         Size screenSize = Screen.PrimaryScreen.Bounds.Size;
 
-        string defaultPath = @"C:\FEW", 
-            pathToCounterFile = $@"C:\FEW\Case index.ci",
-            pathToApplySettingFile = $@"C:\FEW\Apply.bat",
-            pathToValueParameters = $@"C:\FEW\Value of size window parameters.par";
+        string defaultPath = "", 
+            pathToCounterFile = "Case index.ci",
+            pathToApplySettingFile = "Apply.bat",
+            pathToValueParameters = "Value of size window parameters.par";
 
         sbyte counterIndex = 0, G = 0;
         int counterParIndex = 0;
@@ -31,7 +31,8 @@ namespace For_English_Words
 
         private void SettingsWindow_Load(object sender, EventArgs e)
         {
-            Size = new Size(643, 410);
+            GetPath();
+            Size = new Size(668, 410);
             panel1.Size = new Size(771, 361);
             panel1.Location = new Point(196, 50);
             Location = new Point((screenSize.Width/2)-(Size.Width/2), (screenSize.Height/2)-(Size.Height/2));
@@ -40,15 +41,21 @@ namespace For_English_Words
             textBox1.Text = defaultPath+"\\";
         }
 
+        private void GetPath()
+        {
+            using (StreamReader sr = new StreamReader("PathForDocument.dfp"))
+                defaultPath = sr.ReadToEnd();
+        }
+
         private void GetParameters()
         {
             string str = "", strArrays = "";
             string[] strArray1, strArray2;
-            using (StreamReader sr = new StreamReader(pathToValueParameters))
+            using (StreamReader sr = new StreamReader($@"{defaultPath}\{pathToValueParameters}"))
                 str = sr.ReadToEnd();
             strArray1 = str.Split('\n');
             counterParIndex = strArray1.Length - 1;
-            using (StreamReader sr = new StreamReader(pathToCounterFile))
+            using (StreamReader sr = new StreamReader($@"{defaultPath}\{pathToCounterFile}"))
                 strArrays = strArray1[Convert.ToSByte(sr.ReadToEnd())];
             strArray2 = strArrays.Split(',');
             label7.Text = $"X: {strArray2[0]}\nY: {strArray2[1]}";
@@ -184,21 +191,21 @@ namespace For_English_Words
         {
             string strCounterIndex = "", str = "", strArrays = "";
             string[] strArray1, strArray2;
-            using (StreamReader sr = new StreamReader(pathToCounterFile))
+            using (StreamReader sr = new StreamReader($@"{defaultPath}\{pathToCounterFile}"))
                 strCounterIndex = sr.ReadToEnd();
             counterIndex = Convert.ToSByte(strCounterIndex);
             if (counterIndex < counterParIndex)
             {
                 counterIndex++;
 
-                using (StreamReader sr = new StreamReader(pathToValueParameters))
+                using (StreamReader sr = new StreamReader($@"{defaultPath}\{pathToValueParameters}"))
                     str = sr.ReadToEnd();
                 strArray1 = str.Split('\n');
                 strArrays = strArray1[counterIndex];
                 strArray2 = strArrays.Split(',');
                 label7.Text = $"X: {strArray2[0]}\nY: {strArray2[1]}";
 
-                using (StreamWriter sw = new StreamWriter(pathToCounterFile))
+                using (StreamWriter sw = new StreamWriter($@"{defaultPath}\{pathToCounterFile}"))
                     sw.Write(counterIndex);
             }
 
@@ -206,7 +213,7 @@ namespace For_English_Words
             {
                 counterIndex = (sbyte)counterParIndex;
 
-                using (StreamReader sr = new StreamReader(pathToValueParameters))
+                using (StreamReader sr = new StreamReader($@"{defaultPath}\{pathToValueParameters}"))
                     str = sr.ReadToEnd();
                 strArray1 = str.Split('\n');
                 strArrays = strArray1[counterIndex];
@@ -219,29 +226,29 @@ namespace For_English_Words
         {
             string strCounterIndex = "", str = "", strArrays = "";
             string[] strArray1, strArray2;
-            using (StreamReader sr = new StreamReader(pathToCounterFile))
+            using (StreamReader sr = new StreamReader($@"{defaultPath}\{pathToCounterFile}"))
                 strCounterIndex = sr.ReadToEnd();
             counterIndex = Convert.ToSByte(strCounterIndex);
             if (counterIndex > 0)
                 counterIndex--;
             if(counterIndex == 0)
-                using (StreamWriter sw = new StreamWriter(pathToCounterFile))
+                using (StreamWriter sw = new StreamWriter($@"{defaultPath}\{pathToCounterFile}"))
                     sw.Write(0);
 
-            using (StreamReader sr = new StreamReader(pathToValueParameters))
+            using (StreamReader sr = new StreamReader($@"{defaultPath}\{pathToValueParameters}"))
                 str = sr.ReadToEnd();
             strArray1 = str.Split('\n');
             strArrays = strArray1[counterIndex];
             strArray2 = strArrays.Split(',');
             label7.Text = $"X: {strArray2[0]}\nY: {strArray2[1]}";
 
-            using (StreamWriter sw = new StreamWriter(pathToCounterFile))
+            using (StreamWriter sw = new StreamWriter($@"{defaultPath}\{pathToCounterFile}"))
                 sw.Write(counterIndex);
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            Cmd(pathToApplySettingFile);
+            Cmd($@"{defaultPath}\{pathToApplySettingFile}");
         }
     }
 }
