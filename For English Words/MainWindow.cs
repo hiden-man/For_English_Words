@@ -14,6 +14,8 @@ namespace For_English_Words
         SettingsWindow settingsWindow = new SettingsWindow();
 
         string defaultPath = "",
+            oldPath = "",
+            configPath = "C:\\WordMem\\Config",
             pathToFileWords = "English words.mw",
             pathToFileTranslate = "Translate.mw",
             pathToCorecctAnswerFile = "Counter of correct answer.mw",
@@ -30,6 +32,7 @@ namespace For_English_Words
             pathToCounterFile = "Case index.ci",
             pathToCounterFile2 = "Index for switch.ci",
             pathToApplySettingFile = "Apply.bat",
+            pathToDocuments = "PathForDocument.dfp",
             pathToSizeFile = "Number of the words.mw";
 
         string defaultSettings = 
@@ -66,9 +69,7 @@ radioButton3_Size-8";
             IDWords = 0, IDTranslate = 0, randomIDWord = 0,
             correctItem = 0, randomChoise = 0, x = 440, y = 81,
             indexParam = 0, numberOfIter = 0, xB = 54, yB = 22,
-            sizeTextBoxX = 229, sizePicture = 15;
-
-        sbyte valueWW = 0;
+            sizeTextBoxX = 229, sizePicture = 15, switchIndexCor = 0;
         // Проценти
         private const byte 
             perCentS = 20, perCentST = 30, 
@@ -222,27 +223,33 @@ radioButton3_Size-8";
         //---------------------------------------------------------------------------------------------------------
         private void CreateDirectoryForFiles()
         {
-            if (!File.Exists("Value change WW.ww"))
-            {
-                using (StreamWriter sw = new StreamWriter("Value change WW.ww"))
-                    sw.Write(0);
-            }
-
             // файл зі шляхом до документів
-            if (!File.Exists("PathForDocument.dfp"))
+            if (!File.Exists($"{configPath}\\{pathToDocuments}"))
             {
-                using (StreamWriter sw = new StreamWriter("PathForDocument.dfp"))
-                    sw.Write(@"C:\ForEnglishWords");
-            }
+                Directory.CreateDirectory($"{configPath}");
 
-            using (StreamReader sr = new StreamReader("Value change WW.ww"))
-                valueWW = Convert.ToSByte(sr.ReadToEnd());
-
-            if(valueWW == 0)
-            {
-                using (StreamReader sr = new StreamReader("PathForDocument.dfp"))
-                    defaultPath = sr.ReadToEnd();
+                using (StreamWriter sw = new StreamWriter($"{configPath}\\{pathToDocuments}"))
+                {
+                    for (int i = 0; i < 3; i++)
+                    {
+                        if (i == 0)
+                            sw.Write("C:\\WordMem\\Data");
+                         if(i == 1)
+                            sw.Write("\nC:\\WordMem\\Data");
+                    }
+                }
             }
+            string pathSTR = "";
+            string[] pathSTRArray;
+
+            using (StreamReader sr = new StreamReader($"{configPath}\\{pathToDocuments}"))
+                pathSTR = sr.ReadToEnd();
+            pathSTRArray = pathSTR.Split('\n');
+            oldPath = pathSTRArray[0];
+            defaultPath = pathSTRArray[1];
+
+            //if (pathSTRArray[0] != pathSTRArray[1])
+            //    Directory.Delete(oldPath, true); // ВИРІШИТИ ПРОБЛЕМУ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         }
         //---------------------------------------------------------------------------------------------------------
         // Метод створення директорії та неохідних файлів
@@ -251,6 +258,12 @@ radioButton3_Size-8";
             // Перевірка на навність необхідних файлів
 
             Directory.CreateDirectory(defaultPath);
+
+            if (!File.Exists($@"{defaultPath}\{pathToSwitchIndex}"))
+            {
+                using (StreamWriter sw = new StreamWriter($@"{defaultPath}\{pathToSwitchIndex}"))
+                    sw.Write(0);
+            }
 
             // Створення файла для слів
             if (!File.Exists($@"{defaultPath}\{pathToFileWords}"))
@@ -266,7 +279,6 @@ radioButton3_Size-8";
                         IDWords++;
                     }
             }
-
             // Створення файла для перекладу
             if (!File.Exists($@"{defaultPath}\{pathToFileTranslate}"))
             {
@@ -466,12 +478,13 @@ radioButton3_Size-8";
                     sw.Write(2);
             }
 
-            if (!File.Exists($@"{defaultPath}\{pathToApplySettingFile}"))
+            if (!File.Exists($"{configPath}\\{pathToApplySettingFile}"))
             {
-                using (StreamWriter sw = new StreamWriter($@"{defaultPath}\{pathToApplySettingFile}"))
+                string str = Path.GetFullPath("For English Words.exe");
+                using (StreamWriter sw = new StreamWriter($"{configPath}\\{pathToApplySettingFile}"))
                 {
                     sw.Write($@"taskkill /IM ""For English Words.exe"" /F
-start """" ""For English Words.exe""");
+start """" ""{str}""");
                 }
             }
 
@@ -754,7 +767,9 @@ start """" ""For English Words.exe""");
         // Метод запису кількості правельних відповідей
         private void WriteNumberOfCorrectAnswers()
         {
-            if (!File.Exists($@"{defaultPath}\{pathToSwitchIndex}"))
+            using (StreamReader sr = new StreamReader($@"{defaultPath}\{pathToSwitchIndex}"))
+                switchIndexCor = Convert.ToInt32(sr.ReadToEnd());
+            if (switchIndexCor == 0)
             {
                 using (FileStream fs = new FileStream($@"{defaultPath}\{pathToSwitchIndex}", FileMode.Create)) { };
 
@@ -789,6 +804,9 @@ start """" ""For English Words.exe""");
                         else
                             sw.Write($"\n{str1Array[i]}");
             }
+
+            using (StreamWriter sw = new StreamWriter($@"{defaultPath}\{pathToSwitchIndex}"))
+                sw.Write(1);
         }
         //---------------------------------------------------------------------------------------------------------
         // Метод перевірки вірності відповіді

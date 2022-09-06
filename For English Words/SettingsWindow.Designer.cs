@@ -153,6 +153,7 @@
             this.button18.TabIndex = 1;
             this.button18.Text = "Save path";
             this.button18.UseVisualStyleBackColor = true;
+            this.button18.Click += new System.EventHandler(this.button18_Click);
             // 
             // groupBox4
             // 
@@ -193,7 +194,7 @@
             // 
             this.label12.AutoSize = true;
             this.label12.ForeColor = System.Drawing.Color.Red;
-            this.label12.Location = new System.Drawing.Point(341, 265);
+            this.label12.Location = new System.Drawing.Point(347, 127);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(0, 13);
             this.label12.TabIndex = 8;
@@ -230,7 +231,7 @@
             // 
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.ForeColor = System.Drawing.Color.Red;
-            this.button2.Location = new System.Drawing.Point(30, 99);
+            this.button2.Location = new System.Drawing.Point(66, 99);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(30, 30);
             this.button2.TabIndex = 2;
@@ -242,7 +243,7 @@
             // 
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.ForeColor = System.Drawing.Color.Red;
-            this.button3.Location = new System.Drawing.Point(66, 99);
+            this.button3.Location = new System.Drawing.Point(30, 99);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(30, 30);
             this.button3.TabIndex = 3;
@@ -338,9 +339,9 @@
             this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
             this.label8.Location = new System.Drawing.Point(189, 39);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(86, 15);
+            this.label8.Size = new System.Drawing.Size(85, 15);
             this.label8.TabIndex = 0;
-            this.label8.Text = "This is just text";
+            this.label8.Text = "This is answer";
             // 
             // label9
             // 
@@ -350,9 +351,9 @@
             this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
             this.label9.Location = new System.Drawing.Point(189, 23);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(86, 15);
+            this.label9.Size = new System.Drawing.Size(85, 15);
             this.label9.TabIndex = 0;
-            this.label9.Text = "This is just text";
+            this.label9.Text = "This is answer";
             // 
             // label10
             // 
@@ -362,9 +363,9 @@
             this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
             this.label10.Location = new System.Drawing.Point(189, 7);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(86, 15);
+            this.label10.Size = new System.Drawing.Size(85, 15);
             this.label10.TabIndex = 0;
-            this.label10.Text = "This is just text";
+            this.label10.Text = "This is answer";
             // 
             // label11
             // 
@@ -372,11 +373,11 @@
             this.label11.BackColor = System.Drawing.Color.Transparent;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
-            this.label11.Location = new System.Drawing.Point(9, 4);
+            this.label11.Location = new System.Drawing.Point(25, 4);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(170, 29);
+            this.label11.Size = new System.Drawing.Size(144, 29);
             this.label11.TabIndex = 0;
-            this.label11.Text = "This is just text";
+            this.label11.Text = "This is word";
             // 
             // button16
             // 
@@ -496,9 +497,9 @@
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
             this.label4.Location = new System.Drawing.Point(189, 39);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(86, 15);
+            this.label4.Size = new System.Drawing.Size(85, 15);
             this.label4.TabIndex = 0;
-            this.label4.Text = "This is just text";
+            this.label4.Text = "This is answer";
             // 
             // label3
             // 
@@ -508,9 +509,9 @@
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
             this.label3.Location = new System.Drawing.Point(189, 23);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(86, 15);
+            this.label3.Size = new System.Drawing.Size(85, 15);
             this.label3.TabIndex = 0;
-            this.label3.Text = "This is just text";
+            this.label3.Text = "This is answer";
             // 
             // label2
             // 
@@ -520,9 +521,9 @@
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
             this.label2.Location = new System.Drawing.Point(189, 7);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(86, 15);
+            this.label2.Size = new System.Drawing.Size(85, 15);
             this.label2.TabIndex = 0;
-            this.label2.Text = "This is just text";
+            this.label2.Text = "This is answer";
             // 
             // label1
             // 
@@ -530,11 +531,11 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
-            this.label1.Location = new System.Drawing.Point(9, 4);
+            this.label1.Location = new System.Drawing.Point(25, 4);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(170, 29);
+            this.label1.Size = new System.Drawing.Size(144, 29);
             this.label1.TabIndex = 0;
-            this.label1.Text = "This is just text";
+            this.label1.Text = "This is word";
             // 
             // comboBox1
             // 

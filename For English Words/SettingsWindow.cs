@@ -10,10 +10,28 @@ namespace For_English_Words
     {
         Size screenSize = Screen.PrimaryScreen.Bounds.Size;
 
-        string defaultPath = "", 
+        string defaultPath = "",
+            tempStr = "",
+            configPath = "C:\\WordMem\\Config",
             pathToCounterFile = "Case index.ci",
             pathToApplySettingFile = "Apply.bat",
-            pathToValueParameters = "Value of size window parameters.par";
+            pathToDocuments = "PathForDocument.dfp",
+            pathToValueParameters = "Value of size window parameters.par",
+            //--------------------------------------------------------------
+            pathToFileWords = "English words.mw",
+            pathToFileTranslate = "Translate.mw",
+            pathToCorecctAnswerFile = "Counter of correct answer.mw",
+            pathToRandomAsnwer = "Random answer.mw",
+            pathToSwitchIndex = "Switch index.mw",
+            //pathToConfigFile = "Config.cfg",
+            pathToValueParameters2 ="Value of font main text parameters.par",
+            pathToValueParameters3 = "Value of font answer text parameters.par",
+            pathToValueParameters4 = "Value of font button text parameters.par",
+            pathToValueParameters5 = "Value of size textBox parameters.par",
+            pathToValueParameters6 = "Value of size button parameters.par",
+            pathToValueParameters7 = "Value of size correct answer picture parameters.par",
+            pathToCounterFile2 = "Index for switch.ci",
+            pathToSizeFile = "Number of the words.mw";
 
         sbyte counterIndex = 0, G = 0;
         int counterParIndex = 0;
@@ -43,8 +61,13 @@ namespace For_English_Words
 
         private void GetPath()
         {
-            using (StreamReader sr = new StreamReader("PathForDocument.dfp"))
-                defaultPath = sr.ReadToEnd();
+            string pathSTR = "";
+            string[] pathSTRArray;
+
+            using (StreamReader sr = new StreamReader($"{configPath}\\{pathToDocuments}"))
+                pathSTR = sr.ReadToEnd();
+            pathSTRArray = pathSTR.Split('\n');
+            defaultPath = pathSTRArray[1];
         }
 
         private void GetParameters()
@@ -133,17 +156,45 @@ namespace For_English_Words
         {
             button8.BackColor = Color.FromArgb(30, 30, 30);
         }
+        //------------------------------------------------------------
 
         private void button5_Click(object sender, EventArgs e)
         {
             panel5.Visible = true;
         }
+        //------------------------------------------------------------
 
         private void button17_Click(object sender, EventArgs e)
         {
             if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
                 textBox1.Text = folderBrowserDialog1.SelectedPath;
         }
+        //------------------------------------------------------------
+        
+        private void button18_Click(object sender, EventArgs e)
+        {// ?????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????
+         // видалити кнопку збереження шляху
+
+            string pathSTR1 = "";
+            string[] pathSTRArray1;
+
+            using (StreamReader sr = new StreamReader($"{configPath}\\{pathToDocuments}"))
+                pathSTR1 = sr.ReadToEnd();
+            pathSTRArray1 = pathSTR1.Split('\n');
+            pathSTRArray1[0] = defaultPath;
+            pathSTRArray1[1] = textBox1.Text;
+
+           
+            using (StreamWriter sw18 = new StreamWriter($"{configPath}\\{pathToDocuments}"))
+                for (int i = 0; i < pathSTRArray1.Length; i++)
+                {
+                    if (i == 0)
+                        sw18.Write(pathSTRArray1[i]);
+                    else
+                        sw18.Write($"\n{pathSTRArray1[i]}");
+                }
+        }
+        //------------------------------------------------------------
 
         private void button8_Click(object sender, EventArgs e)
         {
@@ -248,7 +299,8 @@ namespace For_English_Words
 
         private void button4_Click(object sender, EventArgs e)
         {
-            Cmd($@"{defaultPath}\{pathToApplySettingFile}");
+            //Cmd($@"{Path.GetFullPath(pathToApplySettingFile)}"); // ??????????????????????????????????????
+            Cmd($@"{configPath}\{pathToApplySettingFile}"); // ??????????????????????????????????????
         }
     }
 }
