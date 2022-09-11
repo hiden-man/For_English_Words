@@ -68,7 +68,7 @@ radioButton3_Size-8";
         private int
             IDWords = 0, IDTranslate = 0, randomIDWord = 0,
             correctItem = 0, randomChoise = 0, x = 440, y = 81,
-            indexParam = 0, numberOfIter = 0, xB = 54, yB = 22,
+            indexParam = 0, numberOfIter = 0, xB = 64, yB = 22,
             sizeTextBoxX = 229, sizePicture = 15, switchIndexCor = 0;
         // Проценти
         private const byte 
@@ -114,7 +114,7 @@ radioButton3_Size-8";
             string strParam = "", strParam2 = "";
             string[] strParamArray, strIndexParamArray;
 
-            using (StreamReader streamR = new StreamReader($@"{defaultPath}\{pathToValueParameters}"))
+            using (StreamReader streamR = new StreamReader($@"{configPath}\{pathToValueParameters}"))
                 strParam = streamR.ReadToEnd();
 
             strParamArray = strParam.Split('\n');
@@ -133,7 +133,7 @@ radioButton3_Size-8";
             string strParamMainText = "";
             string[] strParamMainTextArray;
 
-            using (StreamReader sr2 = new StreamReader($@"{defaultPath}\{pathToValueParameters2}"))
+            using (StreamReader sr2 = new StreamReader($@"{configPath}\{pathToValueParameters2}"))
                 strParamMainText = sr2.ReadToEnd();
             strParamMainTextArray = strParamMainText.Split('\n');
             fontS = Convert.ToUInt32(strParamMainTextArray[indexParam]);
@@ -143,7 +143,7 @@ radioButton3_Size-8";
             string strParamTextBoxX = "";
             string[] strParamTextBoxXArray;
 
-            using (StreamReader sr3 = new StreamReader($@"{defaultPath}\{pathToValueParameters5}"))
+            using (StreamReader sr3 = new StreamReader($@"{configPath}\{pathToValueParameters5}"))
                 strParamTextBoxX = sr3.ReadToEnd();
             strParamTextBoxXArray = strParamTextBoxX.Split('\n');
             sizeTextBoxX = Convert.ToInt32(strParamTextBoxXArray[indexParam]);
@@ -153,7 +153,7 @@ radioButton3_Size-8";
             string strParamSRB = "";
             string[] strParamSRBArray;
 
-            using (StreamReader sr4 = new StreamReader($@"{defaultPath}\{pathToValueParameters3}"))
+            using (StreamReader sr4 = new StreamReader($@"{configPath}\{pathToValueParameters3}"))
                 strParamSRB = sr4.ReadToEnd();
             strParamSRBArray = strParamSRB.Split('\n');
             fontSRButton = Convert.ToUInt32(strParamSRBArray[indexParam]);
@@ -163,7 +163,7 @@ radioButton3_Size-8";
             string strParamSB = "";
             string[] strParamSBArray;
 
-            using (StreamReader sr5 = new StreamReader($@"{defaultPath}\{pathToValueParameters4}"))
+            using (StreamReader sr5 = new StreamReader($@"{configPath}\{pathToValueParameters4}"))
                 strParamSB = sr5.ReadToEnd();
             strParamSBArray = strParamSB.Split('\n');
             fontSB = Convert.ToUInt32(strParamSBArray[indexParam]);
@@ -173,7 +173,7 @@ radioButton3_Size-8";
             string strParamSB1 = "", strParamSB2 = "";
             string[] strParamSBArray1, strParamSBArray2;
 
-            using (StreamReader sr5 = new StreamReader($@"{defaultPath}\{pathToValueParameters6}"))
+            using (StreamReader sr5 = new StreamReader($@"{configPath}\{pathToValueParameters6}"))
                 strParamSB = sr5.ReadToEnd();
             strParamSBArray = strParamSB.Split('\n');
             strParamSB2 = strParamSBArray[indexParam];
@@ -186,7 +186,7 @@ radioButton3_Size-8";
 
             string strParamSP = "";
             string[] strParamSPArray;
-            using (StreamReader sr6 = new StreamReader($@"{defaultPath}\{pathToValueParameters7}"))
+            using (StreamReader sr6 = new StreamReader($@"{configPath}\{pathToValueParameters7}"))
                 strParamSP = sr6.ReadToEnd();
             strParamSPArray = strParamSP.Split('\n');
             sizePicture = Convert.ToInt32(strParamSPArray[indexParam]);
@@ -325,9 +325,9 @@ radioButton3_Size-8";
             }
 
             // Створення файлів для параметрів
-            if (!File.Exists($@"{defaultPath}\{pathToValueParameters}"))
+            if (!File.Exists($@"{configPath}\{pathToValueParameters}"))
             {
-                using (StreamWriter sw6 = new StreamWriter($@"{defaultPath}\{pathToValueParameters}"))
+                using (StreamWriter sw6 = new StreamWriter($@"{configPath}\{pathToValueParameters}"))
                 {
                     bool boolerCheck = true;
                     for (int i = 0; boolerCheck;)
@@ -356,9 +356,9 @@ radioButton3_Size-8";
                 }
             }
             //---------------------------------------------------------------------------------------------------------
-            if (!File.Exists($@"{defaultPath}\{pathToValueParameters2}"))
+            if (!File.Exists($@"{configPath}\{pathToValueParameters2}"))
             {
-                using (StreamWriter sw = new StreamWriter($@"{defaultPath}\{pathToValueParameters2}"))
+                using (StreamWriter sw = new StreamWriter($@"{configPath}\{pathToValueParameters2}"))
                 {
                     for (int i = 0; i < numberOfIter; i++)
                     {
@@ -375,9 +375,9 @@ radioButton3_Size-8";
                 }
             }
             //---------------------------------------------------------------------------------------------------------
-            if (!File.Exists($@"{defaultPath}\{pathToValueParameters3}"))
+            if (!File.Exists($@"{configPath}\{pathToValueParameters3}"))
             {
-                using (StreamWriter sw = new StreamWriter($@"{defaultPath}\{pathToValueParameters3}"))
+                using (StreamWriter sw = new StreamWriter($@"{configPath}\{pathToValueParameters3}"))
                 {
                     for (int i = 0; i < numberOfIter; i++)
                     {
@@ -394,9 +394,9 @@ radioButton3_Size-8";
                 }
             }
             //---------------------------------------------------------------------------------------------------------
-            if (!File.Exists($@"{defaultPath}\{pathToValueParameters4}"))
+            if (!File.Exists($@"{configPath}\{pathToValueParameters4}"))
             {
-                using (StreamWriter sw = new StreamWriter($@"{defaultPath}\{pathToValueParameters4}"))
+                using (StreamWriter sw = new StreamWriter($@"{configPath}\{pathToValueParameters4}"))
                 {
                     for (int i = 0; i < numberOfIter; i++)
                     {
@@ -413,9 +413,9 @@ radioButton3_Size-8";
                 }
             }
             //---------------------------------------------------------------------------------------------------------
-            if (!File.Exists($@"{defaultPath}\{pathToValueParameters5}"))
+            if (!File.Exists($@"{configPath}\{pathToValueParameters5}"))
             {
-                using (StreamWriter sw = new StreamWriter($@"{defaultPath}\{pathToValueParameters5}"))
+                using (StreamWriter sw = new StreamWriter($@"{configPath}\{pathToValueParameters5}"))
                 {
                     for (int i = 0; i < numberOfIter; i++)
                     {
@@ -432,9 +432,9 @@ radioButton3_Size-8";
                 }
             }
             //---------------------------------------------------------------------------------------------------------
-            if (!File.Exists($@"{defaultPath}\{pathToValueParameters6}"))
+            if (!File.Exists($@"{configPath}\{pathToValueParameters6}"))
             {
-                using (StreamWriter sw = new StreamWriter($@"{defaultPath}\{pathToValueParameters6}"))
+                using (StreamWriter sw = new StreamWriter($@"{configPath}\{pathToValueParameters6}"))
                 {
                     for (int i = 0; i < numberOfIter; i++)
                     {
@@ -452,9 +452,9 @@ radioButton3_Size-8";
                 }
             }
             //---------------------------------------------------------------------------------------------------------
-            if (!File.Exists($@"{defaultPath}\{pathToValueParameters7}"))
+            if (!File.Exists($@"{configPath}\{pathToValueParameters7}"))
             {
-                using (StreamWriter sw = new StreamWriter($@"{defaultPath}\{pathToValueParameters7}"))
+                using (StreamWriter sw = new StreamWriter($@"{configPath}\{pathToValueParameters7}"))
                 {
                     for (int i = 0; i < numberOfIter; i++)
                     {
@@ -895,7 +895,7 @@ start """" ""{str}""");
             string param = "", param2 = "";
             string[] paramArray, paramArray2;
             
-            using (StreamReader sr1 = new StreamReader($@"{defaultPath}\{pathToValueParameters}"))
+            using (StreamReader sr1 = new StreamReader($@"{configPath}\{pathToValueParameters}"))
                 param = sr1.ReadToEnd();
             paramArray = param.Split('\n');
             indexParam++;
@@ -913,7 +913,7 @@ start """" ""{str}""");
             string strParamMainText = "";
             string[] strParamMainTextArray;
 
-            using (StreamReader sr2 = new StreamReader($@"{defaultPath}\{pathToValueParameters2}"))
+            using (StreamReader sr2 = new StreamReader($@"{configPath}\{pathToValueParameters2}"))
                 strParamMainText = sr2.ReadToEnd();
             strParamMainTextArray = strParamMainText.Split('\n');
             fontS = Convert.ToUInt32(strParamMainTextArray[indexParam]);
@@ -923,7 +923,7 @@ start """" ""{str}""");
             string strParamTextBoxX = "";
             string[] strParamTextBoxXArray;
 
-            using (StreamReader sr3 = new StreamReader($@"{defaultPath}\{pathToValueParameters5}"))
+            using (StreamReader sr3 = new StreamReader($@"{configPath}\{pathToValueParameters5}"))
                 strParamTextBoxX = sr3.ReadToEnd();
             strParamTextBoxXArray = strParamTextBoxX.Split('\n');
             sizeTextBoxX = Convert.ToInt32(strParamTextBoxXArray[indexParam]);
@@ -933,7 +933,7 @@ start """" ""{str}""");
             string strParamSRB = "";
             string[] strParamSRBArray;
 
-            using (StreamReader sr4 = new StreamReader($@"{defaultPath}\{pathToValueParameters3}"))
+            using (StreamReader sr4 = new StreamReader($@"{configPath}\{pathToValueParameters3}"))
                 strParamSRB = sr4.ReadToEnd();
             strParamSRBArray = strParamSRB.Split('\n');
             fontSRButton = Convert.ToUInt32(strParamSRBArray[indexParam]);
@@ -943,7 +943,7 @@ start """" ""{str}""");
             string strParamSB = "";
             string[] strParamSBArray;
 
-            using (StreamReader sr5 = new StreamReader($@"{defaultPath}\{pathToValueParameters4}"))
+            using (StreamReader sr5 = new StreamReader($@"{configPath}\{pathToValueParameters4}"))
                 strParamSB = sr5.ReadToEnd();
             strParamSBArray = strParamSB.Split('\n');
             fontSB = Convert.ToUInt32(strParamSBArray[indexParam]);
@@ -953,7 +953,7 @@ start """" ""{str}""");
             string strParamSB1 = "", strParamSB2 = "";
             string[] strParamSBArray1, strParamSBArray2;
 
-            using (StreamReader sr5 = new StreamReader($@"{defaultPath}\{pathToValueParameters6}"))
+            using (StreamReader sr5 = new StreamReader($@"{configPath}\{pathToValueParameters6}"))
                 strParamSB = sr5.ReadToEnd();
             strParamSBArray = strParamSB.Split('\n');
             strParamSB2 = strParamSBArray[indexParam];
@@ -966,7 +966,7 @@ start """" ""{str}""");
 
             string strParamSP = "";
             string[] strParamSPArray;
-            using (StreamReader sr6 = new StreamReader($@"{defaultPath}\{pathToValueParameters7}"))
+            using (StreamReader sr6 = new StreamReader($@"{configPath}\{pathToValueParameters7}"))
                 strParamSP = sr6.ReadToEnd();
             strParamSPArray = strParamSP.Split('\n');
             sizePicture = Convert.ToInt32(strParamSPArray[indexParam]);
@@ -994,7 +994,7 @@ start """" ""{str}""");
             string param = "", param2 = "";
             string[] paramArray, paramArray2;
 
-            using (StreamReader sr1 = new StreamReader($@"{defaultPath}\{pathToValueParameters}"))
+            using (StreamReader sr1 = new StreamReader($@"{configPath}\{pathToValueParameters}"))
                 param = sr1.ReadToEnd();
             paramArray = param.Split('\n');
             if(indexParam > 0)
@@ -1017,7 +1017,7 @@ start """" ""{str}""");
                 string strParamMainText = "";
                 string[] strParamMainTextArray;
 
-                using (StreamReader sr1 = new StreamReader($@"{defaultPath}\{pathToValueParameters2}"))
+                using (StreamReader sr1 = new StreamReader($@"{configPath}\{pathToValueParameters2}"))
                     strParamMainText = sr1.ReadToEnd();
                 strParamMainTextArray = strParamMainText.Split('\n');
                 fontS = Convert.ToUInt32(strParamMainTextArray[indexParam]);
@@ -1027,7 +1027,7 @@ start """" ""{str}""");
                 string strParamTextBoxX = "";
                 string[] strParamTextBoxXArray;
 
-                using (StreamReader sr1 = new StreamReader($@"{defaultPath}\{pathToValueParameters5}"))
+                using (StreamReader sr1 = new StreamReader($@"{configPath}\{pathToValueParameters5}"))
                     strParamTextBoxX = sr1.ReadToEnd();
                 strParamTextBoxXArray = strParamTextBoxX.Split('\n');
                 sizeTextBoxX = Convert.ToInt32(strParamTextBoxXArray[indexParam]);
@@ -1037,7 +1037,7 @@ start """" ""{str}""");
                 string strParamSRB = "";
                 string[] strParamSRBArray;
 
-                using (StreamReader sr1 = new StreamReader($@"{defaultPath}\{pathToValueParameters3}"))
+                using (StreamReader sr1 = new StreamReader($@"{configPath}\{pathToValueParameters3}"))
                     strParamSRB = sr1.ReadToEnd();
                 strParamSRBArray = strParamSRB.Split('\n');
                 fontSRButton = Convert.ToUInt32(strParamSRBArray[indexParam]);
@@ -1047,7 +1047,7 @@ start """" ""{str}""");
                 string strParamSB = "";
                 string[] strParamSBArray;
 
-                using (StreamReader sr5 = new StreamReader($@"{defaultPath}\{pathToValueParameters4}"))
+                using (StreamReader sr5 = new StreamReader($@"{configPath}\{pathToValueParameters4}"))
                     strParamSB = sr5.ReadToEnd();
                 strParamSBArray = strParamSB.Split('\n');
                 fontSB = Convert.ToUInt32(strParamSBArray[indexParam]);
@@ -1057,7 +1057,7 @@ start """" ""{str}""");
                 string strParamSB1 = "", strParamSB2 = "";
                 string[] strParamSBArray1, strParamSBArray2;
 
-                using (StreamReader sr5 = new StreamReader($@"{defaultPath}\{pathToValueParameters6}"))
+                using (StreamReader sr5 = new StreamReader($@"{configPath}\{pathToValueParameters6}"))
                     strParamSB1 = sr5.ReadToEnd();
                 strParamSBArray1 = strParamSB1.Split('\n');
                 strParamSB2 = strParamSBArray1[indexParam];
@@ -1070,14 +1070,14 @@ start """" ""{str}""");
 
                 string strParamSP = "";
                 string[] strParamSPArray;
-                using (StreamReader sr6 = new StreamReader($@"{defaultPath}\{pathToValueParameters7}"))
+                using (StreamReader sr6 = new StreamReader($@"{configPath}\{pathToValueParameters7}"))
                     strParamSP = sr6.ReadToEnd();
                 strParamSPArray = strParamSP.Split('\n');
                 sizePicture = Convert.ToInt32(strParamSPArray[indexParam]);
             }
             if (indexParam == 0)
             {
-                xB = 54;
+                xB = 64;
                 yB = 22;
                 sizeTextBoxX = 229;
                 fontSRButton = 8;
@@ -1109,6 +1109,7 @@ start """" ""{str}""");
             button6.Focus();
             panel1.Location = new Point(0, 0);
             panel1.Visible = true;
+            
         }
         //---------------------------------------------------------------------------------------------------------
         // Кнопка закриття меню
@@ -1225,6 +1226,10 @@ start """" ""{str}""");
                 plus = false;
             else if (e.KeyCode == Keys.OemMinus)
                 minus = false;
+            else if (e.KeyCode == Keys.S)
+                S = false;
+            else if (e.KeyCode == Keys.A)
+                A = false;
         }
     }
 }

@@ -12,6 +12,8 @@ namespace For_English_Words
         // Поля
         Size screenSize = Screen.PrimaryScreen.Bounds.Size;
         string path = "",
+            configPath = "C:\\WordMem\\Config",
+            pathToDocuments = "PathForDocument.dfp",
             pathToFileWords = "English words.mw",
             pathToFileTranslate = "Translate.mw",
             pathToSizeFile = "Number of the words.mw",
@@ -33,8 +35,13 @@ namespace For_English_Words
 
         private void GetPath()
         {
-            using (StreamReader sr = new StreamReader("PathForDocument.dfp"))
-                path = sr.ReadToEnd();
+            string pathSTR = "";
+            string[] pathSTRArray;
+
+            using (StreamReader sr = new StreamReader($"{configPath}\\{pathToDocuments}"))
+                pathSTR = sr.ReadToEnd();
+            pathSTRArray = pathSTR.Split('\n');
+            path = pathSTRArray[1];
         }
 
         private void MainWindowLocation()
@@ -141,8 +148,8 @@ namespace For_English_Words
         // та збільшення числа слів на один
         public void WriteWordsAndTranslate()
         {
-            strWord = textBox1.Text;
-            strTranslate = textBox2.Text;
+            strWord = textBox1.Text.ToLower();
+            strTranslate = textBox2.Text.ToLower();
 
             string[] strWordArray = strWord.Split(' ');
             string[] strTranslateArray = strTranslate.Split(' ');

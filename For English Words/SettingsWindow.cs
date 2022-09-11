@@ -37,6 +37,7 @@ namespace For_English_Words
         int counterParIndex = 0;
         bool ctrl = false, n = false, m = false, q = false;
 
+
         public SettingsWindow()
         {
             InitializeComponent();
@@ -74,7 +75,7 @@ namespace For_English_Words
         {
             string str = "", strArrays = "";
             string[] strArray1, strArray2;
-            using (StreamReader sr = new StreamReader($@"{defaultPath}\{pathToValueParameters}"))
+            using (StreamReader sr = new StreamReader($@"{configPath}\{pathToValueParameters}"))
                 str = sr.ReadToEnd();
             strArray1 = str.Split('\n');
             counterParIndex = strArray1.Length - 1;
@@ -217,12 +218,13 @@ namespace For_English_Words
                 m = true;
             else if (e.KeyCode == Keys.Q)
                 q = true;
-            if(ctrl && n)
-                label12.Text = "ctrl + n";
-            if (ctrl && m)
-                label12.Text = "ctrl + m";
-            else if (e.KeyCode == Keys.Escape)
+            //------------------------------
+            if (ctrl && q)
+            {
+                ctrl = false;
+                q = false;
                 Hide();
+            }
 
         }
         private void SettingsWindow_KeyUp(object sender, KeyEventArgs e)
@@ -249,7 +251,7 @@ namespace For_English_Words
             {
                 counterIndex++;
 
-                using (StreamReader sr = new StreamReader($@"{defaultPath}\{pathToValueParameters}"))
+                using (StreamReader sr = new StreamReader($@"{configPath}\{pathToValueParameters}"))
                     str = sr.ReadToEnd();
                 strArray1 = str.Split('\n');
                 strArrays = strArray1[counterIndex];
@@ -264,7 +266,7 @@ namespace For_English_Words
             {
                 counterIndex = (sbyte)counterParIndex;
 
-                using (StreamReader sr = new StreamReader($@"{defaultPath}\{pathToValueParameters}"))
+                using (StreamReader sr = new StreamReader($@"{configPath}\{pathToValueParameters}"))
                     str = sr.ReadToEnd();
                 strArray1 = str.Split('\n');
                 strArrays = strArray1[counterIndex];
@@ -286,7 +288,7 @@ namespace For_English_Words
                 using (StreamWriter sw = new StreamWriter($@"{defaultPath}\{pathToCounterFile}"))
                     sw.Write(0);
 
-            using (StreamReader sr = new StreamReader($@"{defaultPath}\{pathToValueParameters}"))
+            using (StreamReader sr = new StreamReader($@"{configPath}\{pathToValueParameters}"))
                 str = sr.ReadToEnd();
             strArray1 = str.Split('\n');
             strArrays = strArray1[counterIndex];
@@ -299,8 +301,7 @@ namespace For_English_Words
 
         private void button4_Click(object sender, EventArgs e)
         {
-            //Cmd($@"{Path.GetFullPath(pathToApplySettingFile)}"); // ??????????????????????????????????????
-            Cmd($@"{configPath}\{pathToApplySettingFile}"); // ??????????????????????????????????????
+            Cmd($@"{configPath}\{pathToApplySettingFile}");
         }
     }
 }
