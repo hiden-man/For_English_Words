@@ -80,20 +80,30 @@
             this.checkBox7 = new System.Windows.Forms.CheckBox();
             this.label15 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
-            this.comboBox5 = new System.Windows.Forms.ComboBox();
-            this.comboBox6 = new System.Windows.Forms.ComboBox();
-            this.comboBox7 = new System.Windows.Forms.ComboBox();
-            this.comboBox8 = new System.Windows.Forms.ComboBox();
-            this.comboBox9 = new System.Windows.Forms.ComboBox();
-            this.comboBox10 = new System.Windows.Forms.ComboBox();
-            this.comboBox11 = new System.Windows.Forms.ComboBox();
-            this.comboBox12 = new System.Windows.Forms.ComboBox();
-            this.comboBox13 = new System.Windows.Forms.ComboBox();
-            this.comboBox14 = new System.Windows.Forms.ComboBox();
-            this.comboBox15 = new System.Windows.Forms.ComboBox();
             this.comboBox16 = new System.Windows.Forms.ComboBox();
+            this.comboBox9 = new System.Windows.Forms.ComboBox();
+            this.comboBox15 = new System.Windows.Forms.ComboBox();
+            this.comboBox8 = new System.Windows.Forms.ComboBox();
+            this.comboBox14 = new System.Windows.Forms.ComboBox();
+            this.comboBox7 = new System.Windows.Forms.ComboBox();
+            this.comboBox13 = new System.Windows.Forms.ComboBox();
+            this.comboBox5 = new System.Windows.Forms.ComboBox();
+            this.comboBox12 = new System.Windows.Forms.ComboBox();
+            this.comboBox6 = new System.Windows.Forms.ComboBox();
+            this.comboBox20 = new System.Windows.Forms.ComboBox();
+            this.comboBox11 = new System.Windows.Forms.ComboBox();
+            this.comboBox19 = new System.Windows.Forms.ComboBox();
+            this.comboBox4 = new System.Windows.Forms.ComboBox();
+            this.comboBox18 = new System.Windows.Forms.ComboBox();
+            this.comboBox10 = new System.Windows.Forms.ComboBox();
+            this.comboBox17 = new System.Windows.Forms.ComboBox();
+            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.checkBox9 = new System.Windows.Forms.CheckBox();
+            this.textBox10 = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.checkBox8 = new System.Windows.Forms.CheckBox();
+            this.textBox9 = new System.Windows.Forms.TextBox();
             this.panel5.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -429,7 +439,7 @@
             this.label6.BackColor = System.Drawing.Color.Transparent;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
-            this.label6.Location = new System.Drawing.Point(371, 37);
+            this.label6.Location = new System.Drawing.Point(358, 37);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(56, 20);
             this.label6.TabIndex = 0;
@@ -509,17 +519,19 @@
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
+            this.checkBox1.BackColor = System.Drawing.Color.Transparent;
             this.checkBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
             this.checkBox1.Location = new System.Drawing.Point(389, 43);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(83, 30);
             this.checkBox1.TabIndex = 14;
             this.checkBox1.Text = "комбінація \r\nклавіш";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.UseVisualStyleBackColor = false;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
+            this.label9.BackColor = System.Drawing.Color.Transparent;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
             this.label9.Location = new System.Drawing.Point(292, 50);
@@ -543,17 +555,19 @@
             // checkBox2
             // 
             this.checkBox2.AutoSize = true;
+            this.checkBox2.BackColor = System.Drawing.Color.Transparent;
             this.checkBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
             this.checkBox2.Location = new System.Drawing.Point(389, 79);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(83, 30);
             this.checkBox2.TabIndex = 19;
             this.checkBox2.Text = "комбінація \r\nклавіш";
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.checkBox2.UseVisualStyleBackColor = false;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
+            this.label10.BackColor = System.Drawing.Color.Transparent;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
             this.label10.Location = new System.Drawing.Point(292, 86);
@@ -577,17 +591,19 @@
             // checkBox3
             // 
             this.checkBox3.AutoSize = true;
+            this.checkBox3.BackColor = System.Drawing.Color.Transparent;
             this.checkBox3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
             this.checkBox3.Location = new System.Drawing.Point(389, 115);
             this.checkBox3.Name = "checkBox3";
             this.checkBox3.Size = new System.Drawing.Size(83, 30);
             this.checkBox3.TabIndex = 24;
             this.checkBox3.Text = "комбінація \r\nклавіш";
-            this.checkBox3.UseVisualStyleBackColor = true;
+            this.checkBox3.UseVisualStyleBackColor = false;
             // 
             // label11
             // 
             this.label11.AutoSize = true;
+            this.label11.BackColor = System.Drawing.Color.Transparent;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
             this.label11.Location = new System.Drawing.Point(292, 122);
@@ -611,17 +627,19 @@
             // checkBox4
             // 
             this.checkBox4.AutoSize = true;
+            this.checkBox4.BackColor = System.Drawing.Color.Transparent;
             this.checkBox4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
             this.checkBox4.Location = new System.Drawing.Point(389, 151);
             this.checkBox4.Name = "checkBox4";
             this.checkBox4.Size = new System.Drawing.Size(83, 30);
             this.checkBox4.TabIndex = 29;
             this.checkBox4.Text = "комбінація \r\nклавіш";
-            this.checkBox4.UseVisualStyleBackColor = true;
+            this.checkBox4.UseVisualStyleBackColor = false;
             // 
             // label12
             // 
             this.label12.AutoSize = true;
+            this.label12.BackColor = System.Drawing.Color.Transparent;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
             this.label12.Location = new System.Drawing.Point(292, 158);
@@ -645,17 +663,19 @@
             // checkBox5
             // 
             this.checkBox5.AutoSize = true;
+            this.checkBox5.BackColor = System.Drawing.Color.Transparent;
             this.checkBox5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
             this.checkBox5.Location = new System.Drawing.Point(389, 187);
             this.checkBox5.Name = "checkBox5";
             this.checkBox5.Size = new System.Drawing.Size(83, 30);
             this.checkBox5.TabIndex = 34;
             this.checkBox5.Text = "комбінація \r\nклавіш";
-            this.checkBox5.UseVisualStyleBackColor = true;
+            this.checkBox5.UseVisualStyleBackColor = false;
             // 
             // label13
             // 
             this.label13.AutoSize = true;
+            this.label13.BackColor = System.Drawing.Color.Transparent;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
             this.label13.Location = new System.Drawing.Point(292, 194);
@@ -679,17 +699,19 @@
             // checkBox6
             // 
             this.checkBox6.AutoSize = true;
+            this.checkBox6.BackColor = System.Drawing.Color.Transparent;
             this.checkBox6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
             this.checkBox6.Location = new System.Drawing.Point(389, 223);
             this.checkBox6.Name = "checkBox6";
             this.checkBox6.Size = new System.Drawing.Size(83, 30);
             this.checkBox6.TabIndex = 39;
             this.checkBox6.Text = "комбінація \r\nклавіш";
-            this.checkBox6.UseVisualStyleBackColor = true;
+            this.checkBox6.UseVisualStyleBackColor = false;
             // 
             // label14
             // 
             this.label14.AutoSize = true;
+            this.label14.BackColor = System.Drawing.Color.Transparent;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
             this.label14.Location = new System.Drawing.Point(292, 230);
@@ -713,17 +735,19 @@
             // checkBox7
             // 
             this.checkBox7.AutoSize = true;
+            this.checkBox7.BackColor = System.Drawing.Color.Transparent;
             this.checkBox7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
             this.checkBox7.Location = new System.Drawing.Point(389, 259);
             this.checkBox7.Name = "checkBox7";
             this.checkBox7.Size = new System.Drawing.Size(83, 30);
             this.checkBox7.TabIndex = 44;
             this.checkBox7.Text = "комбінація \r\nклавіш";
-            this.checkBox7.UseVisualStyleBackColor = true;
+            this.checkBox7.UseVisualStyleBackColor = false;
             // 
             // label15
             // 
             this.label15.AutoSize = true;
+            this.label15.BackColor = System.Drawing.Color.Transparent;
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
             this.label15.Location = new System.Drawing.Point(292, 266);
@@ -746,9 +770,13 @@
             this.panel1.Controls.Add(this.comboBox5);
             this.panel1.Controls.Add(this.comboBox12);
             this.panel1.Controls.Add(this.comboBox6);
+            this.panel1.Controls.Add(this.comboBox20);
             this.panel1.Controls.Add(this.comboBox11);
+            this.panel1.Controls.Add(this.comboBox19);
             this.panel1.Controls.Add(this.comboBox4);
+            this.panel1.Controls.Add(this.comboBox18);
             this.panel1.Controls.Add(this.comboBox10);
+            this.panel1.Controls.Add(this.comboBox17);
             this.panel1.Controls.Add(this.comboBox3);
             this.panel1.Controls.Add(this.label15);
             this.panel1.Controls.Add(this.checkBox7);
@@ -765,10 +793,16 @@
             this.panel1.Controls.Add(this.label11);
             this.panel1.Controls.Add(this.checkBox3);
             this.panel1.Controls.Add(this.textBox4);
+            this.panel1.Controls.Add(this.label17);
             this.panel1.Controls.Add(this.label10);
+            this.panel1.Controls.Add(this.checkBox9);
             this.panel1.Controls.Add(this.checkBox2);
+            this.panel1.Controls.Add(this.textBox10);
             this.panel1.Controls.Add(this.textBox3);
+            this.panel1.Controls.Add(this.label16);
             this.panel1.Controls.Add(this.label9);
+            this.panel1.Controls.Add(this.checkBox8);
+            this.panel1.Controls.Add(this.textBox9);
             this.panel1.Controls.Add(this.checkBox1);
             this.panel1.Controls.Add(this.textBox2);
             this.panel1.Controls.Add(this.label8);
@@ -777,13 +811,13 @@
             this.panel1.Size = new System.Drawing.Size(475, 361);
             this.panel1.TabIndex = 4;
             // 
-            // comboBox3
+            // comboBox16
             // 
-            this.comboBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.comboBox3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.comboBox3.ForeColor = System.Drawing.Color.Red;
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Items.AddRange(new object[] {
+            this.comboBox16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.comboBox16.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.comboBox16.ForeColor = System.Drawing.Color.Red;
+            this.comboBox16.FormattingEnabled = true;
+            this.comboBox16.Items.AddRange(new object[] {
             "ESC",
             "CTRL",
             "ALT",
@@ -825,275 +859,10 @@
             "B",
             "N",
             "M"});
-            this.comboBox3.Location = new System.Drawing.Point(215, 48);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(71, 21);
-            this.comboBox3.TabIndex = 46;
-            // 
-            // comboBox4
-            // 
-            this.comboBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.comboBox4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.comboBox4.ForeColor = System.Drawing.Color.Red;
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Items.AddRange(new object[] {
-            "ESC",
-            "CTRL",
-            "ALT",
-            "+",
-            "-",
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8",
-            "9",
-            "0",
-            "Q",
-            "W",
-            "E",
-            "R",
-            "T",
-            "Y",
-            "U",
-            "I",
-            "O",
-            "P",
-            "A",
-            "S",
-            "D",
-            "F",
-            "G",
-            "H",
-            "J",
-            "K",
-            "L",
-            "Z",
-            "X",
-            "C",
-            "V",
-            "B",
-            "N",
-            "M"});
-            this.comboBox4.Location = new System.Drawing.Point(215, 84);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(71, 21);
-            this.comboBox4.TabIndex = 46;
-            // 
-            // comboBox5
-            // 
-            this.comboBox5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.comboBox5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.comboBox5.ForeColor = System.Drawing.Color.Red;
-            this.comboBox5.FormattingEnabled = true;
-            this.comboBox5.Items.AddRange(new object[] {
-            "ESC",
-            "CTRL",
-            "ALT",
-            "+",
-            "-",
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8",
-            "9",
-            "0",
-            "Q",
-            "W",
-            "E",
-            "R",
-            "T",
-            "Y",
-            "U",
-            "I",
-            "O",
-            "P",
-            "A",
-            "S",
-            "D",
-            "F",
-            "G",
-            "H",
-            "J",
-            "K",
-            "L",
-            "Z",
-            "X",
-            "C",
-            "V",
-            "B",
-            "N",
-            "M"});
-            this.comboBox5.Location = new System.Drawing.Point(215, 120);
-            this.comboBox5.Name = "comboBox5";
-            this.comboBox5.Size = new System.Drawing.Size(71, 21);
-            this.comboBox5.TabIndex = 46;
-            // 
-            // comboBox6
-            // 
-            this.comboBox6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.comboBox6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.comboBox6.ForeColor = System.Drawing.Color.Red;
-            this.comboBox6.FormattingEnabled = true;
-            this.comboBox6.Items.AddRange(new object[] {
-            "ESC",
-            "CTRL",
-            "ALT",
-            "+",
-            "-",
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8",
-            "9",
-            "0",
-            "Q",
-            "W",
-            "E",
-            "R",
-            "T",
-            "Y",
-            "U",
-            "I",
-            "O",
-            "P",
-            "A",
-            "S",
-            "D",
-            "F",
-            "G",
-            "H",
-            "J",
-            "K",
-            "L",
-            "Z",
-            "X",
-            "C",
-            "V",
-            "B",
-            "N",
-            "M"});
-            this.comboBox6.Location = new System.Drawing.Point(215, 156);
-            this.comboBox6.Name = "comboBox6";
-            this.comboBox6.Size = new System.Drawing.Size(71, 21);
-            this.comboBox6.TabIndex = 46;
-            // 
-            // comboBox7
-            // 
-            this.comboBox7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.comboBox7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.comboBox7.ForeColor = System.Drawing.Color.Red;
-            this.comboBox7.FormattingEnabled = true;
-            this.comboBox7.Items.AddRange(new object[] {
-            "ESC",
-            "CTRL",
-            "ALT",
-            "+",
-            "-",
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8",
-            "9",
-            "0",
-            "Q",
-            "W",
-            "E",
-            "R",
-            "T",
-            "Y",
-            "U",
-            "I",
-            "O",
-            "P",
-            "A",
-            "S",
-            "D",
-            "F",
-            "G",
-            "H",
-            "J",
-            "K",
-            "L",
-            "Z",
-            "X",
-            "C",
-            "V",
-            "B",
-            "N",
-            "M"});
-            this.comboBox7.Location = new System.Drawing.Point(215, 192);
-            this.comboBox7.Name = "comboBox7";
-            this.comboBox7.Size = new System.Drawing.Size(71, 21);
-            this.comboBox7.TabIndex = 46;
-            // 
-            // comboBox8
-            // 
-            this.comboBox8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.comboBox8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.comboBox8.ForeColor = System.Drawing.Color.Red;
-            this.comboBox8.FormattingEnabled = true;
-            this.comboBox8.Items.AddRange(new object[] {
-            "ESC",
-            "CTRL",
-            "ALT",
-            "+",
-            "-",
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8",
-            "9",
-            "0",
-            "Q",
-            "W",
-            "E",
-            "R",
-            "T",
-            "Y",
-            "U",
-            "I",
-            "O",
-            "P",
-            "A",
-            "S",
-            "D",
-            "F",
-            "G",
-            "H",
-            "J",
-            "K",
-            "L",
-            "Z",
-            "X",
-            "C",
-            "V",
-            "B",
-            "N",
-            "M"});
-            this.comboBox8.Location = new System.Drawing.Point(215, 228);
-            this.comboBox8.Name = "comboBox8";
-            this.comboBox8.Size = new System.Drawing.Size(71, 21);
-            this.comboBox8.TabIndex = 46;
+            this.comboBox16.Location = new System.Drawing.Point(312, 264);
+            this.comboBox16.Name = "comboBox16";
+            this.comboBox16.Size = new System.Drawing.Size(71, 21);
+            this.comboBox16.TabIndex = 46;
             // 
             // comboBox9
             // 
@@ -1148,13 +917,13 @@
             this.comboBox9.Size = new System.Drawing.Size(71, 21);
             this.comboBox9.TabIndex = 46;
             // 
-            // comboBox10
+            // comboBox15
             // 
-            this.comboBox10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.comboBox10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.comboBox10.ForeColor = System.Drawing.Color.Red;
-            this.comboBox10.FormattingEnabled = true;
-            this.comboBox10.Items.AddRange(new object[] {
+            this.comboBox15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.comboBox15.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.comboBox15.ForeColor = System.Drawing.Color.Red;
+            this.comboBox15.FormattingEnabled = true;
+            this.comboBox15.Items.AddRange(new object[] {
             "ESC",
             "CTRL",
             "ALT",
@@ -1196,18 +965,18 @@
             "B",
             "N",
             "M"});
-            this.comboBox10.Location = new System.Drawing.Point(312, 48);
-            this.comboBox10.Name = "comboBox10";
-            this.comboBox10.Size = new System.Drawing.Size(71, 21);
-            this.comboBox10.TabIndex = 46;
+            this.comboBox15.Location = new System.Drawing.Point(312, 228);
+            this.comboBox15.Name = "comboBox15";
+            this.comboBox15.Size = new System.Drawing.Size(71, 21);
+            this.comboBox15.TabIndex = 46;
             // 
-            // comboBox11
+            // comboBox8
             // 
-            this.comboBox11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.comboBox11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.comboBox11.ForeColor = System.Drawing.Color.Red;
-            this.comboBox11.FormattingEnabled = true;
-            this.comboBox11.Items.AddRange(new object[] {
+            this.comboBox8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.comboBox8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.comboBox8.ForeColor = System.Drawing.Color.Red;
+            this.comboBox8.FormattingEnabled = true;
+            this.comboBox8.Items.AddRange(new object[] {
             "ESC",
             "CTRL",
             "ALT",
@@ -1249,116 +1018,10 @@
             "B",
             "N",
             "M"});
-            this.comboBox11.Location = new System.Drawing.Point(312, 84);
-            this.comboBox11.Name = "comboBox11";
-            this.comboBox11.Size = new System.Drawing.Size(71, 21);
-            this.comboBox11.TabIndex = 46;
-            // 
-            // comboBox12
-            // 
-            this.comboBox12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.comboBox12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.comboBox12.ForeColor = System.Drawing.Color.Red;
-            this.comboBox12.FormattingEnabled = true;
-            this.comboBox12.Items.AddRange(new object[] {
-            "ESC",
-            "CTRL",
-            "ALT",
-            "+",
-            "-",
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8",
-            "9",
-            "0",
-            "Q",
-            "W",
-            "E",
-            "R",
-            "T",
-            "Y",
-            "U",
-            "I",
-            "O",
-            "P",
-            "A",
-            "S",
-            "D",
-            "F",
-            "G",
-            "H",
-            "J",
-            "K",
-            "L",
-            "Z",
-            "X",
-            "C",
-            "V",
-            "B",
-            "N",
-            "M"});
-            this.comboBox12.Location = new System.Drawing.Point(312, 156);
-            this.comboBox12.Name = "comboBox12";
-            this.comboBox12.Size = new System.Drawing.Size(71, 21);
-            this.comboBox12.TabIndex = 46;
-            // 
-            // comboBox13
-            // 
-            this.comboBox13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.comboBox13.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.comboBox13.ForeColor = System.Drawing.Color.Red;
-            this.comboBox13.FormattingEnabled = true;
-            this.comboBox13.Items.AddRange(new object[] {
-            "ESC",
-            "CTRL",
-            "ALT",
-            "+",
-            "-",
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8",
-            "9",
-            "0",
-            "Q",
-            "W",
-            "E",
-            "R",
-            "T",
-            "Y",
-            "U",
-            "I",
-            "O",
-            "P",
-            "A",
-            "S",
-            "D",
-            "F",
-            "G",
-            "H",
-            "J",
-            "K",
-            "L",
-            "Z",
-            "X",
-            "C",
-            "V",
-            "B",
-            "N",
-            "M"});
-            this.comboBox13.Location = new System.Drawing.Point(312, 120);
-            this.comboBox13.Name = "comboBox13";
-            this.comboBox13.Size = new System.Drawing.Size(71, 21);
-            this.comboBox13.TabIndex = 46;
+            this.comboBox8.Location = new System.Drawing.Point(215, 228);
+            this.comboBox8.Name = "comboBox8";
+            this.comboBox8.Size = new System.Drawing.Size(71, 21);
+            this.comboBox8.TabIndex = 46;
             // 
             // comboBox14
             // 
@@ -1413,13 +1076,13 @@
             this.comboBox14.Size = new System.Drawing.Size(71, 21);
             this.comboBox14.TabIndex = 46;
             // 
-            // comboBox15
+            // comboBox7
             // 
-            this.comboBox15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.comboBox15.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.comboBox15.ForeColor = System.Drawing.Color.Red;
-            this.comboBox15.FormattingEnabled = true;
-            this.comboBox15.Items.AddRange(new object[] {
+            this.comboBox7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.comboBox7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.comboBox7.ForeColor = System.Drawing.Color.Red;
+            this.comboBox7.FormattingEnabled = true;
+            this.comboBox7.Items.AddRange(new object[] {
             "ESC",
             "CTRL",
             "ALT",
@@ -1461,18 +1124,18 @@
             "B",
             "N",
             "M"});
-            this.comboBox15.Location = new System.Drawing.Point(312, 228);
-            this.comboBox15.Name = "comboBox15";
-            this.comboBox15.Size = new System.Drawing.Size(71, 21);
-            this.comboBox15.TabIndex = 46;
+            this.comboBox7.Location = new System.Drawing.Point(215, 192);
+            this.comboBox7.Name = "comboBox7";
+            this.comboBox7.Size = new System.Drawing.Size(71, 21);
+            this.comboBox7.TabIndex = 46;
             // 
-            // comboBox16
+            // comboBox13
             // 
-            this.comboBox16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.comboBox16.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.comboBox16.ForeColor = System.Drawing.Color.Red;
-            this.comboBox16.FormattingEnabled = true;
-            this.comboBox16.Items.AddRange(new object[] {
+            this.comboBox13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.comboBox13.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.comboBox13.ForeColor = System.Drawing.Color.Red;
+            this.comboBox13.FormattingEnabled = true;
+            this.comboBox13.Items.AddRange(new object[] {
             "ESC",
             "CTRL",
             "ALT",
@@ -1514,10 +1177,665 @@
             "B",
             "N",
             "M"});
-            this.comboBox16.Location = new System.Drawing.Point(312, 264);
-            this.comboBox16.Name = "comboBox16";
-            this.comboBox16.Size = new System.Drawing.Size(71, 21);
-            this.comboBox16.TabIndex = 46;
+            this.comboBox13.Location = new System.Drawing.Point(312, 120);
+            this.comboBox13.Name = "comboBox13";
+            this.comboBox13.Size = new System.Drawing.Size(71, 21);
+            this.comboBox13.TabIndex = 46;
+            // 
+            // comboBox5
+            // 
+            this.comboBox5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.comboBox5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.comboBox5.ForeColor = System.Drawing.Color.Red;
+            this.comboBox5.FormattingEnabled = true;
+            this.comboBox5.Items.AddRange(new object[] {
+            "ESC",
+            "CTRL",
+            "ALT",
+            "+",
+            "-",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "0",
+            "Q",
+            "W",
+            "E",
+            "R",
+            "T",
+            "Y",
+            "U",
+            "I",
+            "O",
+            "P",
+            "A",
+            "S",
+            "D",
+            "F",
+            "G",
+            "H",
+            "J",
+            "K",
+            "L",
+            "Z",
+            "X",
+            "C",
+            "V",
+            "B",
+            "N",
+            "M"});
+            this.comboBox5.Location = new System.Drawing.Point(215, 120);
+            this.comboBox5.Name = "comboBox5";
+            this.comboBox5.Size = new System.Drawing.Size(71, 21);
+            this.comboBox5.TabIndex = 46;
+            // 
+            // comboBox12
+            // 
+            this.comboBox12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.comboBox12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.comboBox12.ForeColor = System.Drawing.Color.Red;
+            this.comboBox12.FormattingEnabled = true;
+            this.comboBox12.Items.AddRange(new object[] {
+            "ESC",
+            "CTRL",
+            "ALT",
+            "+",
+            "-",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "0",
+            "Q",
+            "W",
+            "E",
+            "R",
+            "T",
+            "Y",
+            "U",
+            "I",
+            "O",
+            "P",
+            "A",
+            "S",
+            "D",
+            "F",
+            "G",
+            "H",
+            "J",
+            "K",
+            "L",
+            "Z",
+            "X",
+            "C",
+            "V",
+            "B",
+            "N",
+            "M"});
+            this.comboBox12.Location = new System.Drawing.Point(312, 156);
+            this.comboBox12.Name = "comboBox12";
+            this.comboBox12.Size = new System.Drawing.Size(71, 21);
+            this.comboBox12.TabIndex = 46;
+            // 
+            // comboBox6
+            // 
+            this.comboBox6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.comboBox6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.comboBox6.ForeColor = System.Drawing.Color.Red;
+            this.comboBox6.FormattingEnabled = true;
+            this.comboBox6.Items.AddRange(new object[] {
+            "ESC",
+            "CTRL",
+            "ALT",
+            "+",
+            "-",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "0",
+            "Q",
+            "W",
+            "E",
+            "R",
+            "T",
+            "Y",
+            "U",
+            "I",
+            "O",
+            "P",
+            "A",
+            "S",
+            "D",
+            "F",
+            "G",
+            "H",
+            "J",
+            "K",
+            "L",
+            "Z",
+            "X",
+            "C",
+            "V",
+            "B",
+            "N",
+            "M"});
+            this.comboBox6.Location = new System.Drawing.Point(215, 156);
+            this.comboBox6.Name = "comboBox6";
+            this.comboBox6.Size = new System.Drawing.Size(71, 21);
+            this.comboBox6.TabIndex = 46;
+            // 
+            // comboBox20
+            // 
+            this.comboBox20.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.comboBox20.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.comboBox20.ForeColor = System.Drawing.Color.Red;
+            this.comboBox20.FormattingEnabled = true;
+            this.comboBox20.Items.AddRange(new object[] {
+            "ESC",
+            "CTRL",
+            "ALT",
+            "+",
+            "-",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "0",
+            "Q",
+            "W",
+            "E",
+            "R",
+            "T",
+            "Y",
+            "U",
+            "I",
+            "O",
+            "P",
+            "A",
+            "S",
+            "D",
+            "F",
+            "G",
+            "H",
+            "J",
+            "K",
+            "L",
+            "Z",
+            "X",
+            "C",
+            "V",
+            "B",
+            "N",
+            "M"});
+            this.comboBox20.Location = new System.Drawing.Point(312, 336);
+            this.comboBox20.Name = "comboBox20";
+            this.comboBox20.Size = new System.Drawing.Size(71, 21);
+            this.comboBox20.TabIndex = 46;
+            // 
+            // comboBox11
+            // 
+            this.comboBox11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.comboBox11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.comboBox11.ForeColor = System.Drawing.Color.Red;
+            this.comboBox11.FormattingEnabled = true;
+            this.comboBox11.Items.AddRange(new object[] {
+            "ESC",
+            "CTRL",
+            "ALT",
+            "+",
+            "-",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "0",
+            "Q",
+            "W",
+            "E",
+            "R",
+            "T",
+            "Y",
+            "U",
+            "I",
+            "O",
+            "P",
+            "A",
+            "S",
+            "D",
+            "F",
+            "G",
+            "H",
+            "J",
+            "K",
+            "L",
+            "Z",
+            "X",
+            "C",
+            "V",
+            "B",
+            "N",
+            "M"});
+            this.comboBox11.Location = new System.Drawing.Point(312, 84);
+            this.comboBox11.Name = "comboBox11";
+            this.comboBox11.Size = new System.Drawing.Size(71, 21);
+            this.comboBox11.TabIndex = 46;
+            // 
+            // comboBox19
+            // 
+            this.comboBox19.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.comboBox19.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.comboBox19.ForeColor = System.Drawing.Color.Red;
+            this.comboBox19.FormattingEnabled = true;
+            this.comboBox19.Items.AddRange(new object[] {
+            "ESC",
+            "CTRL",
+            "ALT",
+            "+",
+            "-",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "0",
+            "Q",
+            "W",
+            "E",
+            "R",
+            "T",
+            "Y",
+            "U",
+            "I",
+            "O",
+            "P",
+            "A",
+            "S",
+            "D",
+            "F",
+            "G",
+            "H",
+            "J",
+            "K",
+            "L",
+            "Z",
+            "X",
+            "C",
+            "V",
+            "B",
+            "N",
+            "M"});
+            this.comboBox19.Location = new System.Drawing.Point(215, 336);
+            this.comboBox19.Name = "comboBox19";
+            this.comboBox19.Size = new System.Drawing.Size(71, 21);
+            this.comboBox19.TabIndex = 46;
+            // 
+            // comboBox4
+            // 
+            this.comboBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.comboBox4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.comboBox4.ForeColor = System.Drawing.Color.Red;
+            this.comboBox4.FormattingEnabled = true;
+            this.comboBox4.Items.AddRange(new object[] {
+            "ESC",
+            "CTRL",
+            "ALT",
+            "+",
+            "-",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "0",
+            "Q",
+            "W",
+            "E",
+            "R",
+            "T",
+            "Y",
+            "U",
+            "I",
+            "O",
+            "P",
+            "A",
+            "S",
+            "D",
+            "F",
+            "G",
+            "H",
+            "J",
+            "K",
+            "L",
+            "Z",
+            "X",
+            "C",
+            "V",
+            "B",
+            "N",
+            "M"});
+            this.comboBox4.Location = new System.Drawing.Point(215, 84);
+            this.comboBox4.Name = "comboBox4";
+            this.comboBox4.Size = new System.Drawing.Size(71, 21);
+            this.comboBox4.TabIndex = 46;
+            // 
+            // comboBox18
+            // 
+            this.comboBox18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.comboBox18.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.comboBox18.ForeColor = System.Drawing.Color.Red;
+            this.comboBox18.FormattingEnabled = true;
+            this.comboBox18.Items.AddRange(new object[] {
+            "ESC",
+            "CTRL",
+            "ALT",
+            "+",
+            "-",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "0",
+            "Q",
+            "W",
+            "E",
+            "R",
+            "T",
+            "Y",
+            "U",
+            "I",
+            "O",
+            "P",
+            "A",
+            "S",
+            "D",
+            "F",
+            "G",
+            "H",
+            "J",
+            "K",
+            "L",
+            "Z",
+            "X",
+            "C",
+            "V",
+            "B",
+            "N",
+            "M"});
+            this.comboBox18.Location = new System.Drawing.Point(312, 300);
+            this.comboBox18.Name = "comboBox18";
+            this.comboBox18.Size = new System.Drawing.Size(71, 21);
+            this.comboBox18.TabIndex = 46;
+            // 
+            // comboBox10
+            // 
+            this.comboBox10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.comboBox10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.comboBox10.ForeColor = System.Drawing.Color.Red;
+            this.comboBox10.FormattingEnabled = true;
+            this.comboBox10.Items.AddRange(new object[] {
+            "ESC",
+            "CTRL",
+            "ALT",
+            "+",
+            "-",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "0",
+            "Q",
+            "W",
+            "E",
+            "R",
+            "T",
+            "Y",
+            "U",
+            "I",
+            "O",
+            "P",
+            "A",
+            "S",
+            "D",
+            "F",
+            "G",
+            "H",
+            "J",
+            "K",
+            "L",
+            "Z",
+            "X",
+            "C",
+            "V",
+            "B",
+            "N",
+            "M"});
+            this.comboBox10.Location = new System.Drawing.Point(312, 48);
+            this.comboBox10.Name = "comboBox10";
+            this.comboBox10.Size = new System.Drawing.Size(71, 21);
+            this.comboBox10.TabIndex = 46;
+            // 
+            // comboBox17
+            // 
+            this.comboBox17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.comboBox17.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.comboBox17.ForeColor = System.Drawing.Color.Red;
+            this.comboBox17.FormattingEnabled = true;
+            this.comboBox17.Items.AddRange(new object[] {
+            "ESC",
+            "CTRL",
+            "ALT",
+            "+",
+            "-",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "0",
+            "Q",
+            "W",
+            "E",
+            "R",
+            "T",
+            "Y",
+            "U",
+            "I",
+            "O",
+            "P",
+            "A",
+            "S",
+            "D",
+            "F",
+            "G",
+            "H",
+            "J",
+            "K",
+            "L",
+            "Z",
+            "X",
+            "C",
+            "V",
+            "B",
+            "N",
+            "M"});
+            this.comboBox17.Location = new System.Drawing.Point(215, 300);
+            this.comboBox17.Name = "comboBox17";
+            this.comboBox17.Size = new System.Drawing.Size(71, 21);
+            this.comboBox17.TabIndex = 46;
+            // 
+            // comboBox3
+            // 
+            this.comboBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.comboBox3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.comboBox3.ForeColor = System.Drawing.Color.Red;
+            this.comboBox3.FormattingEnabled = true;
+            this.comboBox3.Items.AddRange(new object[] {
+            "ESC",
+            "CTRL",
+            "ALT",
+            "+",
+            "-",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "0",
+            "Q",
+            "W",
+            "E",
+            "R",
+            "T",
+            "Y",
+            "U",
+            "I",
+            "O",
+            "P",
+            "A",
+            "S",
+            "D",
+            "F",
+            "G",
+            "H",
+            "J",
+            "K",
+            "L",
+            "Z",
+            "X",
+            "C",
+            "V",
+            "B",
+            "N",
+            "M"});
+            this.comboBox3.Location = new System.Drawing.Point(215, 48);
+            this.comboBox3.Name = "comboBox3";
+            this.comboBox3.Size = new System.Drawing.Size(71, 21);
+            this.comboBox3.TabIndex = 46;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.BackColor = System.Drawing.Color.Transparent;
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
+            this.label17.Location = new System.Drawing.Point(292, 338);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(14, 16);
+            this.label17.TabIndex = 20;
+            this.label17.Text = "+";
+            // 
+            // checkBox9
+            // 
+            this.checkBox9.AutoSize = true;
+            this.checkBox9.BackColor = System.Drawing.Color.Transparent;
+            this.checkBox9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
+            this.checkBox9.Location = new System.Drawing.Point(389, 331);
+            this.checkBox9.Name = "checkBox9";
+            this.checkBox9.Size = new System.Drawing.Size(83, 30);
+            this.checkBox9.TabIndex = 19;
+            this.checkBox9.Text = "комбінація \r\nклавіш";
+            this.checkBox9.UseVisualStyleBackColor = false;
+            // 
+            // textBox10
+            // 
+            this.textBox10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.textBox10.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBox10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox10.ForeColor = System.Drawing.Color.Red;
+            this.textBox10.Location = new System.Drawing.Point(6, 336);
+            this.textBox10.Name = "textBox10";
+            this.textBox10.Size = new System.Drawing.Size(203, 21);
+            this.textBox10.TabIndex = 16;
+            this.textBox10.Text = "Зменшити розмір головного вікна";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.BackColor = System.Drawing.Color.Transparent;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
+            this.label16.Location = new System.Drawing.Point(292, 302);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(14, 16);
+            this.label16.TabIndex = 15;
+            this.label16.Text = "+";
+            // 
+            // checkBox8
+            // 
+            this.checkBox8.AutoSize = true;
+            this.checkBox8.BackColor = System.Drawing.Color.Transparent;
+            this.checkBox8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
+            this.checkBox8.Location = new System.Drawing.Point(389, 295);
+            this.checkBox8.Name = "checkBox8";
+            this.checkBox8.Size = new System.Drawing.Size(83, 30);
+            this.checkBox8.TabIndex = 14;
+            this.checkBox8.Text = "комбінація \r\nклавіш";
+            this.checkBox8.UseVisualStyleBackColor = false;
+            // 
+            // textBox9
+            // 
+            this.textBox9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.textBox9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBox9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox9.ForeColor = System.Drawing.Color.Red;
+            this.textBox9.Location = new System.Drawing.Point(6, 300);
+            this.textBox9.Name = "textBox9";
+            this.textBox9.Size = new System.Drawing.Size(203, 21);
+            this.textBox9.TabIndex = 12;
+            this.textBox9.Text = "Збільшити розмір головного вікна";
             // 
             // SettingsWindow
             // 
@@ -1623,5 +1941,15 @@
         private System.Windows.Forms.ComboBox comboBox4;
         private System.Windows.Forms.ComboBox comboBox10;
         private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.ComboBox comboBox20;
+        private System.Windows.Forms.ComboBox comboBox19;
+        private System.Windows.Forms.ComboBox comboBox18;
+        private System.Windows.Forms.ComboBox comboBox17;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.CheckBox checkBox9;
+        private System.Windows.Forms.TextBox textBox10;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.CheckBox checkBox8;
+        private System.Windows.Forms.TextBox textBox9;
     }
 }

@@ -35,6 +35,8 @@ namespace For_English_Words
 
         sbyte counterIndex = 0, G = 0;
         int counterParIndex = 0;
+
+
         bool ctrl = false, n = false, m = false, q = false;
 
 
@@ -88,7 +90,20 @@ namespace For_English_Words
                     comboBox14.BackColor = panel1.BackColor;
                     comboBox15.BackColor = panel1.BackColor;
                     comboBox16.BackColor = panel1.BackColor;
+                    comboBox17.BackColor = panel1.BackColor;
+                    comboBox18.BackColor = panel1.BackColor;
+                    comboBox19.BackColor = panel1.BackColor;
+                    comboBox20.BackColor = panel1.BackColor;
                     textBox1.BackColor = panel1.BackColor;
+                    textBox2.BackColor = panel1.BackColor;
+                    textBox3.BackColor = panel1.BackColor;
+                    textBox4.BackColor = panel1.BackColor;
+                    textBox5.BackColor = panel1.BackColor;
+                    textBox6.BackColor = panel1.BackColor;
+                    textBox7.BackColor = panel1.BackColor;
+                    textBox8.BackColor = panel1.BackColor;
+                    textBox9.BackColor = panel1.BackColor;
+                    textBox10.BackColor = panel1.BackColor;
                     //------------
                     label5.ForeColor = Color.FromArgb(255,102,102);
                     label1.ForeColor = label5.ForeColor;
@@ -98,6 +113,15 @@ namespace For_English_Words
                     label7.ForeColor = label5.ForeColor;
                     label6.ForeColor = label5.ForeColor;
                     label8.ForeColor = label5.ForeColor;
+                    label9.ForeColor = label5.ForeColor;
+                    label10.ForeColor = label5.ForeColor;
+                    label11.ForeColor = label5.ForeColor;
+                    label12.ForeColor = label5.ForeColor;
+                    label13.ForeColor = label5.ForeColor;
+                    label14.ForeColor = label5.ForeColor;
+                    label15.ForeColor = label5.ForeColor;
+                    label16.ForeColor = label5.ForeColor;
+                    label17.ForeColor = label5.ForeColor;
                     button1.ForeColor = Color.FromArgb(255,0,0);
                     button5.ForeColor = button1.ForeColor;
                     button8.ForeColor = button1.ForeColor;
@@ -129,7 +153,29 @@ namespace For_English_Words
                     comboBox14.ForeColor = label5.ForeColor;
                     comboBox15.ForeColor = label5.ForeColor;
                     comboBox16.ForeColor = label5.ForeColor;
+                    comboBox17.ForeColor = label5.ForeColor;
+                    comboBox18.ForeColor = label5.ForeColor;
+                    comboBox19.ForeColor = label5.ForeColor;
+                    comboBox20.ForeColor = label5.ForeColor;
                     textBox1.ForeColor = label5.ForeColor;
+                    textBox2.ForeColor = label5.ForeColor;
+                    textBox3.ForeColor = label5.ForeColor;
+                    textBox4.ForeColor = label5.ForeColor;
+                    textBox5.ForeColor = label5.ForeColor;
+                    textBox6.ForeColor = label5.ForeColor;
+                    textBox7.ForeColor = label5.ForeColor;
+                    textBox8.ForeColor = label5.ForeColor;
+                    textBox9.ForeColor = label5.ForeColor;
+                    textBox10.ForeColor = label5.ForeColor;
+                    checkBox1.ForeColor = label5.ForeColor;
+                    checkBox2.ForeColor = label5.ForeColor;
+                    checkBox3.ForeColor = label5.ForeColor;
+                    checkBox4.ForeColor = label5.ForeColor;
+                    checkBox5.ForeColor = label5.ForeColor;
+                    checkBox6.ForeColor = label5.ForeColor;
+                    checkBox7.ForeColor = label5.ForeColor;
+                    checkBox8.ForeColor = label5.ForeColor;
+                    checkBox9.ForeColor = label5.ForeColor;
                     break;
                 case 1:
                     BackColor = Color.FromArgb(200, 200, 200);
@@ -153,7 +199,20 @@ namespace For_English_Words
                     comboBox14.BackColor = panel1.BackColor;
                     comboBox15.BackColor = panel1.BackColor;
                     comboBox16.BackColor = panel1.BackColor;
+                    comboBox17.BackColor = panel1.BackColor;
+                    comboBox18.BackColor = panel1.BackColor;
+                    comboBox19.BackColor = panel1.BackColor;
+                    comboBox20.BackColor = panel1.BackColor;
                     textBox1.BackColor = panel1.BackColor;
+                    textBox2.BackColor = panel1.BackColor;
+                    textBox3.BackColor = panel1.BackColor;
+                    textBox4.BackColor = panel1.BackColor;
+                    textBox5.BackColor = panel1.BackColor;
+                    textBox6.BackColor = panel1.BackColor;
+                    textBox7.BackColor = panel1.BackColor;
+                    textBox8.BackColor = panel1.BackColor;
+                    textBox9.BackColor = panel1.BackColor;
+                    textBox10.BackColor = panel1.BackColor;
                     //------------
                     label5.ForeColor = Color.FromArgb(0,0,0);
                     label1.ForeColor = label5.ForeColor;
@@ -162,6 +221,16 @@ namespace For_English_Words
                     label4.ForeColor = label5.ForeColor;
                     label7.ForeColor = label5.ForeColor;
                     label6.ForeColor = label5.ForeColor;
+                    label8.ForeColor = label5.ForeColor;
+                    label9.ForeColor = label5.ForeColor;
+                    label10.ForeColor = label5.ForeColor;
+                    label11.ForeColor = label5.ForeColor;
+                    label12.ForeColor = label5.ForeColor;
+                    label13.ForeColor = label5.ForeColor;
+                    label14.ForeColor = label5.ForeColor;
+                    label15.ForeColor = label5.ForeColor;
+                    label16.ForeColor = label5.ForeColor;
+                    label17.ForeColor = label5.ForeColor;
                     button5.ForeColor = label5.ForeColor;
                     button8.ForeColor = label5.ForeColor;
                     button1.ForeColor = label5.ForeColor;
@@ -193,7 +262,29 @@ namespace For_English_Words
                     comboBox14.ForeColor = label5.ForeColor;
                     comboBox15.ForeColor = label5.ForeColor;
                     comboBox16.ForeColor = label5.ForeColor;
+                    comboBox17.ForeColor = label5.ForeColor;
+                    comboBox18.ForeColor = label5.ForeColor;
+                    comboBox19.ForeColor = label5.ForeColor;
+                    comboBox20.ForeColor = label5.ForeColor;
                     textBox1.ForeColor = label5.ForeColor;
+                    textBox2.ForeColor = label5.ForeColor;
+                    textBox3.ForeColor = label5.ForeColor;
+                    textBox4.ForeColor = label5.ForeColor;
+                    textBox5.ForeColor = label5.ForeColor;
+                    textBox6.ForeColor = label5.ForeColor;
+                    textBox7.ForeColor = label5.ForeColor;
+                    textBox8.ForeColor = label5.ForeColor;
+                    textBox9.ForeColor = label5.ForeColor;
+                    textBox10.ForeColor = label5.ForeColor;
+                    checkBox1.ForeColor = label5.ForeColor;
+                    checkBox2.ForeColor = label5.ForeColor;
+                    checkBox3.ForeColor = label5.ForeColor;
+                    checkBox4.ForeColor = label5.ForeColor;
+                    checkBox5.ForeColor = label5.ForeColor;
+                    checkBox6.ForeColor = label5.ForeColor;
+                    checkBox7.ForeColor = label5.ForeColor;
+                    checkBox8.ForeColor = label5.ForeColor;
+                    checkBox9.ForeColor = label5.ForeColor;
                     break;
             }
         }
