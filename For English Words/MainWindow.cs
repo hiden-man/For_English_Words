@@ -14,14 +14,12 @@ namespace For_English_Words
         SettingsWindow settingsWindow = new SettingsWindow();
 
         string defaultPath = "",
-            oldPath = "",
             configPath = "C:\\WordMem\\Config",
             pathToFileWords = "English words.mw",
             pathToFileTranslate = "Translate.mw",
             pathToCorecctAnswerFile = "Counter of correct answer.mw",
             pathToRandomAsnwer = "Random answer.mw",
             pathToSwitchIndex = "Switch index.mw",
-            //pathToConfigFile = "Config.cfg",
             pathToValueParameters = "Value of size window parameters.par",
             pathToValueParameters2 ="Value of font main text parameters.par",
             pathToValueParameters3 = "Value of font answer text parameters.par",
@@ -33,21 +31,8 @@ namespace For_English_Words
             pathToCounterFile2 = "Index for switch.ci",
             pathToApplySettingFile = "Apply.bat",
             pathToDocuments = "PathForDocument.dfp",
-            pathToSizeFile = "Number of the words.mw";
-
-        string defaultSettings = 
-$@"Main_window:
-Size-440,81
-Random_word_field_Location-12,3
-Random_word_field_FontSize-14
-Random_word_field_Font-Microsoft Sans Serif
-Random_word_field_Color-255,102,102
-radioButton1_Color-255,102,102
-radioButton1_Size-8
-radioButton2_Color-255,102,102
-radioButton2_Size-8
-radioButton3_Color-255,102,102
-radioButton3_Size-8";
+            pathToSizeFile = "Number of the words.mw",
+            pathToSwitchColor = "Switch Color.ss";
 
         string[] defaultWords = {
             "white","black","orange","blue","green","red","brown","gray","pink","yellow","magenta","purple",
@@ -108,119 +93,6 @@ radioButton3_Size-8";
             Location = new Point((screenSize.Width / 2) - (Size.Width / 2), 0);
         }
         //---------------------------------------------------------------------------------------------------------
-        // Метод дефолтних налаштувань
-        private void MySettings()   
-        {
-            string strParam = "", strParam2 = "";
-            string[] strParamArray, strIndexParamArray;
-
-            using (StreamReader streamR = new StreamReader($@"{configPath}\{pathToValueParameters}"))
-                strParam = streamR.ReadToEnd();
-
-            strParamArray = strParam.Split('\n');
-
-            using (StreamReader streamR1 = new StreamReader($@"{defaultPath}\{pathToCounterFile}"))
-                indexParam = Convert.ToInt32(streamR1.ReadToEnd());
-
-            strParam2 = strParamArray[indexParam];
-            strIndexParamArray = strParam2.Split(',');
-
-            x = Convert.ToInt32(strIndexParamArray[0]);
-            y = Convert.ToInt32(strIndexParamArray[1]);
-
-            //---------------------------------------------------------------------------------------------------------
-
-            string strParamMainText = "";
-            string[] strParamMainTextArray;
-
-            using (StreamReader sr2 = new StreamReader($@"{configPath}\{pathToValueParameters2}"))
-                strParamMainText = sr2.ReadToEnd();
-            strParamMainTextArray = strParamMainText.Split('\n');
-            fontS = Convert.ToUInt32(strParamMainTextArray[indexParam]);
-
-            //---------------------------------------------------------------------------------------------------------
-
-            string strParamTextBoxX = "";
-            string[] strParamTextBoxXArray;
-
-            using (StreamReader sr3 = new StreamReader($@"{configPath}\{pathToValueParameters5}"))
-                strParamTextBoxX = sr3.ReadToEnd();
-            strParamTextBoxXArray = strParamTextBoxX.Split('\n');
-            sizeTextBoxX = Convert.ToInt32(strParamTextBoxXArray[indexParam]);
-
-            //---------------------------------------------------------------------------------------------------------
-
-            string strParamSRB = "";
-            string[] strParamSRBArray;
-
-            using (StreamReader sr4 = new StreamReader($@"{configPath}\{pathToValueParameters3}"))
-                strParamSRB = sr4.ReadToEnd();
-            strParamSRBArray = strParamSRB.Split('\n');
-            fontSRButton = Convert.ToUInt32(strParamSRBArray[indexParam]);
-
-            //---------------------------------------------------------------------------------------------------------
-
-            string strParamSB = "";
-            string[] strParamSBArray;
-
-            using (StreamReader sr5 = new StreamReader($@"{configPath}\{pathToValueParameters4}"))
-                strParamSB = sr5.ReadToEnd();
-            strParamSBArray = strParamSB.Split('\n');
-            fontSB = Convert.ToUInt32(strParamSBArray[indexParam]);
-
-            //---------------------------------------------------------------------------------------------------------
-
-            string strParamSB1 = "", strParamSB2 = "";
-            string[] strParamSBArray1, strParamSBArray2;
-
-            using (StreamReader sr5 = new StreamReader($@"{configPath}\{pathToValueParameters6}"))
-                strParamSB = sr5.ReadToEnd();
-            strParamSBArray = strParamSB.Split('\n');
-            strParamSB2 = strParamSBArray[indexParam];
-            strParamSBArray2 = strParamSB2.Split(',');
-
-            xB = Convert.ToInt32(strParamSBArray2[0]);
-            yB = Convert.ToInt32(strParamSBArray2[1]);
-
-            //---------------------------------------------------------------------------------------------------------
-
-            string strParamSP = "";
-            string[] strParamSPArray;
-            using (StreamReader sr6 = new StreamReader($@"{configPath}\{pathToValueParameters7}"))
-                strParamSP = sr6.ReadToEnd();
-            strParamSPArray = strParamSP.Split('\n');
-            sizePicture = Convert.ToInt32(strParamSPArray[indexParam]);
-
-            //---------------------------------------------------------------------------------------------------------
-
-            Size = new Size(x, y);
-            textBox1.Font = new Font("Microsoft Sans Serif", fontS, FontStyle.Regular, GraphicsUnit.Point, 204);
-            textBox1.Size = new Size(sizeTextBoxX, textBox1.Size.Height);
-            pictureBox1.Size = new Size(sizePicture, sizePicture);
-            radioButton1.Font = new Font("Microsoft Sans Serif", fontSRButton, FontStyle.Regular, GraphicsUnit.Point, 204);
-            radioButton2.Font = new Font("Microsoft Sans Serif", fontSRButton, FontStyle.Regular, GraphicsUnit.Point, 204);
-            radioButton3.Font = new Font("Microsoft Sans Serif", fontSRButton, FontStyle.Regular, GraphicsUnit.Point, 204);
-            button4.Font = new Font("Microsoft Sans Serif", fontSB, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button4.Size = new Size(xB, yB);
-            button5.Font = new Font("Microsoft Sans Serif", fontSB, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button5.Size = new Size(xB, yB);
-            button6.Font = new Font("Microsoft Sans Serif", fontSB, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button6.Size = new Size(xB, yB);
-
-            //---------------------------------------------------------------------------------------------------------
-
-            radioButton1.Location = new Point(textBox1.Location.X + textBox1.Size.Width + pictureBox1.Size.Width + 10, 3);
-            radioButton2.Location = new Point(radioButton1.Location.X, radioButton1.Location.Y + radioButton1.Size.Height + 5);
-            radioButton3.Location = new Point(radioButton1.Location.X, radioButton2.Location.Y + radioButton2.Size.Height + 5);
-            pictureBox1.Location = new Point();
-
-            button6.Location = new Point(textBox1.Location.X, textBox1.Location.Y + textBox1.Size.Height + 5);
-            button5.Location = new Point(button6.Location.X + button6.Size.Width + 4, button6.Location.Y);
-            button4.Location = new Point(button5.Location.X + button5.Size.Width + 2, button5.Location.Y);
-
-            MainWindowLocation();
-        }
-        //---------------------------------------------------------------------------------------------------------
         private void CreateDirectoryForFiles()
         {
             // файл зі шляхом до документів
@@ -230,23 +102,14 @@ radioButton3_Size-8";
 
                 using (StreamWriter sw = new StreamWriter($"{configPath}\\{pathToDocuments}"))
                 {
-                    for (int i = 0; i < 3; i++)
-                    {
-                        if (i == 0)
-                            sw.Write("C:\\WordMem\\Data");
-                         if(i == 1)
-                            sw.Write("\nC:\\WordMem\\Data");
-                    }
+                    sw.Write("C:\\WordMem\\Data"); //??????????????????????????????????????????????????????????????????????????????????????????????????????????????
                 }
             }
             string pathSTR = "";
-            string[] pathSTRArray;
 
             using (StreamReader sr = new StreamReader($"{configPath}\\{pathToDocuments}"))
                 pathSTR = sr.ReadToEnd();
-            pathSTRArray = pathSTR.Split('\n');
-            oldPath = pathSTRArray[0];
-            defaultPath = pathSTRArray[1];
+            defaultPath = pathSTR;
 
             //if (pathSTRArray[0] != pathSTRArray[1])
             //    Directory.Delete(oldPath, true); // ВИРІШИТИ ПРОБЛЕМУ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -258,7 +121,6 @@ radioButton3_Size-8";
             // Перевірка на навність необхідних файлів
 
             Directory.CreateDirectory(defaultPath);
-
             if (!File.Exists($@"{defaultPath}\{pathToSwitchIndex}"))
             {
                 using (StreamWriter sw = new StreamWriter($@"{defaultPath}\{pathToSwitchIndex}"))
@@ -309,13 +171,6 @@ radioButton3_Size-8";
             // Створення файла для перемішування відповідей
             if (!File.Exists($@"{defaultPath}\{pathToRandomAsnwer}"))
                 using (FileStream fs1 = new FileStream($@"{defaultPath}\{pathToRandomAsnwer}", FileMode.Create)) { };
-
-            //// Створення Config файла
-            //if (!File.Exists(pathToConfigFile))
-            //    using (StreamWriter sw4 = new StreamWriter(pathToConfigFile))
-            //    {
-            //        sw4.Write($@"");
-            //    }
 
             // Створення файла для лічильника
             if (!File.Exists($@"{defaultPath}\{pathToCounterFile}"))
@@ -493,8 +348,182 @@ start """" ""{str}""");
             {
                 SaveNumberOfSize();
             }
-        }
 
+            if (!File.Exists($"{configPath}\\{pathToSwitchColor}"))
+            {
+                using (StreamWriter sw = new StreamWriter($"{configPath}\\{pathToSwitchColor}"))
+                {
+                    sw.Write(0);
+                }
+            }
+        }
+        //---------------------------------------------------------------------------------------------------------
+        // Метод налаштувань
+        private void MySettings()
+        {
+            string strParam = "", strParam2 = "";
+            string[] strParamArray, strIndexParamArray;
+
+            using (StreamReader streamR = new StreamReader($@"{configPath}\{pathToValueParameters}"))
+                strParam = streamR.ReadToEnd();
+
+            strParamArray = strParam.Split('\n');
+
+            using (StreamReader streamR1 = new StreamReader($@"{defaultPath}\{pathToCounterFile}"))
+                indexParam = Convert.ToInt32(streamR1.ReadToEnd());
+
+            strParam2 = strParamArray[indexParam];
+            strIndexParamArray = strParam2.Split(',');
+
+            x = Convert.ToInt32(strIndexParamArray[0]);
+            y = Convert.ToInt32(strIndexParamArray[1]);
+
+            //---------------------------------------------------------------------------------------------------------
+
+            string strParamMainText = "";
+            string[] strParamMainTextArray;
+
+            using (StreamReader sr2 = new StreamReader($@"{configPath}\{pathToValueParameters2}"))
+                strParamMainText = sr2.ReadToEnd();
+            strParamMainTextArray = strParamMainText.Split('\n');
+            fontS = Convert.ToUInt32(strParamMainTextArray[indexParam]);
+
+            //---------------------------------------------------------------------------------------------------------
+
+            string strParamTextBoxX = "";
+            string[] strParamTextBoxXArray;
+
+            using (StreamReader sr3 = new StreamReader($@"{configPath}\{pathToValueParameters5}"))
+                strParamTextBoxX = sr3.ReadToEnd();
+            strParamTextBoxXArray = strParamTextBoxX.Split('\n');
+            sizeTextBoxX = Convert.ToInt32(strParamTextBoxXArray[indexParam]);
+
+            //---------------------------------------------------------------------------------------------------------
+
+            string strParamSRB = "";
+            string[] strParamSRBArray;
+
+            using (StreamReader sr4 = new StreamReader($@"{configPath}\{pathToValueParameters3}"))
+                strParamSRB = sr4.ReadToEnd();
+            strParamSRBArray = strParamSRB.Split('\n');
+            fontSRButton = Convert.ToUInt32(strParamSRBArray[indexParam]);
+
+            //---------------------------------------------------------------------------------------------------------
+
+            string strParamSB = "";
+            string[] strParamSBArray;
+
+            using (StreamReader sr5 = new StreamReader($@"{configPath}\{pathToValueParameters4}"))
+                strParamSB = sr5.ReadToEnd();
+            strParamSBArray = strParamSB.Split('\n');
+            fontSB = Convert.ToUInt32(strParamSBArray[indexParam]);
+
+            //---------------------------------------------------------------------------------------------------------
+
+            string strParamSB1 = "", strParamSB2 = "";
+            string[] strParamSBArray1, strParamSBArray2;
+
+            using (StreamReader sr5 = new StreamReader($@"{configPath}\{pathToValueParameters6}"))
+                strParamSB = sr5.ReadToEnd();
+            strParamSBArray = strParamSB.Split('\n');
+            strParamSB2 = strParamSBArray[indexParam];
+            strParamSBArray2 = strParamSB2.Split(',');
+
+            xB = Convert.ToInt32(strParamSBArray2[0]);
+            yB = Convert.ToInt32(strParamSBArray2[1]);
+
+            //---------------------------------------------------------------------------------------------------------
+
+            string strParamSP = "";
+            string[] strParamSPArray;
+            using (StreamReader sr6 = new StreamReader($@"{configPath}\{pathToValueParameters7}"))
+                strParamSP = sr6.ReadToEnd();
+            strParamSPArray = strParamSP.Split('\n');
+            sizePicture = Convert.ToInt32(strParamSPArray[indexParam]);
+
+            //---------------------------------------------------------------------------------------------------------
+
+            Size = new Size(x, y);
+            textBox1.Font = new Font("Microsoft Sans Serif", fontS, FontStyle.Regular, GraphicsUnit.Point, 204);
+            textBox1.Size = new Size(sizeTextBoxX, textBox1.Size.Height);
+            pictureBox1.Size = new Size(sizePicture, sizePicture);
+            radioButton1.Font = new Font("Microsoft Sans Serif", fontSRButton, FontStyle.Regular, GraphicsUnit.Point, 204);
+            radioButton2.Font = new Font("Microsoft Sans Serif", fontSRButton, FontStyle.Regular, GraphicsUnit.Point, 204);
+            radioButton3.Font = new Font("Microsoft Sans Serif", fontSRButton, FontStyle.Regular, GraphicsUnit.Point, 204);
+            button4.Font = new Font("Microsoft Sans Serif", fontSB, FontStyle.Regular, GraphicsUnit.Point, 0);
+            button4.Size = new Size(xB, yB);
+            button5.Font = new Font("Microsoft Sans Serif", fontSB, FontStyle.Regular, GraphicsUnit.Point, 0);
+            button5.Size = new Size(xB, yB);
+            button6.Font = new Font("Microsoft Sans Serif", fontSB, FontStyle.Regular, GraphicsUnit.Point, 0);
+            button6.Size = new Size(xB, yB);
+
+            //---------------------------------------------------------------------------------------------------------
+
+            radioButton1.Location = new Point(textBox1.Location.X + textBox1.Size.Width + pictureBox1.Size.Width + 10, 3);
+            radioButton2.Location = new Point(radioButton1.Location.X, radioButton1.Location.Y + radioButton1.Size.Height + 5);
+            radioButton3.Location = new Point(radioButton1.Location.X, radioButton2.Location.Y + radioButton2.Size.Height + 5);
+            pictureBox1.Location = new Point();
+
+            button6.Location = new Point(textBox1.Location.X, textBox1.Location.Y + textBox1.Size.Height + 5);
+            button5.Location = new Point(button6.Location.X + button6.Size.Width + 4, button6.Location.Y);
+            button4.Location = new Point(button5.Location.X + button5.Size.Width + 2, button5.Location.Y);
+
+            MainWindowLocation();
+            CountSetting();
+        }
+        //---------------------------------------------------------------------------------------------------------
+        // Метод вибору налаштувань
+        private void CountSetting()
+        {
+            byte numSett = 0;
+
+            using (StreamReader sr = new StreamReader($"{configPath}\\{pathToSwitchColor}"))
+            {
+                numSett = Convert.ToByte(sr.ReadToEnd());
+            }
+            
+            switch (numSett)
+            {
+                case 0:
+                    button2.ForeColor = Color.FromArgb(255, 0, 0);
+                    button3.ForeColor = Color.FromArgb(255, 0, 0);
+                    button4.ForeColor = Color.FromArgb(255, 0, 0);
+                    button5.ForeColor = Color.FromArgb(255, 0, 0);
+                    button6.ForeColor = Color.FromArgb(255, 0, 0);
+                    button7.ForeColor = Color.FromArgb(255, 0, 0);
+                    button7.BackColor = Color.FromArgb(255, 0, 0);
+                    button8.ForeColor = Color.FromArgb(255, 0, 0);
+
+                    radioButton1.ForeColor = Color.FromArgb(255, 102, 102);
+                    radioButton2.ForeColor = Color.FromArgb(255, 102, 102);
+                    radioButton3.ForeColor = Color.FromArgb(255, 102, 102);
+                    textBox1.ForeColor = Color.FromArgb(255, 102, 102);
+
+                    BackColor = Color.FromArgb(20,20,20);
+                    textBox1.BackColor = Color.FromArgb(20,20,20);
+                    panel1.BackColor = Color.FromArgb(20,20,20);
+                    break;
+                case 1:
+                    button2.ForeColor = Color.FromArgb(0,0,0);
+                    button3.ForeColor = Color.FromArgb(0,0,0);
+                    button4.ForeColor = Color.FromArgb(0,0,0);
+                    button5.ForeColor = Color.FromArgb(0,0,0);
+                    button6.ForeColor = Color.FromArgb(0,0,0);
+                    button7.ForeColor = Color.FromArgb(0,0,0);
+                    button7.BackColor = button7.ForeColor;
+                    button8.ForeColor = Color.FromArgb(0,0,0);
+
+                    radioButton1.ForeColor = Color.FromArgb(0,0,0);
+                    radioButton2.ForeColor = Color.FromArgb(0,0,0);
+                    radioButton3.ForeColor = Color.FromArgb(0,0,0);
+                    textBox1.ForeColor = Color.FromArgb(0,0,0);
+
+                    BackColor = Color.FromArgb(200, 200, 200);
+                    textBox1.BackColor = Color.FromArgb(200, 200, 200);
+                    panel1.BackColor = Color.FromArgb(200, 200, 200);
+                    break;
+            }
+        }
         //---------------------------------------------------------------------------------------------------------
         // Метод перераховування кількості слів при повторному відкритті программи
         private void RecountTheNumberOfWords()

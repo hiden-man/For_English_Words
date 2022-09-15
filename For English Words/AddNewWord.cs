@@ -17,10 +17,11 @@ namespace For_English_Words
             pathToFileWords = "English words.mw",
             pathToFileTranslate = "Translate.mw",
             pathToSizeFile = "Number of the words.mw",
-            pathToCorecctAnswerFile = "Counter of correct answer.mw";
+            pathToCorecctAnswerFile = "Counter of correct answer.mw",
+            pathToSwitchColor = "Switch Color.ss";
 
         string strWord = "", strTranslate = "";
-        private int IDWords = 0;
+        private int IDWords = 0, G = 0;
         
         public AddNewWord()
         {
@@ -29,8 +30,50 @@ namespace For_English_Words
         private void Settings_Load(object sender, EventArgs e)
         {
             MainWindowLocation();
+            ThemeSettings();
             GetPath();
             SetIDWord();
+        }
+
+        private void ThemeSettings()
+        {
+            using (StreamReader sr = new StreamReader($"{configPath}\\{pathToSwitchColor}"))
+            {
+                G = Convert.ToSByte(sr.ReadToEnd());
+            }
+            switch (G)
+            {
+                case 0:
+                    BackColor = Color.FromArgb(20,20,20);
+                    panel1.BackColor = Color.FromArgb(5,5,5);
+                    panel2.BackColor = Color.FromArgb(15,15,15);
+                    textBox1.BackColor = panel2.BackColor;
+                    textBox2.BackColor = panel2.BackColor;
+                    //----------
+                    label5.ForeColor = Color.FromArgb(255,102,102);
+                    label1.ForeColor = label5.ForeColor;
+                    label2.ForeColor = label5.ForeColor;
+                    textBox1.ForeColor = label2.ForeColor;
+                    textBox2.ForeColor = label2.ForeColor;
+                    button1.ForeColor = Color.FromArgb(255,0,0);
+                    button2.ForeColor = button1.ForeColor;
+                    break;
+                case 1:
+                    BackColor = Color.FromArgb(200, 200, 200);
+                    panel1.BackColor = Color.FromArgb(255,255,255);
+                    panel2.BackColor = Color.FromArgb(150, 150, 150);
+                    textBox1.BackColor = panel2.BackColor;
+                    textBox2.BackColor = panel2.BackColor;
+                    //----------
+                    label5.ForeColor = Color.FromArgb(0,0,0);
+                    label1.ForeColor = label5.ForeColor;
+                    label2.ForeColor = label5.ForeColor;
+                    textBox1.ForeColor = label2.ForeColor;
+                    textBox2.ForeColor = label2.ForeColor;
+                    button1.ForeColor = Color.FromArgb(0, 0, 0);
+                    button2.ForeColor = button1.ForeColor;
+                    break;
+            }
         }
 
         private void GetPath()
@@ -40,8 +83,7 @@ namespace For_English_Words
 
             using (StreamReader sr = new StreamReader($"{configPath}\\{pathToDocuments}"))
                 pathSTR = sr.ReadToEnd();
-            pathSTRArray = pathSTR.Split('\n');
-            path = pathSTRArray[1];
+            path = pathSTR;
         }
 
         private void MainWindowLocation()
