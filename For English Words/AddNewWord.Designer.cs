@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -38,6 +39,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.guna2ShadowForm1 = new Guna.UI2.WinForms.Guna2ShadowForm(this.components);
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -74,11 +76,11 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
-            this.label1.Location = new System.Drawing.Point(45, 19);
+            this.label1.Location = new System.Drawing.Point(3, 19);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(51, 20);
+            this.label1.Size = new System.Drawing.Size(80, 20);
             this.label1.TabIndex = 3;
-            this.label1.Text = "Word:";
+            this.label1.Text = "Слово(а):";
             // 
             // label2
             // 
@@ -86,22 +88,22 @@
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
-            this.label2.Location = new System.Drawing.Point(17, 59);
+            this.label2.Location = new System.Drawing.Point(3, 59);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(79, 20);
+            this.label2.Size = new System.Drawing.Size(90, 20);
             this.label2.TabIndex = 3;
-            this.label2.Text = "Translate:";
+            this.label2.Text = "Переклад:";
             // 
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.Transparent;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.ForeColor = System.Drawing.Color.Red;
-            this.button1.Location = new System.Drawing.Point(602, 3);
+            this.button1.Location = new System.Drawing.Point(584, 3);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(46, 26);
+            this.button1.Size = new System.Drawing.Size(64, 26);
             this.button1.TabIndex = 0;
-            this.button1.Text = "Close";
+            this.button1.Text = "Закрити";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -116,7 +118,7 @@
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(185, 42);
             this.button2.TabIndex = 0;
-            this.button2.Text = "Save";
+            this.button2.Text = "Додати";
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -148,9 +150,9 @@
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
             this.label5.Location = new System.Drawing.Point(-1, -1);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(212, 31);
+            this.label5.Size = new System.Drawing.Size(310, 31);
             this.label5.TabIndex = 12;
-            this.label5.Text = "Add new words";
+            this.label5.Text = "Додавання нових слів";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel2
@@ -181,6 +183,7 @@
             this.Text = "-";
             this.Load += new System.EventHandler(this.Settings_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.AddNewWord_KeyDown);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AddNewWord_MouseDown);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
@@ -201,5 +204,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Panel panel2;
+        private Guna.UI2.WinForms.Guna2ShadowForm guna2ShadowForm1;
     }
 }

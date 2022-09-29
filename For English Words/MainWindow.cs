@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.IO;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace For_English_Words
@@ -21,7 +22,7 @@ namespace For_English_Words
             pathToRandomAsnwer = "Random answer.mw",
             pathToSwitchIndex = "Switch index.mw",
             pathToValueParameters = "Value of size window parameters.par",
-            pathToValueParameters2 ="Value of font main text parameters.par",
+            pathToValueParameters2 = "Value of font main text parameters.par",
             pathToValueParameters3 = "Value of font answer text parameters.par",
             pathToValueParameters4 = "Value of font button text parameters.par",
             pathToValueParameters5 = "Value of size textBox parameters.par",
@@ -55,6 +56,7 @@ namespace For_English_Words
             correctItem = 0, randomChoise = 0, x = 440, y = 81,
             indexParam = 0, numberOfIter = 0, xB = 64, yB = 22,
             sizeTextBoxX = 229, sizePicture = 15, switchIndexCor = 0;
+
         // Проценти
         private const byte 
             perCentS = 20, perCentST = 30, 
@@ -70,13 +72,13 @@ namespace For_English_Words
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
             MainWindowLocation();
             CreateDirectoryForFiles();
             CreateDirectoryAndFiles();
             MySettings();
             RecountTheNumberOfWords();
             Repetition();
+            guna2ShadowForm1.SetShadowForm(this);
         }
         // МЕТОДИ !!!!!
         //---------------------------------------------------------------------------------------------------------
@@ -121,6 +123,7 @@ namespace For_English_Words
             // Перевірка на навність необхідних файлів
 
             Directory.CreateDirectory(defaultPath);
+
             if (!File.Exists($@"{defaultPath}\{pathToSwitchIndex}"))
             {
                 using (StreamWriter sw = new StreamWriter($@"{defaultPath}\{pathToSwitchIndex}"))
@@ -173,9 +176,9 @@ namespace For_English_Words
                 using (FileStream fs1 = new FileStream($@"{defaultPath}\{pathToRandomAsnwer}", FileMode.Create)) { };
 
             // Створення файла для лічильника
-            if (!File.Exists($@"{defaultPath}\{pathToCounterFile}"))
+            if (!File.Exists($@"{configPath}\{pathToCounterFile}"))
             {
-                using (StreamWriter sw8 = new StreamWriter($@"{defaultPath}\{pathToCounterFile}"))
+                using (StreamWriter sw8 = new StreamWriter($@"{configPath}\{pathToCounterFile}"))
                     sw8.Write(0);
             }
 
@@ -369,7 +372,7 @@ start """" ""{str}""");
 
             strParamArray = strParam.Split('\n');
 
-            using (StreamReader streamR1 = new StreamReader($@"{defaultPath}\{pathToCounterFile}"))
+            using (StreamReader streamR1 = new StreamReader($@"{configPath}\{pathToCounterFile}"))
                 indexParam = Convert.ToInt32(streamR1.ReadToEnd());
 
             strParam2 = strParamArray[indexParam];
@@ -800,7 +803,7 @@ start """" ""{str}""");
                 switchIndexCor = Convert.ToInt32(sr.ReadToEnd());
             if (switchIndexCor == 0)
             {
-                using (FileStream fs = new FileStream($@"{defaultPath}\{pathToSwitchIndex}", FileMode.Create)) { };
+                //using (FileStream fs = new FileStream($@"{defaultPath}\{pathToSwitchIndex}", FileMode.Create)) { };
 
                 string str1 = "";
                 using (StreamReader streamReader = new StreamReader($@"{defaultPath}\{pathToCorecctAnswerFile}"))
@@ -918,7 +921,7 @@ start """" ""{str}""");
         // Методи вираховування розмірів контролерів
         private void CalculateSizeControlsUp()
         {
-            using (StreamReader sr6 = new StreamReader($@"{defaultPath}\{pathToCounterFile}"))
+            using (StreamReader sr6 = new StreamReader($@"{configPath}\{pathToCounterFile}"))
                 indexParam = Convert.ToInt32(sr6.ReadToEnd());
 
             string param = "", param2 = "";
@@ -934,7 +937,7 @@ start """" ""{str}""");
             x = Convert.ToInt32(paramArray2[0]);
             y = Convert.ToInt32(paramArray2[1]);
 
-            using (StreamWriter sw = new StreamWriter($@"{defaultPath}\{pathToCounterFile}"))
+            using (StreamWriter sw = new StreamWriter($@"{configPath}\{pathToCounterFile}"))
                 sw.Write(indexParam);
 
             //---------------------------------------------------------------------------------------------------------
@@ -1017,7 +1020,7 @@ start """" ""{str}""");
         //---------------------------------------------------------------------------------------------------------
         private void CalculateSizeControlsDown()
         {
-            using (StreamReader sr6 = new StreamReader($@"{defaultPath}\{pathToCounterFile}"))
+            using (StreamReader sr6 = new StreamReader($@"{configPath}\{pathToCounterFile}"))
                 indexParam = Convert.ToInt32(sr6.ReadToEnd());
 
             string param = "", param2 = "";
@@ -1036,7 +1039,7 @@ start """" ""{str}""");
             x = Convert.ToInt32(paramArray2[0]);
             y = Convert.ToInt32(paramArray2[1]);
 
-            using (StreamWriter sw = new StreamWriter($@"{defaultPath}\{pathToCounterFile}"))
+            using (StreamWriter sw = new StreamWriter($@"{configPath}\{pathToCounterFile}"))
                 sw.Write(indexParam);
 
             //---------------------------------------------------------------------------------------------------------
@@ -1259,6 +1262,17 @@ start """" ""{str}""");
                 S = false;
             else if (e.KeyCode == Keys.A)
                 A = false;
+        }
+
+        // Form Drag
+        [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
+        private extern static void ReleaseCapture();
+        [DllImport("user32.DLL", EntryPoint = "SendMessage")]
+        private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
+        private void MainWindow_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.IO;
+using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -33,6 +34,7 @@ namespace For_English_Words
             ThemeSettings();
             GetPath();
             SetIDWord();
+            guna2ShadowForm1.SetShadowForm(this);
         }
 
         private void ThemeSettings()
@@ -95,6 +97,17 @@ namespace For_English_Words
         private void button1_Click(object sender, EventArgs e)
         {
             Hide();
+        }
+
+        // Form Drag
+        [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
+        private extern static void ReleaseCapture();
+        [DllImport("user32.DLL", EntryPoint = "SendMessage")]
+        private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
+        private void AddNewWord_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
 
         async void textBox1_KeyDown(object sender, KeyEventArgs e)
@@ -175,7 +188,7 @@ namespace For_English_Words
             label3.Font = new Font("Microsoft Sans Serif", 
                 20.25F, FontStyle.Bold, 
                 GraphicsUnit.Point, ((byte)(204)));
-            label3.Text = "saved";
+            label3.Text = "Додано";
             label3.ForeColor = Color.LimeGreen;
             textBox1.Text = "";
             textBox2.Text = "";
