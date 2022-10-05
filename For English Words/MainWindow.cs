@@ -13,8 +13,9 @@ namespace For_English_Words
         Random random = new Random();
         AddNewWord AddNewWordWindow = new AddNewWord();
         SettingsWindow settingsWindow = new SettingsWindow();
+        SettingsClass settingsClass = new SettingsClass();
 
-        string defaultPath = "",
+        string defaultPath = "C:\\WordMem\\Data",
             configPath = "C:\\WordMem\\Config",
             pathToFileWords = "English words.mw",
             pathToFileTranslate = "Translate.mw",
@@ -31,8 +32,11 @@ namespace For_English_Words
             pathToCounterFile = "Case index.ci",
             pathToCounterFile2 = "Index for switch.ci",
             pathToApplySettingFile = "Apply.bat",
-            pathToDocuments = "PathForDocument.dfp",
             pathToSizeFile = "Number of the words.mw",
+            pathToLanguageSetting = "Switch language.sl",
+            pathLocationMF = "Switch_location.sl",
+            pathLocationInfo = "Location_Info.li",
+            pathToPathToRegistry = "Path For Registry.pr",
             pathToSwitchColor = "Switch Color.ss";
 
         string[] defaultWords = {
@@ -64,7 +68,7 @@ namespace For_English_Words
             perCentSTextBox = 19;
 
         // для комбінацій клавіш
-        bool ctrl = false, S = false, H = false, A = false, plus = false, minus = false;
+        bool ctrl = false, S = false, Q = false, A = false, plus = false, minus = false;
         public MainWindow()
         {
             InitializeComponent();
@@ -72,13 +76,11 @@ namespace For_English_Words
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            MainWindowLocation();
-            CreateDirectoryForFiles();
             CreateDirectoryAndFiles();
+            SwitcherLocationMainForm();
             MySettings();
             RecountTheNumberOfWords();
             Repetition();
-            guna2ShadowForm1.SetShadowForm(this);
         }
         // МЕТОДИ !!!!!
         //---------------------------------------------------------------------------------------------------------
@@ -89,40 +91,59 @@ namespace For_English_Words
             OutputRandomWord();
             OutputAnswer();
         }
-        //---------------------------------------------------------------------------------------------------------
-        private void MainWindowLocation()
+
+        // Додавання тіні
+        protected override CreateParams CreateParams
         {
-            Location = new Point((screenSize.Width / 2) - (Size.Width / 2), 0);
-        }
-        //---------------------------------------------------------------------------------------------------------
-        private void CreateDirectoryForFiles()
-        {
-            // файл зі шляхом до документів
-            if (!File.Exists($"{configPath}\\{pathToDocuments}"))
+            get
             {
-                Directory.CreateDirectory($"{configPath}");
-
-                using (StreamWriter sw = new StreamWriter($"{configPath}\\{pathToDocuments}"))
-                {
-                    sw.Write("C:\\WordMem\\Data"); //??????????????????????????????????????????????????????????????????????????????????????????????????????????????
-                }
+                const int CS_DROPSHADOW = 0x20000;
+                CreateParams cp = base.CreateParams;
+                cp.ClassStyle |= CS_DROPSHADOW;
+                return cp;
             }
-            string pathSTR = "";
-
-            using (StreamReader sr = new StreamReader($"{configPath}\\{pathToDocuments}"))
-                pathSTR = sr.ReadToEnd();
-            defaultPath = pathSTR;
-
-            //if (pathSTRArray[0] != pathSTRArray[1])
-            //    Directory.Delete(oldPath, true); // ВИРІШИТИ ПРОБЛЕМУ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         }
         //---------------------------------------------------------------------------------------------------------
         // Метод створення директорії та неохідних файлів
         private void CreateDirectoryAndFiles()
-        {  
+        {
             // Перевірка на навність необхідних файлів
+            if (!Directory.Exists(configPath))
+            {
+                Directory.CreateDirectory(configPath);
+                Directory.CreateDirectory(defaultPath);
+            }
 
-            Directory.CreateDirectory(defaultPath);
+            if (!File.Exists($"{configPath}\\{pathToPathToRegistry}"))
+            {
+                using (StreamWriter sw = new StreamWriter($"{configPath}\\{pathToPathToRegistry}"))
+                {
+                    sw.Write(Path.GetFullPath("For English Words.exe"));
+                }
+            }
+
+            if (!File.Exists($"{configPath}\\{pathLocationInfo}"))
+            {
+                using (StreamWriter sw = new StreamWriter($"{configPath}\\{pathLocationInfo}"))
+                {
+                    sw.Write($"{0}\n{0}");
+                }
+            }
+
+            if (!File.Exists($"{configPath}\\{pathLocationMF}"))
+            {
+                using (StreamWriter sw = new StreamWriter($"{configPath}\\{pathLocationMF}"))
+                {
+                    sw.Write(0);
+                }
+            }
+
+            if (!File.Exists($"{configPath}\\{pathToLanguageSetting}"))
+            {
+                using (StreamWriter sw = new StreamWriter($"{configPath}\\{pathToLanguageSetting}"))
+                    sw.Write(0);
+            }
+
 
             if (!File.Exists($@"{defaultPath}\{pathToSwitchIndex}"))
             {
@@ -361,6 +382,49 @@ start """" ""{str}""");
             }
         }
         //---------------------------------------------------------------------------------------------------------
+
+        private void SwitcherLanguageSettings()
+        {
+            switch (settingsClass.SwitcherLanguageSettings())
+            {
+                case 0:
+                    button2.Text = "Налаштування";
+                    button3.Text = "Нове слово";
+                    button4.Text = "Оновити";
+                    button5.Text = "Відповідь";
+                    button6.Text = "Меню";
+                    button8.Text = "Закрити";
+                    break;
+
+                case 1:
+                    button2.Text = "Settings";
+                    button3.Text = "New Word";
+                    button4.Text = "Refresh";
+                    button5.Text = "Answer";
+                    button6.Text = "Menu";
+                    button8.Text = "Close";
+                    break;
+            }
+        }
+
+        private void SwitcherLocationMainForm()
+        {
+            switch (settingsClass.SwitcherLocationMainForm())
+            {
+                case 0:
+                    Location = new Point((screenSize.Width / 2) - (Size.Width / 2), 0);
+                    break;
+
+                case 1:
+                    Location = new Point(0, 0);
+                    break;
+                case 2:
+                    Location = new Point(screenSize.Width - Size.Width, 0);
+                    break;
+            }
+        }
+
+        //---------------------------------------------------------------------------------------------------------
         // Метод налаштувань
         private void MySettings()
         {
@@ -471,8 +535,9 @@ start """" ""{str}""");
             button5.Location = new Point(button6.Location.X + button6.Size.Width + 4, button6.Location.Y);
             button4.Location = new Point(button5.Location.X + button5.Size.Width + 2, button5.Location.Y);
 
-            MainWindowLocation();
+            SwitcherLocationMainForm();
             CountSetting();
+            SwitcherLanguageSettings();
         }
         //---------------------------------------------------------------------------------------------------------
         // Метод вибору налаштувань
@@ -493,8 +558,6 @@ start """" ""{str}""");
                     button4.ForeColor = Color.FromArgb(255, 0, 0);
                     button5.ForeColor = Color.FromArgb(255, 0, 0);
                     button6.ForeColor = Color.FromArgb(255, 0, 0);
-                    button7.ForeColor = Color.FromArgb(255, 0, 0);
-                    button7.BackColor = Color.FromArgb(255, 0, 0);
                     button8.ForeColor = Color.FromArgb(255, 0, 0);
 
                     radioButton1.ForeColor = Color.FromArgb(255, 102, 102);
@@ -512,8 +575,6 @@ start """" ""{str}""");
                     button4.ForeColor = Color.FromArgb(0,0,0);
                     button5.ForeColor = Color.FromArgb(0,0,0);
                     button6.ForeColor = Color.FromArgb(0,0,0);
-                    button7.ForeColor = Color.FromArgb(0,0,0);
-                    button7.BackColor = button7.ForeColor;
                     button8.ForeColor = Color.FromArgb(0,0,0);
 
                     radioButton1.ForeColor = Color.FromArgb(0,0,0);
@@ -701,7 +762,6 @@ start """" ""{str}""");
             using (StreamReader sr1 = new StreamReader($@"{defaultPath}\{pathToFileWords}"))
                 stringWord = sr1.ReadToEnd();
             string[] wordsArray = stringWord.Split('\n');
-            //label3.Text = wordsArray[randomIDWord];
             textBox1.Text = wordsArray[randomIDWord];
         }
         //---------------------------------------------------------------------------------------------------------
@@ -803,8 +863,6 @@ start """" ""{str}""");
                 switchIndexCor = Convert.ToInt32(sr.ReadToEnd());
             if (switchIndexCor == 0)
             {
-                //using (FileStream fs = new FileStream($@"{defaultPath}\{pathToSwitchIndex}", FileMode.Create)) { };
-
                 string str1 = "";
                 using (StreamReader streamReader = new StreamReader($@"{defaultPath}\{pathToCorecctAnswerFile}"))
                     str1 = streamReader.ReadToEnd();
@@ -1186,7 +1244,7 @@ start """" ""{str}""");
         // Close button
         private void button8_Click(object sender, EventArgs e)
         {
-            Close();
+            panel1.Visible = false;
         }
         //---------------------------------------------------------------------------------------------------------
         // Close Key
@@ -1198,10 +1256,12 @@ start """" ""{str}""");
                 S = true;
             else if (e.KeyCode == Keys.A)
                 A = true;
-            else if(e.KeyCode == Keys.Oemplus)
+            else if (e.KeyCode == Keys.Oemplus)
                 plus = true;
-            else if(e.KeyCode == Keys.OemMinus)
+            else if (e.KeyCode == Keys.OemMinus)
                 minus = true;
+            else if (e.KeyCode == Keys.Q)
+                Q = true;
 
             if (ctrl && S)
             {
@@ -1227,7 +1287,7 @@ start """" ""{str}""");
                     button6.Location = new Point(textBox1.Location.X, textBox1.Location.Y + textBox1.Size.Height + 5);
                     button5.Location = new Point(button6.Location.X + button6.Size.Width + 4, button6.Location.Y);
                     button4.Location = new Point(button5.Location.X + button5.Size.Width + 2, button5.Location.Y);
-                    MainWindowLocation();
+                    SwitcherLocationMainForm();
                 }
 
                 if (tempX == screenSize.Width || tempX > screenSize.Width)
@@ -1244,10 +1304,9 @@ start """" ""{str}""");
                 button6.Location = new Point(textBox1.Location.X, textBox1.Location.Y + textBox1.Size.Height + 5);
                 button5.Location = new Point(button6.Location.X + button6.Size.Width + 4, button6.Location.Y);
                 button4.Location = new Point(button5.Location.X + button5.Size.Width + 2, button5.Location.Y);
-                MainWindowLocation();
+                SwitcherLocationMainForm();
             }
-
-            if (e.KeyValue == (char)Keys.Escape)
+            else if(ctrl && Q)
                 Close();
         }
         private void MainWindow_KeyUp(object sender, KeyEventArgs e)
@@ -1262,13 +1321,15 @@ start """" ""{str}""");
                 S = false;
             else if (e.KeyCode == Keys.A)
                 A = false;
+            else if (e.KeyCode == Keys.Q)
+                Q = false;
         }
 
         // Form Drag
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
         [DllImport("user32.DLL", EntryPoint = "SendMessage")]
-        private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
+        private extern static void SendMessage(IntPtr hWnd, int wMsg, int wParam, int lParam);
         private void MainWindow_MouseDown(object sender, MouseEventArgs e)
         {
             ReleaseCapture();

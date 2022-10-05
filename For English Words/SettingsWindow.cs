@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
@@ -9,31 +10,29 @@ namespace For_English_Words
 {
     public partial class SettingsWindow : Form
     {
+        RegistryKey key = Registry.CurrentUser.CreateSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run");
+        RegistryKey keyOpen = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run");
         Size screenSize = Screen.PrimaryScreen.Bounds.Size;
-        string defaultPath = "",
-            tempStr = "",
-            configPath = "C:\\WordMem\\Config",
+        SettingsClass settingsClass = new SettingsClass();
+
+        string configPath = "C:\\WordMem\\Config",
             pathToCounterFile = "Case index.ci",
             pathToApplySettingFile = "Apply.bat",
-            pathToDocuments = "PathForDocument.dfp",
             pathToValueParameters = "Value of size window parameters.par",
-            pathToValueParameters2 ="Value of font main text parameters.par",
+            pathToValueParameters2 = "Value of font main text parameters.par",
             pathToValueParameters3 = "Value of font answer text parameters.par",
             pathToValueParameters4 = "Value of font button text parameters.par",
             pathToValueParameters5 = "Value of size textBox parameters.par",
             pathToValueParameters6 = "Value of size button parameters.par",
             pathToValueParameters7 = "Value of size correct answer picture parameters.par",
-            pathToSwitchColor = "Switch Color.ss",
-            //--------------------------------------------------------------
-            pathToFileWords = "English words.mw",
-            pathToFileTranslate = "Translate.mw",
-            pathToCorecctAnswerFile = "Counter of correct answer.mw",
-            pathToRandomAsnwer = "Random answer.mw",
-            pathToSwitchIndex = "Switch index.mw",
-            pathToCounterFile2 = "Index for switch.ci",
-            pathToSizeFile = "Number of the words.mw";
+            pathToLanguageSetting = "Switch language.sl",
+            pathLocationMF = "Switch_location.sl",
+            pathToPathToRegistry = "Path For Registry.pr",
+            pathToSwitchColor = "Switch Color.ss";
 
-        sbyte counterIndex = 0, GG = 0;
+        string autoloadPath = "", nameProgram = "WordMem";
+        
+        sbyte counterIndex = 0;
 
         int counterParIndex = 0;
 
@@ -49,24 +48,148 @@ namespace For_English_Words
             Hide();
         }
 
+        // Додавання тіні
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                const int CS_DROPSHADOW = 0x20000;
+                CreateParams cp = base.CreateParams;
+                cp.ClassStyle |= CS_DROPSHADOW;
+                return cp;
+            }
+        }
+
         private void SettingsWindow_Load(object sender, EventArgs e)
         {
-            GetPath();
-            Size = new Size(468, 450);
+            Size = new Size(468, 410);
             Location = new Point((screenSize.Width/2)-(Size.Width/2), (screenSize.Height/2)-(Size.Height/2));
+            SwitcherLanguageSettings();
             GetParameters();
             ThemeSetings();
-            panel1.Size = new Size(470, 450);
+            GetAutoloadPath();
+            CheckActiveRadioButton();
+            panel1.Size = new Size(470, 400);
             panel1.Location = new Point(1, 50);
-            textBox1.Text = defaultPath+"\\";
-            guna2ShadowForm1.SetShadowForm(this);
+        }
+
+        private void SwitcherLanguageSettings()
+        {
+            switch (settingsClass.SwitcherLanguageSettings())
+            {
+                case 0:
+                    button1.Text = "Закрити";
+                    button2.Text = "+";
+                    button3.Text = "-";
+                    button4.Text = "Застосувати";
+                    button9.Text = "Текст";
+                    button10.Text = "Текст";
+                    button11.Text = "Текст";
+                    button19.Text = "Скинути налаштування";
+                    label1.Text = "Слово";
+                    label2.Text = "Відповідь";
+                    label3.Text = "Відповідь";
+                    label4.Text = "Відповідь";
+                    label5.Text = "Налаштування";
+                    label6.Text = "Тема";
+                    comboBox1.Items.Clear();
+                    comboBox1.Items.Add("Темна");
+                    comboBox1.Items.Add("Світла");
+                    groupBox1.Text = "Тема вікон";
+                    groupBox2.Text = "Розмір головного вікна";
+                    groupBox3.Text = "Мова";
+                    groupBox5.Text = "Розташування головного вікна";
+                    break;
+
+                case 1:
+                    button1.Text = "Close";
+                    button2.Text = "+";
+                    button3.Text = "-";
+                    button4.Text = "Apply";
+                    button9.Text = "text";
+                    button10.Text = "text";
+                    button11.Text = "text";
+                    button19.Text = "Reser settings";
+                    label1.Text = "Word";
+                    label2.Text = "Answer";
+                    label3.Text = "Answer";
+                    label4.Text = "Answer";
+                    label5.Text = "Settings";
+                    label6.Text = "Theme";
+                    comboBox1.Items.Clear();
+                    comboBox1.Items.Add("Dark");
+                    comboBox1.Items.Add("Light");
+                    groupBox1.Text = "Windows theme";
+                    groupBox2.Text = "Size of the main window";
+                    groupBox3.Text = "Language";
+                    groupBox5.Text = "Location of the main window";
+                    break;
+            }
+        }
+        
+        private void CheckExistsAutoloadData()
+        {
+            if (radioButton1.Checked)
+            {
+                foreach (string namesPrograms in key.GetValueNames())
+                {
+                    if (namesPrograms != nameProgram)
+                    {
+                        key.SetValue(nameProgram, autoloadPath);
+                    }
+                }
+            }
+            if (radioButton2.Checked)
+            {
+                foreach (string namesPrograms in key.GetValueNames())
+                {
+                    if (namesPrograms == nameProgram)
+                    {
+                        key.DeleteValue(nameProgram);
+                    }
+                }
+            }
+        }
+        private void CheckActiveRadioButton()
+        {
+
+            foreach (string namesPrograms in key.GetValueNames())
+            {
+                if (namesPrograms == nameProgram)
+                {
+                    radioButton1.Checked = true;
+                    radioButton2.Checked = false;
+                }
+                if (namesPrograms != nameProgram)
+                {
+                    radioButton1.Checked = false;
+                    radioButton2.Checked = true;
+                }
+            }
+        }
+
+        private void GetAutoloadPath()
+        {
+            using (StreamReader sr = new StreamReader($"{configPath}\\{pathToPathToRegistry}"))
+            {
+                autoloadPath = sr.ReadToEnd();
+            }
         }
 
         private void ThemeSetings()
         {
+            sbyte GG = 0, CC = 0, HH = 0;
             using (StreamReader sr = new StreamReader($"{configPath}\\{pathToSwitchColor}"))
             {
                 GG = Convert.ToSByte(sr.ReadToEnd());
+            }
+            using (StreamReader sr = new StreamReader($"{configPath}\\{pathToLanguageSetting}"))
+            {
+                CC = Convert.ToSByte(sr.ReadToEnd());
+            }
+            using (StreamReader sr = new StreamReader($"{configPath}\\{pathLocationMF}"))
+            {
+                HH = Convert.ToSByte(sr.ReadToEnd());
             }
             switch (GG)
             {
@@ -77,7 +200,7 @@ namespace For_English_Words
                     panel1.BackColor = panel1.BackColor;
                     comboBox1.BackColor = panel1.BackColor;
                     comboBox2.BackColor = panel1.BackColor;
-                    textBox1.BackColor = panel1.BackColor;
+                    comboBox3.BackColor = panel1.BackColor;
                     //------------
                     label5.ForeColor = Color.FromArgb(255,102,102);
                     label1.ForeColor = label5.ForeColor;
@@ -86,9 +209,8 @@ namespace For_English_Words
                     label4.ForeColor = label5.ForeColor;
                     label7.ForeColor = label5.ForeColor;
                     label6.ForeColor = label5.ForeColor;
-                    label9.ForeColor = label5.ForeColor;
+                    label8.ForeColor = label5.ForeColor;
                     button1.ForeColor = Color.FromArgb(255,0,0);
-                    button17.ForeColor = button1.ForeColor;
                     button19.ForeColor = button1.ForeColor;
                     button4.ForeColor = button1.ForeColor;
                     button2.ForeColor = button1.ForeColor;
@@ -96,15 +218,13 @@ namespace For_English_Words
                     button9.ForeColor = button1.ForeColor;
                     button10.ForeColor = button1.ForeColor;
                     button11.ForeColor = button1.ForeColor;
-                    button5.ForeColor = button1.ForeColor;
                     groupBox1.ForeColor = label5.ForeColor;
                     groupBox2.ForeColor = label5.ForeColor;
                     groupBox3.ForeColor = label5.ForeColor;
-                    groupBox4.ForeColor = label5.ForeColor;
+                    groupBox5.ForeColor = label5.ForeColor;
                     comboBox1.ForeColor = label5.ForeColor;
                     comboBox2.ForeColor = label5.ForeColor;
-                    textBox1.ForeColor = label5.ForeColor;
-                    comboBox1.SelectedIndex = GG;
+                    comboBox3.ForeColor = label5.ForeColor;
                     break;
                 case 1:
                     BackColor = Color.FromArgb(200, 200, 200);
@@ -113,7 +233,7 @@ namespace For_English_Words
                     panel1.BackColor = panel1.BackColor;
                     comboBox1.BackColor = panel1.BackColor;
                     comboBox2.BackColor = panel1.BackColor;
-                    textBox1.BackColor = panel1.BackColor;
+                    comboBox3.BackColor = panel1.BackColor;
                     //------------
                     label5.ForeColor = Color.FromArgb(0,0,0);
                     label1.ForeColor = label5.ForeColor;
@@ -122,9 +242,8 @@ namespace For_English_Words
                     label4.ForeColor = label5.ForeColor;
                     label7.ForeColor = label5.ForeColor;
                     label6.ForeColor = label5.ForeColor;
-                    label9.ForeColor = label5.ForeColor;
+                    label8.ForeColor = label5.ForeColor;
                     button1.ForeColor = label5.ForeColor;
-                    button17.ForeColor = label5.ForeColor;
                     button19.ForeColor = label5.ForeColor;
                     button4.ForeColor = label5.ForeColor;
                     button2.ForeColor = label5.ForeColor;
@@ -132,26 +251,18 @@ namespace For_English_Words
                     button9.ForeColor = label5.ForeColor;
                     button10.ForeColor = label5.ForeColor;
                     button11.ForeColor = label5.ForeColor;
-                    button5.ForeColor = button1.ForeColor;
                     groupBox1.ForeColor = label5.ForeColor;
                     groupBox2.ForeColor = label5.ForeColor;
                     groupBox3.ForeColor = label5.ForeColor;
-                    groupBox4.ForeColor = label5.ForeColor;
+                    groupBox5.ForeColor = label5.ForeColor;
                     comboBox1.ForeColor = label5.ForeColor;
                     comboBox2.ForeColor = label5.ForeColor;
-                    textBox1.ForeColor = label5.ForeColor;
-                    comboBox1.SelectedIndex = GG;
+                    comboBox3.ForeColor = label5.ForeColor;
                     break;
             }
-        }
-        private void GetPath()
-        {
-            string pathSTR = "";
-            string[] pathSTRArray;
-
-            using (StreamReader sr = new StreamReader($"{configPath}\\{pathToDocuments}"))
-                pathSTR = sr.ReadToEnd();
-            defaultPath = pathSTR;
+            comboBox1.SelectedIndex = GG;
+            comboBox2.SelectedIndex = CC;
+            comboBox3.SelectedIndex = HH;
         }
         private void GetParameters()
         {
@@ -209,13 +320,52 @@ namespace For_English_Words
                 button11.ForeColor = button9.ForeColor;
             }
         }
-        //------------------------------------------------------------
-        private void button17_Click(object sender, EventArgs e)
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
-                textBox1.Text = folderBrowserDialog1.SelectedPath;
+            if (comboBox2.SelectedIndex == 0)
+            {
+                using (StreamWriter sw = new StreamWriter($"{configPath}\\{pathToLanguageSetting}"))
+                {
+                    sw.Write(0);
+                }
+            }
+            else if (comboBox2.SelectedIndex == 1)
+            {
+                using (StreamWriter sw = new StreamWriter($"{configPath}\\{pathToLanguageSetting}"))
+                {
+                    sw.Write(1);
+                }
+            }
         }
+
+        private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox3.SelectedIndex == 0)
+            {
+                using (StreamWriter sw = new StreamWriter($"{configPath}\\{pathLocationMF}"))
+                {
+                    sw.Write(0);
+                }
+            }
+            else if (comboBox3.SelectedIndex == 1)
+            {
+                using (StreamWriter sw = new StreamWriter($"{configPath}\\{pathLocationMF}"))
+                {
+                    sw.Write(1);
+                }
+            }
+            else if (comboBox3.SelectedIndex == 2)
+            {
+                using (StreamWriter sw = new StreamWriter($"{configPath}\\{pathLocationMF}"))
+                {
+                    sw.Write(2);
+                }
+            }
+        }
+
         //------------------------------------------------------------
+
         private void SettingsWindow_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.ControlKey)
@@ -327,14 +477,13 @@ namespace For_English_Words
             File.Delete($"{configPath}\\{pathToValueParameters7}");
             button4_Click(button4, null);
         }
-
         //--------------------------------------------------------------------------------------
         // частина коду яка дає молжливість переміщювати форму за допомогою мишки
         // Form Drag
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
         [DllImport("user32.DLL", EntryPoint = "SendMessage")]
-        private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
+        private extern static void SendMessage(IntPtr hWnd, int wMsg, int wParam, int lParam);
 
         // створення події натиснутої кнопки мишки формі
         private void SettingsWindow_MouseDown(object sender, MouseEventArgs e)
@@ -342,10 +491,11 @@ namespace For_English_Words
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
-        //--------------------------------------------------------------------------------------
+
         private void button4_Click(object sender, EventArgs e)
         {
-                Cmd($@"{configPath}\{pathToApplySettingFile}");
+            CheckExistsAutoloadData();
+            Cmd($@"{configPath}\{pathToApplySettingFile}");
         }
     }
 }

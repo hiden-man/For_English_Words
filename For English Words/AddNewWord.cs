@@ -2,7 +2,6 @@
 using System.Drawing;
 using System.IO;
 using System.Runtime.InteropServices;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -12,9 +11,9 @@ namespace For_English_Words
     {
         // Поля
         Size screenSize = Screen.PrimaryScreen.Bounds.Size;
-        string path = "",
+        SettingsClass settingsClass = new SettingsClass();
+        string defaultPath = "C:\\WordMem\\Data",
             configPath = "C:\\WordMem\\Config",
-            pathToDocuments = "PathForDocument.dfp",
             pathToFileWords = "English words.mw",
             pathToFileTranslate = "Translate.mw",
             pathToSizeFile = "Number of the words.mw",
@@ -31,10 +30,45 @@ namespace For_English_Words
         private void Settings_Load(object sender, EventArgs e)
         {
             MainWindowLocation();
+            SwitcherLanguageSettings();
             ThemeSettings();
-            GetPath();
             SetIDWord();
-            guna2ShadowForm1.SetShadowForm(this);
+            label3.Visible = false;
+        }
+
+        // Додавання тіні
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                const int CS_DROPSHADOW = 0x20000;
+                CreateParams cp = base.CreateParams;
+                cp.ClassStyle |= CS_DROPSHADOW;
+                return cp;
+            }
+        }
+        private void SwitcherLanguageSettings()
+        {
+            switch (settingsClass.SwitcherLanguageSettings())
+            {
+                case 0:
+                    button1.Text = "Закрити";
+                    button2.Text = "Додати";
+                    label1.Text = "Слово(а):";
+                    label2.Text = "Переклад:";
+                    label3.Text = "Додано";
+                    label5.Text = "Додавання нових слів";
+                    break;
+
+                case 1:
+                    button1.Text = "Close";
+                    button2.Text = "Add";
+                    label1.Text = "Word(s)";
+                    label2.Text = "Translate";
+                    label3.Text = "Added";
+                    label5.Text = "Add new words";
+                    break;
+            }
         }
 
         private void ThemeSettings()
@@ -77,17 +111,6 @@ namespace For_English_Words
                     break;
             }
         }
-
-        private void GetPath()
-        {
-            string pathSTR = "";
-            string[] pathSTRArray;
-
-            using (StreamReader sr = new StreamReader($"{configPath}\\{pathToDocuments}"))
-                pathSTR = sr.ReadToEnd();
-            path = pathSTR;
-        }
-
         private void MainWindowLocation()
         {
             Location = new Point((screenSize.Width/2)-(Size.Width/2),
@@ -103,7 +126,7 @@ namespace For_English_Words
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
         [DllImport("user32.DLL", EntryPoint = "SendMessage")]
-        private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
+        private extern static void SendMessage(IntPtr hWnd, int wMsg, int wParam, int lParam);
         private void AddNewWord_MouseDown(object sender, MouseEventArgs e)
         {
             ReleaseCapture();
@@ -160,12 +183,12 @@ namespace For_English_Words
 
         private void textBox1_MouseDown(object sender, MouseEventArgs e)
         {
-            label3.Text = "";
+            label3.Visible = false;
         }
 
         private void textBox2_MouseDown(object sender, MouseEventArgs e)
         {
-            label3.Text = "";
+            label3.Visible = false;
         }
 
         private void AddNewWord_KeyDown(object sender, KeyEventArgs e)
@@ -178,7 +201,7 @@ namespace For_English_Words
         // Метод встановлення кількості англійських слів у файлі
         private void SetIDWord()
         {
-            using (StreamReader sr = new StreamReader($@"{path}\{pathToSizeFile}"))
+            using (StreamReader sr = new StreamReader($@"{defaultPath}\{pathToSizeFile}"))
                 IDWords = Convert.ToInt32(sr.ReadLine());
         }
         // Кнопка запису слів та перекладу
@@ -188,7 +211,7 @@ namespace For_English_Words
             label3.Font = new Font("Microsoft Sans Serif", 
                 20.25F, FontStyle.Bold, 
                 GraphicsUnit.Point, ((byte)(204)));
-            label3.Text = "Додано";
+            label3.Visible = true;
             label3.ForeColor = Color.LimeGreen;
             textBox1.Text = "";
             textBox2.Text = "";
@@ -196,7 +219,7 @@ namespace For_English_Words
         // Метод створення файлу та запис кількості англійських слів 
         public void SaveNumberOfSize()
         {
-            using (StreamWriter sw = new StreamWriter($@"{path}\{pathToSizeFile}"))
+            using (StreamWriter sw = new StreamWriter($@"{defaultPath}\{pathToSizeFile}"))
                 sw.Write(IDWords);
         }
         // Метод запису нового слова та перекладу у файли
@@ -209,16 +232,16 @@ namespace For_English_Words
             string[] strWordArray = strWord.Split(' ');
             string[] strTranslateArray = strTranslate.Split(' ');
 
-            using (StreamWriter sw1 = new StreamWriter($@"{path}\{pathToFileWords}", true))
+            using (StreamWriter sw1 = new StreamWriter($@"{defaultPath}\{pathToFileWords}", true))
                 for (int i = 0; i < strWordArray.Length; i++)
                 {
                     sw1.Write($"\n{strWordArray[i]}");
                     IDWords++;
                 }
-            using (StreamWriter sw2 = new StreamWriter($@"{path}\{pathToFileTranslate}", true))
+            using (StreamWriter sw2 = new StreamWriter($@"{defaultPath}\{pathToFileTranslate}", true))
                 for (int i = 0; i < strTranslateArray.Length; i++)
                     sw2.Write($"\n{strTranslateArray[i]}");
-            using (StreamWriter sw3 = new StreamWriter($@"{path}\{pathToCorecctAnswerFile}", true))
+            using (StreamWriter sw3 = new StreamWriter($@"{defaultPath}\{pathToCorecctAnswerFile}", true))
                 for (int i = 0; i < strWordArray.Length; i++)
                     sw3.Write($"\n{0}");
             SaveNumberOfSize();

@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.button1 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.button5 = new System.Windows.Forms.Button();
@@ -37,16 +36,12 @@
             this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button17 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label9 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.button11 = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
@@ -59,11 +54,12 @@
             this.label6 = new System.Windows.Forms.Label();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.label5 = new System.Windows.Forms.Label();
-            this.guna2ShadowForm1 = new Guna.UI2.WinForms.Guna2ShadowForm(this.components);
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.label8 = new System.Windows.Forms.Label();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.panel1.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            this.groupBox4.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -86,29 +82,33 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.panel1.Controls.Add(this.label8);
+            this.panel1.Controls.Add(this.radioButton2);
+            this.panel1.Controls.Add(this.radioButton1);
             this.panel1.Controls.Add(this.button5);
             this.panel1.Controls.Add(this.button19);
             this.panel1.Controls.Add(this.groupBox5);
             this.panel1.Controls.Add(this.groupBox3);
-            this.panel1.Controls.Add(this.groupBox4);
             this.panel1.Controls.Add(this.button4);
             this.panel1.Controls.Add(this.groupBox2);
             this.panel1.Controls.Add(this.groupBox1);
             this.panel1.Location = new System.Drawing.Point(1, 50);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(470, 398);
+            this.panel1.Size = new System.Drawing.Size(470, 355);
             this.panel1.TabIndex = 12;
             // 
             // button5
             // 
             this.button5.BackColor = System.Drawing.Color.Transparent;
             this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button5.ForeColor = System.Drawing.Color.Red;
-            this.button5.Location = new System.Drawing.Point(161, 349);
+            this.button5.Location = new System.Drawing.Point(162, 299);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(143, 35);
+            this.button5.Size = new System.Drawing.Size(30, 35);
             this.button5.TabIndex = 1;
-            this.button5.Text = "Скинути шлях";
+            this.button5.Text = "?";
+            this.button5.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.button5.UseVisualStyleBackColor = false;
             // 
             // button19
@@ -116,9 +116,9 @@
             this.button19.BackColor = System.Drawing.Color.Transparent;
             this.button19.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button19.ForeColor = System.Drawing.Color.Red;
-            this.button19.Location = new System.Drawing.Point(12, 349);
+            this.button19.Location = new System.Drawing.Point(196, 299);
             this.button19.Name = "button19";
-            this.button19.Size = new System.Drawing.Size(143, 35);
+            this.button19.Size = new System.Drawing.Size(136, 35);
             this.button19.TabIndex = 1;
             this.button19.Text = "Скинути налаштування";
             this.button19.UseVisualStyleBackColor = false;
@@ -130,9 +130,9 @@
             this.groupBox5.Controls.Add(this.comboBox3);
             this.groupBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
-            this.groupBox5.Location = new System.Drawing.Point(1, 270);
+            this.groupBox5.Location = new System.Drawing.Point(1, 216);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(312, 73);
+            this.groupBox5.Size = new System.Drawing.Size(301, 66);
             this.groupBox5.TabIndex = 9;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Розташування головного вікна";
@@ -145,14 +145,14 @@
             this.comboBox3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(1)))));
             this.comboBox3.FormattingEnabled = true;
             this.comboBox3.Items.AddRange(new object[] {
-            "Верхній лівий куток",
             "Зверху посередині",
-            "Верхній правий куток",
-            "Знизу посередині"});
-            this.comboBox3.Location = new System.Drawing.Point(38, 28);
+            "Верхній лівий куток",
+            "Верхній правий куток"});
+            this.comboBox3.Location = new System.Drawing.Point(22, 21);
             this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(236, 24);
+            this.comboBox3.Size = new System.Drawing.Size(257, 24);
             this.comboBox3.TabIndex = 0;
+            this.comboBox3.SelectedIndexChanged += new System.EventHandler(this.comboBox3_SelectedIndexChanged);
             // 
             // groupBox3
             // 
@@ -160,9 +160,9 @@
             this.groupBox3.Controls.Add(this.comboBox2);
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
-            this.groupBox3.Location = new System.Drawing.Point(1, 191);
+            this.groupBox3.Location = new System.Drawing.Point(1, 137);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(312, 73);
+            this.groupBox3.Size = new System.Drawing.Size(301, 73);
             this.groupBox3.TabIndex = 9;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Мова";
@@ -177,48 +177,11 @@
             this.comboBox2.Items.AddRange(new object[] {
             "Українська",
             "English"});
-            this.comboBox2.Location = new System.Drawing.Point(38, 28);
+            this.comboBox2.Location = new System.Drawing.Point(20, 28);
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(236, 24);
+            this.comboBox2.Size = new System.Drawing.Size(233, 24);
             this.comboBox2.TabIndex = 0;
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.BackColor = System.Drawing.Color.Transparent;
-            this.groupBox4.Controls.Add(this.textBox1);
-            this.groupBox4.Controls.Add(this.button17);
-            this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
-            this.groupBox4.Location = new System.Drawing.Point(0, 0);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(462, 50);
-            this.groupBox4.TabIndex = 8;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Шлях до файлів програми";
-            // 
-            // textBox1
-            // 
-            this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.ForeColor = System.Drawing.Color.Red;
-            this.textBox1.Location = new System.Drawing.Point(7, 17);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(385, 22);
-            this.textBox1.TabIndex = 7;
-            // 
-            // button17
-            // 
-            this.button17.BackColor = System.Drawing.Color.Transparent;
-            this.button17.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button17.ForeColor = System.Drawing.Color.Red;
-            this.button17.Location = new System.Drawing.Point(398, 14);
-            this.button17.Name = "button17";
-            this.button17.Size = new System.Drawing.Size(55, 26);
-            this.button17.TabIndex = 1;
-            this.button17.Text = "Шлях";
-            this.button17.UseVisualStyleBackColor = false;
-            this.button17.Click += new System.EventHandler(this.button17_Click);
+            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             // 
             // button4
             // 
@@ -226,9 +189,9 @@
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button4.ForeColor = System.Drawing.Color.Red;
-            this.button4.Location = new System.Drawing.Point(319, 349);
+            this.button4.Location = new System.Drawing.Point(338, 299);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(143, 35);
+            this.button4.Size = new System.Drawing.Size(124, 35);
             this.button4.TabIndex = 4;
             this.button4.Text = "Застосувати";
             this.button4.UseVisualStyleBackColor = false;
@@ -242,9 +205,9 @@
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
-            this.groupBox2.Location = new System.Drawing.Point(319, 191);
+            this.groupBox2.Location = new System.Drawing.Point(309, 137);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(143, 152);
+            this.groupBox2.Size = new System.Drawing.Size(153, 145);
             this.groupBox2.TabIndex = 6;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Розмір головного вікна";
@@ -253,10 +216,11 @@
             // 
             this.button2.BackColor = System.Drawing.Color.Transparent;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.Color.Red;
-            this.button2.Location = new System.Drawing.Point(74, 96);
+            this.button2.Location = new System.Drawing.Point(79, 91);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(30, 30);
+            this.button2.Size = new System.Drawing.Size(41, 32);
             this.button2.TabIndex = 2;
             this.button2.Text = "+";
             this.button2.UseVisualStyleBackColor = false;
@@ -266,10 +230,11 @@
             // 
             this.button3.BackColor = System.Drawing.Color.Transparent;
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button3.ForeColor = System.Drawing.Color.Red;
-            this.button3.Location = new System.Drawing.Point(38, 96);
+            this.button3.Location = new System.Drawing.Point(32, 91);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(30, 30);
+            this.button3.Size = new System.Drawing.Size(41, 32);
             this.button3.TabIndex = 3;
             this.button3.Text = "-";
             this.button3.UseVisualStyleBackColor = false;
@@ -281,37 +246,27 @@
             this.label7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
-            this.label7.Location = new System.Drawing.Point(26, 26);
+            this.label7.Location = new System.Drawing.Point(26, 21);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(91, 67);
+            this.label7.Size = new System.Drawing.Size(100, 61);
             this.label7.TabIndex = 5;
-            this.label7.Text = "X:1920\r\nY:1080";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label7.Text = "x:1920\r\ny:1080";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.Transparent;
-            this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.panel2);
             this.groupBox1.Controls.Add(this.comboBox1);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
-            this.groupBox1.Location = new System.Drawing.Point(1, 56);
+            this.groupBox1.Location = new System.Drawing.Point(1, 2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(461, 129);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Тема вікон";
-            // 
-            // label9
-            // 
-            this.label9.Location = new System.Drawing.Point(318, 88);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(137, 17);
-            this.label9.TabIndex = 15;
-            this.label9.Text = "Обрана тема:";
-            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel2
             // 
@@ -421,8 +376,8 @@
             this.comboBox1.ForeColor = System.Drawing.Color.Red;
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
-            "Dark",
-            "Light"});
+            "Темна",
+            "Світла"});
             this.comboBox1.Location = new System.Drawing.Point(318, 56);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(137, 24);
@@ -454,6 +409,43 @@
             this.label5.Text = "Налаштування";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.BackColor = System.Drawing.Color.Transparent;
+            this.radioButton1.ForeColor = System.Drawing.Color.Red;
+            this.radioButton1.Location = new System.Drawing.Point(27, 322);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(42, 17);
+            this.radioButton1.TabIndex = 10;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "так";
+            this.radioButton1.UseVisualStyleBackColor = false;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.BackColor = System.Drawing.Color.Transparent;
+            this.label8.ForeColor = System.Drawing.Color.Red;
+            this.label8.Location = new System.Drawing.Point(24, 293);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(95, 26);
+            this.label8.TabIndex = 11;
+            this.label8.Text = "Запускати разом\r\nз Windows?";
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.BackColor = System.Drawing.Color.Transparent;
+            this.radioButton2.ForeColor = System.Drawing.Color.Red;
+            this.radioButton2.Location = new System.Drawing.Point(77, 322);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(33, 17);
+            this.radioButton2.TabIndex = 10;
+            this.radioButton2.TabStop = true;
+            this.radioButton2.Text = "ні";
+            this.radioButton2.UseVisualStyleBackColor = false;
+            // 
             // SettingsWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -473,10 +465,9 @@
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.SettingsWindow_KeyUp);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.SettingsWindow_MouseDown);
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -507,18 +498,16 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button17;
-        private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Button button19;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.ComboBox comboBox3;
-        private Guna.UI2.WinForms.Guna2ShadowForm guna2ShadowForm1;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton radioButton1;
     }
 }
