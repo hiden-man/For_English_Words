@@ -180,7 +180,6 @@
             this.Name = "AddNewWord";
             this.Text = "-";
             this.Load += new System.EventHandler(this.Settings_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.AddNewWord_KeyDown);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AddNewWord_MouseDown);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);

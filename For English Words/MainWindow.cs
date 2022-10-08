@@ -14,7 +14,8 @@ namespace For_English_Words
         AddNewWord AddNewWordWindow = new AddNewWord();
         SettingsWindow settingsWindow = new SettingsWindow();
         SettingsClass settingsClass = new SettingsClass();
-
+        CreaterSomeFiles csf;
+        //---------------------------------------------------------------------------------------------------------------------------------------------
         string defaultPath = "C:\\WordMem\\Data",
             configPath = "C:\\WordMem\\Config",
             pathToFileWords = "English words.mw",
@@ -33,12 +34,11 @@ namespace For_English_Words
             pathToCounterFile2 = "Index for switch.ci",
             pathToApplySettingFile = "Apply.bat",
             pathToSizeFile = "Number of the words.mw",
-            pathToLanguageSetting = "Switch language.sl",
             pathLocationMF = "Switch_location.sl",
             pathLocationInfo = "Location_Info.li",
             pathToPathToRegistry = "Path For Registry.pr",
             pathToSwitchColor = "Switch Color.ss";
-
+        //---------------------------------------------------------------------------------------------------------------------------------------------
         string[] defaultWords = {
             "white","black","orange","blue","green","red","brown","gray","pink","yellow","magenta","purple",
             "maroon","advice","agree","urgently","continue","meet","rarely","colleagues","classmate","neighbors",
@@ -52,28 +52,26 @@ namespace For_English_Words
             "краще","помилки","ефективно","брати","корисно","робітники","пропозиція","білет","означати",
             "пояснювати","говорити","проводити","дивний","вирощувати","сад","постачальники","ситуація","відповідь",
             "кліенти","ненавидіти","плавати","обіцяти","відмова"};
-
+        //---------------------------------------------------------------------------------------------------------------------------------------------
         uint fontS = 14, fontSB = 8, fontSRButton = 8;
-
+        //---------------------------------------------------------------------------------------------------------------------------------------------
         private int
             IDWords = 0, IDTranslate = 0, randomIDWord = 0,
             correctItem = 0, randomChoise = 0, x = 440, y = 81,
-            indexParam = 0, numberOfIter = 0, xB = 64, yB = 22,
+            indexParam = 0, numberOfIter = 0, xB = 70, yB = 22,
             sizeTextBoxX = 229, sizePicture = 15, switchIndexCor = 0;
-
+        //---------------------------------------------------------------------------------------------------------------------------------------------
         // Проценти
         private const byte 
             perCentS = 20, perCentST = 30, 
             perCentSB = 20, perCentSRB = 31,
             perCentSTextBox = 19;
-
-        // для комбінацій клавіш
-        bool ctrl = false, S = false, Q = false, A = false, plus = false, minus = false;
+        //---------------------------------------------------------------------------------------------------------------------------------------------
         public MainWindow()
         {
             InitializeComponent();
         }
-
+        //---------------------------------------------------------------------------------------------------------------------------------------------
         private void Form1_Load(object sender, EventArgs e)
         {
             CreateDirectoryAndFiles();
@@ -81,17 +79,18 @@ namespace For_English_Words
             MySettings();
             RecountTheNumberOfWords();
             Repetition();
+            button1.Location = new Point(Size.Width - button1.Size.Width,0);
         }
+        //---------------------------------------------------------------------------------------------------------------------------------------------
         // МЕТОДИ !!!!!
-        //---------------------------------------------------------------------------------------------------------
-        // Метод повтору
+        // Метод Оновлення
         private void Repetition()
         {
             SetIDWord();
             OutputRandomWord();
             OutputAnswer();
         }
-
+        //---------------------------------------------------------------------------------------------------------------------------------------------
         // Додавання тіні
         protected override CreateParams CreateParams
         {
@@ -113,44 +112,16 @@ namespace For_English_Words
                 Directory.CreateDirectory(configPath);
                 Directory.CreateDirectory(defaultPath);
             }
-
-            if (!File.Exists($"{configPath}\\{pathToPathToRegistry}"))
-            {
-                using (StreamWriter sw = new StreamWriter($"{configPath}\\{pathToPathToRegistry}"))
-                {
-                    sw.Write(Path.GetFullPath("For English Words.exe"));
-                }
-            }
-
-            if (!File.Exists($"{configPath}\\{pathLocationInfo}"))
-            {
-                using (StreamWriter sw = new StreamWriter($"{configPath}\\{pathLocationInfo}"))
-                {
-                    sw.Write($"{0}\n{0}");
-                }
-            }
-
-            if (!File.Exists($"{configPath}\\{pathLocationMF}"))
-            {
-                using (StreamWriter sw = new StreamWriter($"{configPath}\\{pathLocationMF}"))
-                {
-                    sw.Write(0);
-                }
-            }
-
-            if (!File.Exists($"{configPath}\\{pathToLanguageSetting}"))
-            {
-                using (StreamWriter sw = new StreamWriter($"{configPath}\\{pathToLanguageSetting}"))
-                    sw.Write(0);
-            }
-
-
-            if (!File.Exists($@"{defaultPath}\{pathToSwitchIndex}"))
-            {
-                using (StreamWriter sw = new StreamWriter($@"{defaultPath}\{pathToSwitchIndex}"))
-                    sw.Write(0);
-            }
-
+            //-------------------------------------------------------------------------------------
+            csf = new CreaterSomeFiles(configPath, pathToPathToRegistry, Path.GetFullPath("For English Words.exe"));
+            csf = new CreaterSomeFiles(configPath, pathLocationInfo, "0", 1);
+            csf = new CreaterSomeFiles(configPath, pathLocationMF, "0");
+            csf = new CreaterSomeFiles(defaultPath, pathToSwitchIndex, "0");
+            csf = new CreaterSomeFiles(configPath, pathToCounterFile, "0");
+            csf = new CreaterSomeFiles(defaultPath, pathToRandomAsnwer);
+            csf = new CreaterSomeFiles(defaultPath, pathToCounterFile2, "2");
+            csf = new CreaterSomeFiles(configPath, pathToSwitchColor, "0");
+            //-------------------------------------------------------------------------------------
             // Створення файла для слів
             if (!File.Exists($@"{defaultPath}\{pathToFileWords}"))
             {
@@ -165,6 +136,7 @@ namespace For_English_Words
                         IDWords++;
                     }
             }
+            //-------------------------------------------------------------------------------------
             // Створення файла для перекладу
             if (!File.Exists($@"{defaultPath}\{pathToFileTranslate}"))
             {
@@ -179,7 +151,7 @@ namespace For_English_Words
                         IDTranslate++;
                     }
             }
-
+            //-------------------------------------------------------------------------------------
             // Створення файла для вірних відповідей
             if (!File.Exists($@"{defaultPath}\{pathToCorecctAnswerFile}"))
             {
@@ -191,18 +163,7 @@ namespace For_English_Words
                         else
                             sw3.Write($"\n{correctItem}");
             }
-
-            // Створення файла для перемішування відповідей
-            if (!File.Exists($@"{defaultPath}\{pathToRandomAsnwer}"))
-                using (FileStream fs1 = new FileStream($@"{defaultPath}\{pathToRandomAsnwer}", FileMode.Create)) { };
-
-            // Створення файла для лічильника
-            if (!File.Exists($@"{configPath}\{pathToCounterFile}"))
-            {
-                using (StreamWriter sw8 = new StreamWriter($@"{configPath}\{pathToCounterFile}"))
-                    sw8.Write(0);
-            }
-
+            //-------------------------------------------------------------------------------------
             // Створення файлів для параметрів
             if (!File.Exists($@"{configPath}\{pathToValueParameters}"))
             {
@@ -234,7 +195,7 @@ namespace For_English_Words
                     }
                 }
             }
-            //---------------------------------------------------------------------------------------------------------
+            //-------------------------------------------------------------------------------------
             if (!File.Exists($@"{configPath}\{pathToValueParameters2}"))
             {
                 using (StreamWriter sw = new StreamWriter($@"{configPath}\{pathToValueParameters2}"))
@@ -253,7 +214,7 @@ namespace For_English_Words
                     }
                 }
             }
-            //---------------------------------------------------------------------------------------------------------
+            //-------------------------------------------------------------------------------------
             if (!File.Exists($@"{configPath}\{pathToValueParameters3}"))
             {
                 using (StreamWriter sw = new StreamWriter($@"{configPath}\{pathToValueParameters3}"))
@@ -272,7 +233,7 @@ namespace For_English_Words
                     }
                 }
             }
-            //---------------------------------------------------------------------------------------------------------
+            //-------------------------------------------------------------------------------------
             if (!File.Exists($@"{configPath}\{pathToValueParameters4}"))
             {
                 using (StreamWriter sw = new StreamWriter($@"{configPath}\{pathToValueParameters4}"))
@@ -291,7 +252,7 @@ namespace For_English_Words
                     }
                 }
             }
-            //---------------------------------------------------------------------------------------------------------
+            //-------------------------------------------------------------------------------------
             if (!File.Exists($@"{configPath}\{pathToValueParameters5}"))
             {
                 using (StreamWriter sw = new StreamWriter($@"{configPath}\{pathToValueParameters5}"))
@@ -310,7 +271,7 @@ namespace For_English_Words
                     }
                 }
             }
-            //---------------------------------------------------------------------------------------------------------
+            //-------------------------------------------------------------------------------------
             if (!File.Exists($@"{configPath}\{pathToValueParameters6}"))
             {
                 using (StreamWriter sw = new StreamWriter($@"{configPath}\{pathToValueParameters6}"))
@@ -330,7 +291,7 @@ namespace For_English_Words
                     }
                 }
             }
-            //---------------------------------------------------------------------------------------------------------
+            //-------------------------------------------------------------------------------------
             if (!File.Exists($@"{configPath}\{pathToValueParameters7}"))
             {
                 using (StreamWriter sw = new StreamWriter($@"{configPath}\{pathToValueParameters7}"))
@@ -349,14 +310,7 @@ namespace For_English_Words
                     }
                 }
             }
-            //---------------------------------------------------------------------------------------------------------
-
-            if (!File.Exists($@"{defaultPath}\{pathToCounterFile2}"))
-            {
-                using (StreamWriter sw = new StreamWriter($@"{defaultPath}\{pathToCounterFile2}"))
-                    sw.Write(2);
-            }
-
+            //-------------------------------------------------------------------------------------
             if (!File.Exists($"{configPath}\\{pathToApplySettingFile}"))
             {
                 string str = Path.GetFullPath("For English Words.exe");
@@ -366,47 +320,14 @@ namespace For_English_Words
 start """" ""{str}""");
                 }
             }
-
+            //-------------------------------------------------------------------------------------
             // Запис кількості слів у текстовий файл
             if (!File.Exists($@"{defaultPath}\{pathToSizeFile}"))
             {
                 SaveNumberOfSize();
             }
-
-            if (!File.Exists($"{configPath}\\{pathToSwitchColor}"))
-            {
-                using (StreamWriter sw = new StreamWriter($"{configPath}\\{pathToSwitchColor}"))
-                {
-                    sw.Write(0);
-                }
-            }
         }
-        //---------------------------------------------------------------------------------------------------------
-
-        private void SwitcherLanguageSettings()
-        {
-            switch (settingsClass.SwitcherLanguageSettings())
-            {
-                case 0:
-                    button2.Text = "Налаштування";
-                    button3.Text = "Нове слово";
-                    button4.Text = "Оновити";
-                    button5.Text = "Відповідь";
-                    button6.Text = "Меню";
-                    button8.Text = "Закрити";
-                    break;
-
-                case 1:
-                    button2.Text = "Settings";
-                    button3.Text = "New Word";
-                    button4.Text = "Refresh";
-                    button5.Text = "Answer";
-                    button6.Text = "Menu";
-                    button8.Text = "Close";
-                    break;
-            }
-        }
-
+        //---------------------------------------------------------------------------------------------------------------------------------------------
         private void SwitcherLocationMainForm()
         {
             switch (settingsClass.SwitcherLocationMainForm())
@@ -423,30 +344,21 @@ start """" ""{str}""");
                     break;
             }
         }
-
-        //---------------------------------------------------------------------------------------------------------
+        //---------------------------------------------------------------------------------------------------------------------------------------------
         // Метод налаштувань
         private void MySettings()
         {
             string strParam = "", strParam2 = "";
             string[] strParamArray, strIndexParamArray;
-
             using (StreamReader streamR = new StreamReader($@"{configPath}\{pathToValueParameters}"))
                 strParam = streamR.ReadToEnd();
-
             strParamArray = strParam.Split('\n');
-
             using (StreamReader streamR1 = new StreamReader($@"{configPath}\{pathToCounterFile}"))
                 indexParam = Convert.ToInt32(streamR1.ReadToEnd());
-
             strParam2 = strParamArray[indexParam];
             strIndexParamArray = strParam2.Split(',');
-
             x = Convert.ToInt32(strIndexParamArray[0]);
             y = Convert.ToInt32(strIndexParamArray[1]);
-
-            //---------------------------------------------------------------------------------------------------------
-
             string strParamMainText = "";
             string[] strParamMainTextArray;
 
@@ -454,9 +366,6 @@ start """" ""{str}""");
                 strParamMainText = sr2.ReadToEnd();
             strParamMainTextArray = strParamMainText.Split('\n');
             fontS = Convert.ToUInt32(strParamMainTextArray[indexParam]);
-
-            //---------------------------------------------------------------------------------------------------------
-
             string strParamTextBoxX = "";
             string[] strParamTextBoxXArray;
 
@@ -464,52 +373,33 @@ start """" ""{str}""");
                 strParamTextBoxX = sr3.ReadToEnd();
             strParamTextBoxXArray = strParamTextBoxX.Split('\n');
             sizeTextBoxX = Convert.ToInt32(strParamTextBoxXArray[indexParam]);
-
-            //---------------------------------------------------------------------------------------------------------
-
             string strParamSRB = "";
             string[] strParamSRBArray;
-
             using (StreamReader sr4 = new StreamReader($@"{configPath}\{pathToValueParameters3}"))
                 strParamSRB = sr4.ReadToEnd();
             strParamSRBArray = strParamSRB.Split('\n');
             fontSRButton = Convert.ToUInt32(strParamSRBArray[indexParam]);
-
-            //---------------------------------------------------------------------------------------------------------
-
             string strParamSB = "";
             string[] strParamSBArray;
-
             using (StreamReader sr5 = new StreamReader($@"{configPath}\{pathToValueParameters4}"))
                 strParamSB = sr5.ReadToEnd();
             strParamSBArray = strParamSB.Split('\n');
             fontSB = Convert.ToUInt32(strParamSBArray[indexParam]);
-
-            //---------------------------------------------------------------------------------------------------------
-
-            string strParamSB1 = "", strParamSB2 = "";
-            string[] strParamSBArray1, strParamSBArray2;
-
+            string strParamSB2 = "";// strParamSB2 = "";
+            string[] strParamSBArray2; //strParamSBArray2;
             using (StreamReader sr5 = new StreamReader($@"{configPath}\{pathToValueParameters6}"))
                 strParamSB = sr5.ReadToEnd();
             strParamSBArray = strParamSB.Split('\n');
             strParamSB2 = strParamSBArray[indexParam];
             strParamSBArray2 = strParamSB2.Split(',');
-
             xB = Convert.ToInt32(strParamSBArray2[0]);
             yB = Convert.ToInt32(strParamSBArray2[1]);
-
-            //---------------------------------------------------------------------------------------------------------
-
             string strParamSP = "";
             string[] strParamSPArray;
             using (StreamReader sr6 = new StreamReader($@"{configPath}\{pathToValueParameters7}"))
                 strParamSP = sr6.ReadToEnd();
             strParamSPArray = strParamSP.Split('\n');
             sizePicture = Convert.ToInt32(strParamSPArray[indexParam]);
-
-            //---------------------------------------------------------------------------------------------------------
-
             Size = new Size(x, y);
             textBox1.Font = new Font("Microsoft Sans Serif", fontS, FontStyle.Regular, GraphicsUnit.Point, 204);
             textBox1.Size = new Size(sizeTextBoxX, textBox1.Size.Height);
@@ -523,33 +413,23 @@ start """" ""{str}""");
             button5.Size = new Size(xB, yB);
             button6.Font = new Font("Microsoft Sans Serif", fontSB, FontStyle.Regular, GraphicsUnit.Point, 0);
             button6.Size = new Size(xB, yB);
-
-            //---------------------------------------------------------------------------------------------------------
-
             radioButton1.Location = new Point(textBox1.Location.X + textBox1.Size.Width + pictureBox1.Size.Width + 10, 3);
             radioButton2.Location = new Point(radioButton1.Location.X, radioButton1.Location.Y + radioButton1.Size.Height + 5);
             radioButton3.Location = new Point(radioButton1.Location.X, radioButton2.Location.Y + radioButton2.Size.Height + 5);
             pictureBox1.Location = new Point();
-
             button6.Location = new Point(textBox1.Location.X, textBox1.Location.Y + textBox1.Size.Height + 5);
             button5.Location = new Point(button6.Location.X + button6.Size.Width + 4, button6.Location.Y);
             button4.Location = new Point(button5.Location.X + button5.Size.Width + 2, button5.Location.Y);
-
             SwitcherLocationMainForm();
             CountSetting();
-            SwitcherLanguageSettings();
         }
-        //---------------------------------------------------------------------------------------------------------
+        //---------------------------------------------------------------------------------------------------------------------------------------------
         // Метод вибору налаштувань
         private void CountSetting()
         {
             byte numSett = 0;
-
             using (StreamReader sr = new StreamReader($"{configPath}\\{pathToSwitchColor}"))
-            {
                 numSett = Convert.ToByte(sr.ReadToEnd());
-            }
-            
             switch (numSett)
             {
                 case 0:
@@ -559,12 +439,10 @@ start """" ""{str}""");
                     button5.ForeColor = Color.FromArgb(255, 0, 0);
                     button6.ForeColor = Color.FromArgb(255, 0, 0);
                     button8.ForeColor = Color.FromArgb(255, 0, 0);
-
                     radioButton1.ForeColor = Color.FromArgb(255, 102, 102);
                     radioButton2.ForeColor = Color.FromArgb(255, 102, 102);
                     radioButton3.ForeColor = Color.FromArgb(255, 102, 102);
                     textBox1.ForeColor = Color.FromArgb(255, 102, 102);
-
                     BackColor = Color.FromArgb(20,20,20);
                     textBox1.BackColor = Color.FromArgb(20,20,20);
                     panel1.BackColor = Color.FromArgb(20,20,20);
@@ -576,19 +454,17 @@ start """" ""{str}""");
                     button5.ForeColor = Color.FromArgb(0,0,0);
                     button6.ForeColor = Color.FromArgb(0,0,0);
                     button8.ForeColor = Color.FromArgb(0,0,0);
-
                     radioButton1.ForeColor = Color.FromArgb(0,0,0);
                     radioButton2.ForeColor = Color.FromArgb(0,0,0);
                     radioButton3.ForeColor = Color.FromArgb(0,0,0);
                     textBox1.ForeColor = Color.FromArgb(0,0,0);
-
                     BackColor = Color.FromArgb(200, 200, 200);
                     textBox1.BackColor = Color.FromArgb(200, 200, 200);
                     panel1.BackColor = Color.FromArgb(200, 200, 200);
                     break;
             }
         }
-        //---------------------------------------------------------------------------------------------------------
+        //---------------------------------------------------------------------------------------------------------------------------------------------
         // Метод перераховування кількості слів при повторному відкритті программи
         private void RecountTheNumberOfWords()
         {
@@ -599,7 +475,7 @@ start """" ""{str}""");
             for (int i = 0; i < strRecountArray.GetLength(0); i++)
                 IDWords++;
         }
-        //---------------------------------------------------------------------------------------------------------
+        //---------------------------------------------------------------------------------------------------------------------------------------------
         // Метод створення файлу та запис кількості англійських слів
         public void SaveNumberOfSize()
         {
@@ -607,19 +483,18 @@ start """" ""{str}""");
                 sw.Write($"{IDWords}");
             SetIDWord();
         }
-        //---------------------------------------------------------------------------------------------------------
+        //---------------------------------------------------------------------------------------------------------------------------------------------
         // Метод встановлення кількості англійських слів у файлі
         private void SetIDWord()
         {
             using (StreamReader sr = new StreamReader($@"{defaultPath}\{pathToSizeFile}"))
                 IDWords = Convert.ToInt32(sr.ReadToEnd());
         }
-        //---------------------------------------------------------------------------------------------------------
+        //---------------------------------------------------------------------------------------------------------------------------------------------
         // Метод випадкової вибірки слова із списка 
         private void OutputRandomWord()
         {
             randomIDWord = random.Next(IDWords);
-
             // Рядок для запису даних із текстового файлу
             string strCorNum = "";
             // Читаємо данні з файлу
@@ -681,7 +556,6 @@ start """" ""{str}""");
                                 sizeNumber++;
                             }
                         }
-                        //---------------------------------------------------------------
                         string str11 = "";
                         using (StreamReader sr = new StreamReader($@"{defaultPath}\{pathToFileWords}"))
                             str11 = sr.ReadToEnd();
@@ -716,7 +590,6 @@ start """" ""{str}""");
                                     sw.Write($"\n{shortStrWorNumArray[y]}");
                             }
                         }
-                        //---------------------------------------------------------------
                         string str22 = "";
                         using (StreamReader sr = new StreamReader($@"{defaultPath}\{pathToFileTranslate}"))
                             str22 = sr.ReadToEnd();
@@ -751,20 +624,18 @@ start """" ""{str}""");
                                     sw.Write($"\n{shortStrTraNumArray[f]}");
                             }
                         }
-                        //---------------------------------------------------------------
                         using (StreamWriter sw = new StreamWriter($@"{defaultPath}\{pathToSizeFile}"))
                             sw.Write(sizeNumber);
                     }
                 }
             }
-
             string stringWord = "";
             using (StreamReader sr1 = new StreamReader($@"{defaultPath}\{pathToFileWords}"))
                 stringWord = sr1.ReadToEnd();
             string[] wordsArray = stringWord.Split('\n');
             textBox1.Text = wordsArray[randomIDWord];
         }
-        //---------------------------------------------------------------------------------------------------------
+        //---------------------------------------------------------------------------------------------------------------------------------------------
         // Метод виводу відповідей 
         private void OutputAnswer()
         {
@@ -855,7 +726,7 @@ start """" ""{str}""");
                     break;
             }
         }
-        //---------------------------------------------------------------------------------------------------------
+        //---------------------------------------------------------------------------------------------------------------------------------------------
         // Метод запису кількості правельних відповідей
         private void WriteNumberOfCorrectAnswers()
         {
@@ -878,7 +749,6 @@ start """" ""{str}""");
                             sw.Write($"\n{str1Array[i]}");
                 }
             }
-            //--------------------------------------------------------------
             else
             {
                 string str1 = "";
@@ -898,7 +768,7 @@ start """" ""{str}""");
             using (StreamWriter sw = new StreamWriter($@"{defaultPath}\{pathToSwitchIndex}"))
                 sw.Write(1);
         }
-        //---------------------------------------------------------------------------------------------------------
+        //---------------------------------------------------------------------------------------------------------------------------------------------
         // Метод перевірки вірності відповіді
         private void CheckCorrectAnswer()
         {
@@ -975,8 +845,9 @@ start """" ""{str}""");
                 }
             }
         }
+        /*
         //---------------------------------------------------------------------------------------------------------
-        // Методи вираховування розмірів контролерів
+        //Методи вираховування розмірів контролерів
         private void CalculateSizeControlsUp()
         {
             using (StreamReader sr6 = new StreamReader($@"{configPath}\{pathToCounterFile}"))
@@ -984,7 +855,7 @@ start """" ""{str}""");
 
             string param = "", param2 = "";
             string[] paramArray, paramArray2;
-            
+
             using (StreamReader sr1 = new StreamReader($@"{configPath}\{pathToValueParameters}"))
                 param = sr1.ReadToEnd();
             paramArray = param.Split('\n');
@@ -1068,11 +939,11 @@ start """" ""{str}""");
             radioButton1.Font = new Font("Microsoft Sans Serif", fontSRButton, FontStyle.Regular, GraphicsUnit.Point, 204);
             radioButton2.Font = new Font("Microsoft Sans Serif", fontSRButton, FontStyle.Regular, GraphicsUnit.Point, 204);
             radioButton3.Font = new Font("Microsoft Sans Serif", fontSRButton, FontStyle.Regular, GraphicsUnit.Point, 204);
-            button4.Font = new Font("Microsoft Sans Serif",fontSB, FontStyle.Regular, GraphicsUnit.Point,0);
+            button4.Font = new Font("Microsoft Sans Serif", fontSB, FontStyle.Regular, GraphicsUnit.Point, 0);
             button4.Size = new Size(xB, yB);
-            button5.Font = new Font("Microsoft Sans Serif",fontSB, FontStyle.Regular, GraphicsUnit.Point,0);
+            button5.Font = new Font("Microsoft Sans Serif", fontSB, FontStyle.Regular, GraphicsUnit.Point, 0);
             button5.Size = new Size(xB, yB);
-            button6.Font = new Font("Microsoft Sans Serif",fontSB, FontStyle.Regular, GraphicsUnit.Point,0);
+            button6.Font = new Font("Microsoft Sans Serif", fontSB, FontStyle.Regular, GraphicsUnit.Point, 0);
             button6.Size = new Size(xB, yB);
         }
         //---------------------------------------------------------------------------------------------------------
@@ -1087,7 +958,7 @@ start """" ""{str}""");
             using (StreamReader sr1 = new StreamReader($@"{configPath}\{pathToValueParameters}"))
                 param = sr1.ReadToEnd();
             paramArray = param.Split('\n');
-            if(indexParam > 0)
+            if (indexParam > 0)
                 indexParam--;
             if (indexParam == 0)
                 indexParam = 0;
@@ -1102,7 +973,7 @@ start """" ""{str}""");
 
             //---------------------------------------------------------------------------------------------------------
 
-            if(indexParam > 0)
+            if (indexParam > 0)
             {
                 string strParamMainText = "";
                 string[] strParamMainTextArray;
@@ -1156,7 +1027,7 @@ start """" ""{str}""");
                 xB = Convert.ToInt32(strParamSBArray2[0]);
                 yB = Convert.ToInt32(strParamSBArray2[1]);
 
-                //---------------------------------------------------------------------------------------------------------
+                //--------------------------------------------------------------------------------------------------------
 
                 string strParamSP = "";
                 string[] strParamSPArray;
@@ -1190,9 +1061,10 @@ start """" ""{str}""");
             button6.Font = new Font("Microsoft Sans Serif", fontSB, FontStyle.Regular, GraphicsUnit.Point, 0);
             button6.Size = new Size(xB, yB);
         }
-        //---------------------------------------------------------------------------------------------------------
+        */
+
         // КОНТРОЛЕРИ
-        //---------------------------------------------------------------------------------------------------------
+        //---------------------------------------------------------------------------------------------------------------------------------------------
         // Кнопка відкриття меню
         private void button6_Click(object sender, EventArgs e)
         {
@@ -1201,36 +1073,35 @@ start """" ""{str}""");
             panel1.Visible = true;
             
         }
-        //---------------------------------------------------------------------------------------------------------
+        //---------------------------------------------------------------------------------------------------------------------------------------------
         // Кнопка закриття меню
         private void button7_Click(object sender, EventArgs e)
         {
             button6.Visible = true;
             panel1.Visible = false;
         }
-        //---------------------------------------------------------------------------------------------------------
+        //---------------------------------------------------------------------------------------------------------------------------------------------
         // Кнопка відкриття налаштувань
         private void button2_Click(object sender, EventArgs e)
         {
             settingsWindow.Show();
             panel1.Visible = false;
         }
-
-        //---------------------------------------------------------------------------------------------------------
+        //---------------------------------------------------------------------------------------------------------------------------------------------
         // Кнопка відповіді
         private void button5_Click(object sender, EventArgs e)
         {
             CheckCorrectAnswer();
             WriteNumberOfCorrectAnswers();
         }
-        //---------------------------------------------------------------------------------------------------------
+        //---------------------------------------------------------------------------------------------------------------------------------------------
         // Кнопка додавання нових слів
         private void button3_Click(object sender, EventArgs e)
         {
             AddNewWordWindow.Show();
             panel1.Visible = false;
         }
-        //---------------------------------------------------------------------------------------------------------
+        //---------------------------------------------------------------------------------------------------------------------------------------------
         // Кнопка оновлення
         private void button4_Click(object sender, EventArgs e)
         {
@@ -1240,96 +1111,24 @@ start """" ""{str}""");
             pictureBox1.Visible = false;
             Repetition();
         }
-        //---------------------------------------------------------------------------------------------------------
+        //---------------------------------------------------------------------------------------------------------------------------------------------
         // Close button
         private void button8_Click(object sender, EventArgs e)
         {
             panel1.Visible = false;
         }
-        //---------------------------------------------------------------------------------------------------------
-        // Close Key
-        private void MainWindow_KeyDown(object sender, KeyEventArgs e)
+        //---------------------------------------------------------------------------------------------------------------------------------------------
+        private void button1_Click(object sender, EventArgs e)
         {
-            if (e.KeyCode == Keys.ControlKey)
-                ctrl = true;
-            else if (e.KeyCode == Keys.S)
-                S = true;
-            else if (e.KeyCode == Keys.A)
-                A = true;
-            else if (e.KeyCode == Keys.Oemplus)
-                plus = true;
-            else if (e.KeyCode == Keys.OemMinus)
-                minus = true;
-            else if (e.KeyCode == Keys.Q)
-                Q = true;
-
-            if (ctrl && S)
-            {
-                ctrl = false;
-                S = false;
-                settingsWindow.Show();
-            }
-            else if(ctrl && A)
-            {
-                ctrl = false;
-                A = false;
-                AddNewWordWindow.Show();
-            }
-            else if (ctrl && plus)
-            {
-                int tempX = x*20/100+x;
-                if (tempX < screenSize.Width)
-                {
-                    CalculateSizeControlsUp();
-                    radioButton1.Location = new Point(textBox1.Location.X + textBox1.Size.Width + pictureBox1.Size.Width + 10, 3);
-                    radioButton2.Location = new Point(radioButton1.Location.X, radioButton1.Location.Y + radioButton1.Size.Height + 5);
-                    radioButton3.Location = new Point(radioButton1.Location.X, radioButton2.Location.Y + radioButton2.Size.Height + 5);
-                    button6.Location = new Point(textBox1.Location.X, textBox1.Location.Y + textBox1.Size.Height + 5);
-                    button5.Location = new Point(button6.Location.X + button6.Size.Width + 4, button6.Location.Y);
-                    button4.Location = new Point(button5.Location.X + button5.Size.Width + 2, button5.Location.Y);
-                    SwitcherLocationMainForm();
-                }
-
-                if (tempX == screenSize.Width || tempX > screenSize.Width)
-                {
-                    Size = new Size(x, y);
-                }
-            }
-            else if (ctrl && minus)
-            {
-                CalculateSizeControlsDown();
-                radioButton1.Location = new Point(textBox1.Location.X + textBox1.Size.Width + pictureBox1.Size.Width + 10, 3);
-                radioButton2.Location = new Point(radioButton1.Location.X, radioButton1.Location.Y + radioButton1.Size.Height + 5);
-                radioButton3.Location = new Point(radioButton1.Location.X, radioButton2.Location.Y + radioButton2.Size.Height + 5);
-                button6.Location = new Point(textBox1.Location.X, textBox1.Location.Y + textBox1.Size.Height + 5);
-                button5.Location = new Point(button6.Location.X + button6.Size.Width + 4, button6.Location.Y);
-                button4.Location = new Point(button5.Location.X + button5.Size.Width + 2, button5.Location.Y);
-                SwitcherLocationMainForm();
-            }
-            else if(ctrl && Q)
-                Close();
+            Close();
         }
-        private void MainWindow_KeyUp(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.ControlKey)
-                ctrl = false;
-            else if (e.KeyCode == Keys.Oemplus)
-                plus = false;
-            else if (e.KeyCode == Keys.OemMinus)
-                minus = false;
-            else if (e.KeyCode == Keys.S)
-                S = false;
-            else if (e.KeyCode == Keys.A)
-                A = false;
-            else if (e.KeyCode == Keys.Q)
-                Q = false;
-        }
-
-        // Form Drag
+        //---------------------------------------------------------------------------------------------------------------------------------------------
+        // для переміщення форми
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
         [DllImport("user32.DLL", EntryPoint = "SendMessage")]
         private extern static void SendMessage(IntPtr hWnd, int wMsg, int wParam, int lParam);
+        //---------------------------------------------------------------------------------------------------------------------------------------------
         private void MainWindow_MouseDown(object sender, MouseEventArgs e)
         {
             ReleaseCapture();
