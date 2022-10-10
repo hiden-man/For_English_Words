@@ -53,13 +53,13 @@ namespace For_English_Words
             "пояснювати","говорити","проводити","дивний","вирощувати","сад","постачальники","ситуація","відповідь",
             "кліенти","ненавидіти","плавати","обіцяти","відмова"};
         //---------------------------------------------------------------------------------------------------------------------------------------------
-        uint fontS = 14, fontSB = 8, fontSRButton = 8;
+        uint fontS = 14, fontSB = 8, fontSRButton = 8, sizeTextBoxX = 229, sizePicture = 15;
         //---------------------------------------------------------------------------------------------------------------------------------------------
         private int
             IDWords = 0, IDTranslate = 0, randomIDWord = 0,
             correctItem = 0, randomChoise = 0, x = 440, y = 81,
             indexParam = 0, numberOfIter = 0, xB = 70, yB = 22,
-            sizeTextBoxX = 229, sizePicture = 15, switchIndexCor = 0;
+            switchIndexCor = 0;
         //---------------------------------------------------------------------------------------------------------------------------------------------
         // Проценти
         private const byte 
@@ -121,195 +121,20 @@ namespace For_English_Words
             csf = new CreaterSomeFiles(defaultPath, pathToRandomAsnwer);
             csf = new CreaterSomeFiles(defaultPath, pathToCounterFile2, "2");
             csf = new CreaterSomeFiles(configPath, pathToSwitchColor, "0");
-            //-------------------------------------------------------------------------------------
-            // Створення файла для слів
-            if (!File.Exists($@"{defaultPath}\{pathToFileWords}"))
-            {
-                using (StreamWriter sw1 = new StreamWriter($@"{defaultPath}\{pathToFileWords}"))
-                    // запис дефолтних слів
-                    foreach (string words in defaultWords)
-                    {
-                        if (IDWords == 0)
-                            sw1.Write($"{words.ToLower()}");
-                        else
-                            sw1.Write($"\n{words.ToLower()}");
-                        IDWords++;
-                    }
-            }
-            //-------------------------------------------------------------------------------------
-            // Створення файла для перекладу
-            if (!File.Exists($@"{defaultPath}\{pathToFileTranslate}"))
-            {
-                using (StreamWriter sw2 = new StreamWriter($@"{defaultPath}\{pathToFileTranslate}"))
-                    // запис дефолтних перекладів
-                    foreach (string translate in defaultTranslate)
-                    {
-                        if (IDTranslate == 0)
-                            sw2.Write($"{translate.ToLower()}");
-                        else
-                            sw2.Write($"\n{translate.ToLower()}");
-                        IDTranslate++;
-                    }
-            }
-            //-------------------------------------------------------------------------------------
-            // Створення файла для вірних відповідей
-            if (!File.Exists($@"{defaultPath}\{pathToCorecctAnswerFile}"))
-            {
-                using (StreamWriter sw3 = new StreamWriter($@"{defaultPath}\{pathToCorecctAnswerFile}"))
-                    // нумерація комірок
-                    for (int i = 0; i < IDWords; i++)
-                        if (i == 0)
-                            sw3.Write(correctItem);
-                        else
-                            sw3.Write($"\n{correctItem}");
-            }
-            //-------------------------------------------------------------------------------------
-            // Створення файлів для параметрів
-            if (!File.Exists($@"{configPath}\{pathToValueParameters}"))
-            {
-                using (StreamWriter sw6 = new StreamWriter($@"{configPath}\{pathToValueParameters}"))
-                {
-                    bool boolerCheck = true;
-                    for (int i = 0; boolerCheck;)
-                    {
-                        // 440 * 20 / 100 + 440 = 528
+            csf = new CreaterSomeFiles(defaultWords, defaultPath, pathToFileWords);
+            IDWords = csf.GetNumberOfNumber(); 
+            csf = new CreaterSomeFiles(defaultTranslate, defaultPath, pathToFileTranslate);
+            IDTranslate = csf.GetNumberOfNumber();
+            csf = new CreaterSomeFiles(defaultPath, pathToCorecctAnswerFile, correctItem, IDWords);
+            csf = new CreaterSomeFiles(configPath, pathToValueParameters, x, y, perCentS);
+            numberOfIter = csf.GetNumberOfIter();
+            csf = new CreaterSomeFiles(configPath, pathToValueParameters2, fontS, numberOfIter, perCentST, 0);
+            csf = new CreaterSomeFiles(configPath, pathToValueParameters3, fontSRButton, numberOfIter, perCentSRB, 0);
+            csf = new CreaterSomeFiles(configPath, pathToValueParameters4, fontSB, numberOfIter, perCentSB, 0);
+            csf = new CreaterSomeFiles(configPath, pathToValueParameters5, sizeTextBoxX, numberOfIter, perCentSTextBox, 0);
+            csf = new CreaterSomeFiles(configPath, pathToValueParameters6, xB, yB, numberOfIter, perCentSB);
+            csf = new CreaterSomeFiles(configPath, pathToValueParameters7, sizePicture, numberOfIter, perCentSTextBox, 1);
 
-                        int tempXY = x * perCentS / 100 + x;
-                        if (tempXY < screenSize.Width)
-                        {
-                            if (i == 0)
-                                sw6.Write($"{x},{y}");
-                            else
-                            {
-                                x = x * perCentS / 100 + x;
-                                y = y * perCentS / 100 + y;
-                                sw6.Write($"\n{x},{y}");
-                            }
-                            i++;
-                        }
-                        if (tempXY == screenSize.Width || tempXY > screenSize.Width)
-                        {
-                            boolerCheck = false;
-                        }
-                        numberOfIter = i;
-                    }
-                }
-            }
-            //-------------------------------------------------------------------------------------
-            if (!File.Exists($@"{configPath}\{pathToValueParameters2}"))
-            {
-                using (StreamWriter sw = new StreamWriter($@"{configPath}\{pathToValueParameters2}"))
-                {
-                    for (int i = 0; i < numberOfIter; i++)
-                    {
-                        if (i == 0)
-                        {
-                            sw.Write($"{fontS}");
-                        }
-                        else
-                        {
-                            fontS = fontS * perCentST / 100 + fontS;
-                            sw.Write($"\n{fontS}");
-                        }
-                    }
-                }
-            }
-            //-------------------------------------------------------------------------------------
-            if (!File.Exists($@"{configPath}\{pathToValueParameters3}"))
-            {
-                using (StreamWriter sw = new StreamWriter($@"{configPath}\{pathToValueParameters3}"))
-                {
-                    for (int i = 0; i < numberOfIter; i++)
-                    {
-                        if (i == 0)
-                        {
-                            sw.Write(fontSRButton);
-                        }
-                        else
-                        {
-                            fontSRButton = fontSRButton * perCentSRB / 100 + fontSRButton;
-                            sw.Write($"\n{fontSRButton}");
-                        }
-                    }
-                }
-            }
-            //-------------------------------------------------------------------------------------
-            if (!File.Exists($@"{configPath}\{pathToValueParameters4}"))
-            {
-                using (StreamWriter sw = new StreamWriter($@"{configPath}\{pathToValueParameters4}"))
-                {
-                    for (int i = 0; i < numberOfIter; i++)
-                    {
-                        if (i == 0)
-                        {
-                            sw.Write(fontSB);
-                        }
-                        else
-                        {
-                            fontSB = fontSB * perCentSB / 100 + fontSB;
-                            sw.Write($"\n{fontSB}");
-                        }
-                    }
-                }
-            }
-            //-------------------------------------------------------------------------------------
-            if (!File.Exists($@"{configPath}\{pathToValueParameters5}"))
-            {
-                using (StreamWriter sw = new StreamWriter($@"{configPath}\{pathToValueParameters5}"))
-                {
-                    for (int i = 0; i < numberOfIter; i++)
-                    {
-                        if (i == 0)
-                        {
-                            sw.Write(sizeTextBoxX);
-                        }
-                        else
-                        {
-                            sizeTextBoxX = sizeTextBoxX * perCentSTextBox / 100 + sizeTextBoxX;
-                            sw.Write($"\n{sizeTextBoxX}");
-                        }
-                    }
-                }
-            }
-            //-------------------------------------------------------------------------------------
-            if (!File.Exists($@"{configPath}\{pathToValueParameters6}"))
-            {
-                using (StreamWriter sw = new StreamWriter($@"{configPath}\{pathToValueParameters6}"))
-                {
-                    for (int i = 0; i < numberOfIter; i++)
-                    {
-                        if (i == 0)
-                        {
-                            sw.Write($"{xB},{yB}");
-                        }
-                        else
-                        {
-                            xB = xB * perCentSB / 100 + xB;
-                            yB = yB * perCentSB / 100 + yB;
-                            sw.Write($"\n{xB},{yB}");
-                        }
-                    }
-                }
-            }
-            //-------------------------------------------------------------------------------------
-            if (!File.Exists($@"{configPath}\{pathToValueParameters7}"))
-            {
-                using (StreamWriter sw = new StreamWriter($@"{configPath}\{pathToValueParameters7}"))
-                {
-                    for (int i = 0; i < numberOfIter; i++)
-                    {
-                        if (i == 0)
-                        {
-                            sw.Write($"{sizePicture}");
-                        }
-                        else
-                        {
-                            sizePicture = sizePicture + 5;
-                            sw.Write($"\n{sizePicture}");
-                        }
-                    }
-                }
-            }
             //-------------------------------------------------------------------------------------
             if (!File.Exists($"{configPath}\\{pathToApplySettingFile}"))
             {
@@ -372,7 +197,7 @@ start """" ""{str}""");
             using (StreamReader sr3 = new StreamReader($@"{configPath}\{pathToValueParameters5}"))
                 strParamTextBoxX = sr3.ReadToEnd();
             strParamTextBoxXArray = strParamTextBoxX.Split('\n');
-            sizeTextBoxX = Convert.ToInt32(strParamTextBoxXArray[indexParam]);
+            sizeTextBoxX = Convert.ToUInt32(strParamTextBoxXArray[indexParam]);
             string strParamSRB = "";
             string[] strParamSRBArray;
             using (StreamReader sr4 = new StreamReader($@"{configPath}\{pathToValueParameters3}"))
@@ -399,11 +224,11 @@ start """" ""{str}""");
             using (StreamReader sr6 = new StreamReader($@"{configPath}\{pathToValueParameters7}"))
                 strParamSP = sr6.ReadToEnd();
             strParamSPArray = strParamSP.Split('\n');
-            sizePicture = Convert.ToInt32(strParamSPArray[indexParam]);
+            sizePicture = Convert.ToUInt32(strParamSPArray[indexParam]);
             Size = new Size(x, y);
             textBox1.Font = new Font("Microsoft Sans Serif", fontS, FontStyle.Regular, GraphicsUnit.Point, 204);
-            textBox1.Size = new Size(sizeTextBoxX, textBox1.Size.Height);
-            pictureBox1.Size = new Size(sizePicture, sizePicture);
+            textBox1.Size = new Size((int)sizeTextBoxX, textBox1.Size.Height);
+            pictureBox1.Size = new Size((int)sizePicture, (int)sizePicture);
             radioButton1.Font = new Font("Microsoft Sans Serif", fontSRButton, FontStyle.Regular, GraphicsUnit.Point, 204);
             radioButton2.Font = new Font("Microsoft Sans Serif", fontSRButton, FontStyle.Regular, GraphicsUnit.Point, 204);
             radioButton3.Font = new Font("Microsoft Sans Serif", fontSRButton, FontStyle.Regular, GraphicsUnit.Point, 204);
@@ -845,224 +670,6 @@ start """" ""{str}""");
                 }
             }
         }
-        /*
-        //---------------------------------------------------------------------------------------------------------
-        //Методи вираховування розмірів контролерів
-        private void CalculateSizeControlsUp()
-        {
-            using (StreamReader sr6 = new StreamReader($@"{configPath}\{pathToCounterFile}"))
-                indexParam = Convert.ToInt32(sr6.ReadToEnd());
-
-            string param = "", param2 = "";
-            string[] paramArray, paramArray2;
-
-            using (StreamReader sr1 = new StreamReader($@"{configPath}\{pathToValueParameters}"))
-                param = sr1.ReadToEnd();
-            paramArray = param.Split('\n');
-            indexParam++;
-            param2 = paramArray[indexParam];
-            paramArray2 = param2.Split(',');
-
-            x = Convert.ToInt32(paramArray2[0]);
-            y = Convert.ToInt32(paramArray2[1]);
-
-            using (StreamWriter sw = new StreamWriter($@"{configPath}\{pathToCounterFile}"))
-                sw.Write(indexParam);
-
-            //---------------------------------------------------------------------------------------------------------
-
-            string strParamMainText = "";
-            string[] strParamMainTextArray;
-
-            using (StreamReader sr2 = new StreamReader($@"{configPath}\{pathToValueParameters2}"))
-                strParamMainText = sr2.ReadToEnd();
-            strParamMainTextArray = strParamMainText.Split('\n');
-            fontS = Convert.ToUInt32(strParamMainTextArray[indexParam]);
-
-            //---------------------------------------------------------------------------------------------------------
-
-            string strParamTextBoxX = "";
-            string[] strParamTextBoxXArray;
-
-            using (StreamReader sr3 = new StreamReader($@"{configPath}\{pathToValueParameters5}"))
-                strParamTextBoxX = sr3.ReadToEnd();
-            strParamTextBoxXArray = strParamTextBoxX.Split('\n');
-            sizeTextBoxX = Convert.ToInt32(strParamTextBoxXArray[indexParam]);
-
-            //---------------------------------------------------------------------------------------------------------
-
-            string strParamSRB = "";
-            string[] strParamSRBArray;
-
-            using (StreamReader sr4 = new StreamReader($@"{configPath}\{pathToValueParameters3}"))
-                strParamSRB = sr4.ReadToEnd();
-            strParamSRBArray = strParamSRB.Split('\n');
-            fontSRButton = Convert.ToUInt32(strParamSRBArray[indexParam]);
-
-            //---------------------------------------------------------------------------------------------------------
-
-            string strParamSB = "";
-            string[] strParamSBArray;
-
-            using (StreamReader sr5 = new StreamReader($@"{configPath}\{pathToValueParameters4}"))
-                strParamSB = sr5.ReadToEnd();
-            strParamSBArray = strParamSB.Split('\n');
-            fontSB = Convert.ToUInt32(strParamSBArray[indexParam]);
-
-            //---------------------------------------------------------------------------------------------------------
-
-            string strParamSB1 = "", strParamSB2 = "";
-            string[] strParamSBArray1, strParamSBArray2;
-
-            using (StreamReader sr5 = new StreamReader($@"{configPath}\{pathToValueParameters6}"))
-                strParamSB = sr5.ReadToEnd();
-            strParamSBArray = strParamSB.Split('\n');
-            strParamSB2 = strParamSBArray[indexParam];
-            strParamSBArray2 = strParamSB2.Split(',');
-
-            xB = Convert.ToInt32(strParamSBArray2[0]);
-            yB = Convert.ToInt32(strParamSBArray2[1]);
-
-            //---------------------------------------------------------------------------------------------------------
-
-            string strParamSP = "";
-            string[] strParamSPArray;
-            using (StreamReader sr6 = new StreamReader($@"{configPath}\{pathToValueParameters7}"))
-                strParamSP = sr6.ReadToEnd();
-            strParamSPArray = strParamSP.Split('\n');
-            sizePicture = Convert.ToInt32(strParamSPArray[indexParam]);
-
-            Size = new Size(x, y);
-            textBox1.Font = new Font("Microsoft Sans Serif", fontS, FontStyle.Regular, GraphicsUnit.Point, 204);
-            textBox1.Size = new Size(sizeTextBoxX, textBox1.Size.Height);
-            pictureBox1.Size = new Size(sizePicture, sizePicture);
-            radioButton1.Font = new Font("Microsoft Sans Serif", fontSRButton, FontStyle.Regular, GraphicsUnit.Point, 204);
-            radioButton2.Font = new Font("Microsoft Sans Serif", fontSRButton, FontStyle.Regular, GraphicsUnit.Point, 204);
-            radioButton3.Font = new Font("Microsoft Sans Serif", fontSRButton, FontStyle.Regular, GraphicsUnit.Point, 204);
-            button4.Font = new Font("Microsoft Sans Serif", fontSB, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button4.Size = new Size(xB, yB);
-            button5.Font = new Font("Microsoft Sans Serif", fontSB, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button5.Size = new Size(xB, yB);
-            button6.Font = new Font("Microsoft Sans Serif", fontSB, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button6.Size = new Size(xB, yB);
-        }
-        //---------------------------------------------------------------------------------------------------------
-        private void CalculateSizeControlsDown()
-        {
-            using (StreamReader sr6 = new StreamReader($@"{configPath}\{pathToCounterFile}"))
-                indexParam = Convert.ToInt32(sr6.ReadToEnd());
-
-            string param = "", param2 = "";
-            string[] paramArray, paramArray2;
-
-            using (StreamReader sr1 = new StreamReader($@"{configPath}\{pathToValueParameters}"))
-                param = sr1.ReadToEnd();
-            paramArray = param.Split('\n');
-            if (indexParam > 0)
-                indexParam--;
-            if (indexParam == 0)
-                indexParam = 0;
-            param2 = paramArray[indexParam];
-            paramArray2 = param2.Split(',');
-
-            x = Convert.ToInt32(paramArray2[0]);
-            y = Convert.ToInt32(paramArray2[1]);
-
-            using (StreamWriter sw = new StreamWriter($@"{configPath}\{pathToCounterFile}"))
-                sw.Write(indexParam);
-
-            //---------------------------------------------------------------------------------------------------------
-
-            if (indexParam > 0)
-            {
-                string strParamMainText = "";
-                string[] strParamMainTextArray;
-
-                using (StreamReader sr1 = new StreamReader($@"{configPath}\{pathToValueParameters2}"))
-                    strParamMainText = sr1.ReadToEnd();
-                strParamMainTextArray = strParamMainText.Split('\n');
-                fontS = Convert.ToUInt32(strParamMainTextArray[indexParam]);
-
-                //---------------------------------------------------------------------------------------------------------
-
-                string strParamTextBoxX = "";
-                string[] strParamTextBoxXArray;
-
-                using (StreamReader sr1 = new StreamReader($@"{configPath}\{pathToValueParameters5}"))
-                    strParamTextBoxX = sr1.ReadToEnd();
-                strParamTextBoxXArray = strParamTextBoxX.Split('\n');
-                sizeTextBoxX = Convert.ToInt32(strParamTextBoxXArray[indexParam]);
-
-                //---------------------------------------------------------------------------------------------------------
-
-                string strParamSRB = "";
-                string[] strParamSRBArray;
-
-                using (StreamReader sr1 = new StreamReader($@"{configPath}\{pathToValueParameters3}"))
-                    strParamSRB = sr1.ReadToEnd();
-                strParamSRBArray = strParamSRB.Split('\n');
-                fontSRButton = Convert.ToUInt32(strParamSRBArray[indexParam]);
-
-                //---------------------------------------------------------------------------------------------------------
-
-                string strParamSB = "";
-                string[] strParamSBArray;
-
-                using (StreamReader sr5 = new StreamReader($@"{configPath}\{pathToValueParameters4}"))
-                    strParamSB = sr5.ReadToEnd();
-                strParamSBArray = strParamSB.Split('\n');
-                fontSB = Convert.ToUInt32(strParamSBArray[indexParam]);
-
-                //---------------------------------------------------------------------------------------------------------
-
-                string strParamSB1 = "", strParamSB2 = "";
-                string[] strParamSBArray1, strParamSBArray2;
-
-                using (StreamReader sr5 = new StreamReader($@"{configPath}\{pathToValueParameters6}"))
-                    strParamSB1 = sr5.ReadToEnd();
-                strParamSBArray1 = strParamSB1.Split('\n');
-                strParamSB2 = strParamSBArray1[indexParam];
-                strParamSBArray2 = strParamSB2.Split(',');
-
-                xB = Convert.ToInt32(strParamSBArray2[0]);
-                yB = Convert.ToInt32(strParamSBArray2[1]);
-
-                //--------------------------------------------------------------------------------------------------------
-
-                string strParamSP = "";
-                string[] strParamSPArray;
-                using (StreamReader sr6 = new StreamReader($@"{configPath}\{pathToValueParameters7}"))
-                    strParamSP = sr6.ReadToEnd();
-                strParamSPArray = strParamSP.Split('\n');
-                sizePicture = Convert.ToInt32(strParamSPArray[indexParam]);
-            }
-            if (indexParam == 0)
-            {
-                xB = 64;
-                yB = 22;
-                sizeTextBoxX = 229;
-                fontSRButton = 8;
-                fontS = 14;
-                fontSB = 8;
-                pictureBox1.Size = new Size(20, 20);
-            }
-
-            Size = new Size(x, y);
-            textBox1.Font = new Font("Microsoft Sans Serif", fontS, FontStyle.Regular, GraphicsUnit.Point, 204);
-            textBox1.Size = new Size(sizeTextBoxX, textBox1.Size.Height);
-            pictureBox1.Size = new Size(pictureBox1.Size.Width - 5, pictureBox1.Size.Height - 5);
-            radioButton1.Font = new Font("Microsoft Sans Serif", fontSRButton, FontStyle.Regular, GraphicsUnit.Point, 204);
-            radioButton2.Font = new Font("Microsoft Sans Serif", fontSRButton, FontStyle.Regular, GraphicsUnit.Point, 204);
-            radioButton3.Font = new Font("Microsoft Sans Serif", fontSRButton, FontStyle.Regular, GraphicsUnit.Point, 204);
-            button4.Font = new Font("Microsoft Sans Serif", fontSB, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button4.Size = new Size(xB, yB);
-            button5.Font = new Font("Microsoft Sans Serif", fontSB, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button5.Size = new Size(xB, yB);
-            button6.Font = new Font("Microsoft Sans Serif", fontSB, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button6.Size = new Size(xB, yB);
-        }
-        */
-
         // КОНТРОЛЕРИ
         //---------------------------------------------------------------------------------------------------------------------------------------------
         // Кнопка відкриття меню
