@@ -115,6 +115,8 @@ namespace For_English_Words
                 }
             }
         }
+
+
         //---------------------------------------------------------------------------------------------------------------------------------------------
         private void GetAutoloadPath()
         {
@@ -357,6 +359,11 @@ namespace For_English_Words
         // створення події натиснутої кнопки мишки формі
         //---------------------------------------------------------------------------------------------------------------------------------------------
         private void SettingsWindow_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
+        private void label5_MouseDown(object sender, MouseEventArgs e)
         {
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);

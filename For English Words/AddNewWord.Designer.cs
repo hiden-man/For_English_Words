@@ -152,6 +152,7 @@
             this.label5.TabIndex = 12;
             this.label5.Text = "Додавання нових слів";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label5.MouseDown += new System.Windows.Forms.MouseEventHandler(this.label5_MouseDown);
             // 
             // panel2
             // 
